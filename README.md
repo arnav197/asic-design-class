@@ -7,13 +7,13 @@
  
  Firstly, a text editor is used to write the code as shown below. We use leafpad.
 
-![Screenshot displaying the code and leafpad prompt](createfile.png)
+<img src="imagesfirstsession\O1createfile.png" alt="Step 1.1" width="400"/> <br>
 
 In the screenshot posted above, leafpad is summoned using the **leafpad sum1ton.c** command. Here, **sum1ton.c** is the C program file which contains our code. Therefore, write the code in it. And save it, obviously.
 
 **1.2** Going ahead, compile the written C code in the manner shown below.
 
-![Compilation and Executable](01gcccompilation.png)
+<img src="imagesfirstsession\O1gcccompilation.png" alt="Step 1.1" width="400"/> <br>
 
 **gcc sum1ton.c** command compiles the C program and an executable is created. 
 
