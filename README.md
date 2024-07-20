@@ -72,7 +72,98 @@ Navigate to the *main* section again by typing */main* in the command line argum
 **The number of instructions here come up to be 11 again.**
 
 
-The primary reason behind this might occur is because the algorithm complexity is not high. Therefore, the underlying algorithm might not benefit from using Ofast, which seems to be the case here.
+The primary reason why this might occur is because the algorithm complexity is not high. Therefore, the underlying algorithm might not benefit from using Ofast, which seems to be the case here.
+
+# SECOND SESSION:  Program output and Debugging 
+
+## The objective is to confirm the output of the program is same as the previous case and to debug the object dump file.
+
+## 1. Program Output
+1.1 Compile the program again using riscv gcc using the command: 
+
+```
+riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
+```
+1.2 Following command runs the object file and displays the result: 
+```
+spike pk sum1ton.o
+```
+The output is as follows: 
+<img src="imagessessiontwo\2ses1.png" alt="Step 1.1" width="400"/> <br>
+**The output can be inferred from the snapshot above. It is 15, which is equal to the previous cases.**
+
+1.3 Again, using the command
+```
+riscv-unknown-elf-objdump -d sum1ton.o | less
+```
+will display the object dump, where all the instructions are listed to analyse and infer.
+
+Snapshot of object dump: 
+
+<img src="imagessessiontwo\objdump.png" alt="Step 1.1" width="400"/> <br>
+
+**This will be essential for debugging.**
+
+## 2. DEBUGGING
+
+To debug is to go through every instruction, specified by a memory address, and analyse what the instruction performs.
+
+**2.1** Here, we modify the program counter such that it stops at the memory address of the first instruction of the obj dump file using the command: 
+```
+spike -d pk sum1ton.o
+until pc 0 100b0
+```
+This will open a debugger. **Also, notice that the memory address of the first instruction is 100b0, inferred through the obj dump snapshot.**
+
+The command will stop the program counter at 100b0, all the intructions will thereon commence only after the user presses the enter button.
+
+
+**2.2** The intruction correspondong to the first memory address 100b0, is: *lui a0, 0x21*. We will not delve into the deteils of the instruction but our task is to observe whether the instruction worked or it did not i.e was it able to run the lui command.
+
+For that, we will observe the contents of register a0, before running the operation. Have a look at the snapshot below.
+
+<img src="imagessessiontwo\reg_a0.png" alt="Step 1.1" width="400"/> <br>
+
+It can be seen using the command:
+
+```
+reg 0 a0
+```
+that the contents of the register a0 before the instruction was 0x......01, later it was 0x....21000. Use the same command to assess the contents of the register again after the instruction was run using the "Enter" key.
+
+Clearly, the value stored in a0 was appended as per the instruction.
+
+**2.3** Moving on, similar steps are followed for the next instruction. 
+
+From the object dump file, the next instruction is *addi sp,sp, -16*. sp is an appreviation for Stack Pointer which is also a register. Run the command:
+
+```
+reg 0 sp
+```
+Take reference from the snapshot obtained.
+
+<img src="imagessessiontwo\reg_sp.png" alt="Step 1.1" width="400"/> <br>
+
+The value before the instruction is 0x0000003ffffffb50. Once we press enter, we can observe that the value is appended by -16. 
+
+The new value stored in the register sp can accesses using the same command as above, which is 0x0000003ffffffb40.
+
+**Note:**
+1. *lui* and *addi* are immediate instructions. *lui* stands for Left Upper Immediate, where 'Upper' refers to the first 16 bits. 
+2. *addi* adds the content of the source register and immediate and goes on to store the result in the destination register. 
+
+
+
+
+
+
+
+
+
+
+
+
+
 ****
 
 
