@@ -380,6 +380,54 @@ There exists 6 types of instruction formats in RISCV.
     
     Therefore, the instructions have been matched to their corresponding types and their 32 bit layout has been constructed as per their respective format. 
 
+# 2. Running assembly instructions in accordance to a provided Verilog code in a RISCV processor.
+
+There exists variations in the bit pattern of the instructions provided. Firstly, for the provided verilog code and the instructions, following is the Bit pattern and the ISA according to the code.
+|Operation	     |        Hardcoded ISA |   Bit Pattern (Hardcoded)
+|----------------|----------------------|----------------------------------------------------
+|ADD R6, R2, R1	 |	      32'h02208300  |   0000001 00010 00001 000 00110 0000000
+|SUB R7, R1, R2	 |	      32'h02209380  |   0000001 00010 00001 001 00111 0000000
+|AND R8, R1, R3	 |        32'h0230a400  |   0000001 00011 00001 010 01000 0000000
+|OR R9, R2, R5	 |        32'h02513480  |   0000001 00101 00010 011 01001 0000000
+|XOR R10, R1, R4 |	      32'h0240c500  |   0000001 00100 00001 100 01010 0000000
+|SLT R1, R2, R4	 |	      32'h02415580  |   0000001 00100 00010 101 01011 0000000   
+|ADDI R12, R4, 5 |	      32'h00520600  |   000000000101 00100 000 01100 0000000   
+|**BEQ** R0, R0, 15	 |	  32'h00f00002  |   0 000000 01111 00000 000 0000 0 0000010
+|**SW** R3, R1, 2	 |	  32'h00209181  |   0000000 00010 00001 001 00011 0000001
+|LW R13, R1, 2	 |	      32'h00208681  |   000000000010 00001 000 01101 0000001  
+|SRL R16, R14, R2|        32'h00271803  |   0000000 00010 01110 001 10000 0000011
+|SLL R15, R1, R2 |	      32'h00208783  |   0000000 00010 00001 000 01111 0000011
+
+
+For the custom instructions provided, 
+
+|Operation	     |        RISCV ISA     |   Bit Pattern (RISCV)
+|----------------|----------------------|----------------------------------------------------
+|ADD r1, r2, r3  |	      32'h006100B3  |   0000000 00110 00010 000 00001 0110011
+|SUB r3, r1, r2	 |	      32'h40208333  |   0100000 00010 00001 000 00110 0110011
+|AND r2, r1, r3	 |        32'h0230a400  |   0000000 00011 00001 111 00010 0110011
+|OR r8, r2, r5	 |        32'h0030F133  |   0000000 00101 00010 110 01000 0110011
+|XOR r8, r1, r4  |	      32'h0040C433  |   0000000 00100 00001 100 01000 0110011
+|SLT r10, r2, r4 |	      32'h00412633  |   0000000 00100 00010 010 01100 0110011 
+|ADDI r12, r3, 5 |	      32'h00508313  |   000000000101 00001 000 00110 0010011   
+|SW r3, r1, 4    |	      32'h00205223  |   0000000 00100 00001 010 0100 0100011
+|SRL r16, r11, r2|	      32'h0025D833  |   0000000 00010 01011 101 10000 0110011
+|BNE r0, r1, 20	 |	      32'h02101A63  |   0 000001 00001 00000 001 1010 0 1100011  
+|LW r13, r11, 2  |        32'h000969A1  |   000000000010 01011 010 01101 00001
+|SLL r15, r11, r2|	      32'h002597B3  |   0000000 00010 01011 001 01111 0110011
+|BEQ r0, r0, 15  |        32'h00000F63  |   0 000000 00000 00000 000 1111 0 1100011
+
+It is to observe that, although the intruction format which is visible in the bit pattern is same for both RISCV ISA and the Hardcoded ISA. The difference lies in the actual representation of the constituent elements, primarily in **func3, func7 and the opcode**.
+
+ For example, if we consider the opcode for ADD instruction, it is 01100110 for RISCV but according to the hardcoded ISA, it comes out to be 0000000. This is similar for SUB instruction as well. Moreover, for SUB instruction, the func3 is 001 for hardcoded ISA and it is 000 for RISCV ISA. The func7 too varies for ADD, SUB, AND, OR, XOR instructions in the harcoded ISA and the RISCV ISA. In short, 
+ 1. For R type instructions: func3, func7 and the opcode are different.
+ 2. For I type instructions: opcode is different. 
+ 3. For B type instructions: opcode is different.
+   
+ 
+ 
+
+
 
 
 
