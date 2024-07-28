@@ -424,6 +424,72 @@ It is to observe that, although the intruction format which is visible in the bi
  2. For I type instructions: opcode is different. 
  3. For B type instructions: opcode is different.
    
+Moving on, the snapshots of the waveform/signals of the custom instructions are attached below. The appropriate signals required for each type of instructions are visible in the snapshot.
+
+1. ADD r1, r2, r3
+
+
+<img src="imagessessionthree\add.png" alt="Step 1.1" width="400"/> <br>  
+ 
+2. SUB r3, r1, r2
+
+
+<img src="imagessessionthree\sub.png" alt="Step 1.1" width="400"/> <br> 
+
+
+3. AND r2, r1, r3
+
+
+<img src="imagessessionthree\and.png" alt="Step 1.1" width="400"/> <br> 
+
+4. OR r8, r2, r5
+
+
+<img src="imagessessionthree\or.png" alt="Step 1.1" width="400"/> <br> 
+
+5. XOR r8, r1, r4
+
+
+<img src="imagessessionthree\xor.png" alt="Step 1.1" width="400"/> <br> 
+
+6. SLT r10, r2, r4
+
+
+<img src="imagessessionthree\slt.png" alt="Step 1.1" width="400"/> <br> 
+
+7. ADDI r12, r3, 5
+
+
+<img src="imagessessionthree\addi.png" alt="Step 1.1" width="400"/> <br> 
+
+
+8. SW r3, r1, 4
+
+
+<img src="imagessessionthree\sw.png" alt="Step 1.1" width="400"/> <br> 
+
+ 
+
+9.  BNE r0, r1, 20
+
+
+<img src="imagessessionthree\bne.png" alt="Step 1.1" width="400"/> <br> 
+
+10.  BEQ r0, r0, 15
+
+
+<img src="imagessessionthree\beq.png" alt="Step 1.1" width="400"/> <br> 
+
+11.  LW r13, r11, 2
+
+
+<img src="imagessessionthree\lw.png" alt="Step 1.1" width="400"/> <br> 
+
+12.  SLL r15, r11, r2
+
+
+ <img src="imagessessionthree\sll.png" alt="Step 1.1" width="400"/> <br> 
+   
  
  
 
