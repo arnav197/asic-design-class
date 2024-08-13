@@ -489,7 +489,171 @@ Moving on, the snapshots of the waveform/signals of the custom instructions are 
 
 
  <img src="imagessessionthree\sll.png" alt="Step 1.1" width="400"/> <br> 
-   
+
+
+
+# Fourth Session: Executing C Code to Print/Determine Prime Numbers Up to a Certain Limit Using the Sieve of Eratosthenes Algorithm 
+
+
+In this lab, we are repeating the tasks from the first session, but with a different C code implementation.
+
+# **Sieve of Eratosthenes**
+
+The **Sieve of Eratosthenes** is a well-known algorithm with a predictable pattern of execution that heavily relies on memory access and bitwise operations. It is an ancient algorithm used to find all prime numbers up to a specified integer. It works by iteratively marking the multiples of each prime number starting from 2. The numbers that remain unmarked after all the multiples have been marked are prime. Comparing its performance on different architectures and compilers can reveal how well each handles large-scale, memory-intensive operations, and the efficiency of loop unrolling, bitwise optimizations, and cache utilization. 
+
+**Key Aspects:**
+
+* **Memory Allocation and Access**: The algorithm uses a dynamically allocated boolean array to mark non-prime numbers, which tests memory allocation and access patterns.
+
+* **Bitwise Operations and Loops**: The core of the algorithm involves setting bits (marking non-primes) in a loop, testing how well the compiler optimizes such operations.
+
+
+* **Time Complexity**: The algorithm is efficient but still requires significant computational effort for large limits (like 1,000,000), making it a good performance benchmark.
+
+
+
+## 1. Over GCC
+
+1.1 Refer to the C code saved in file *sieve.c*: 
+
+```
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h> // Include this header for malloc and free
+#include <math.h>
+
+void sieve_of_eratosthenes(int limit) {
+    // Allocate memory for the prime array
+    bool *prime = (bool *)malloc((limit + 1) * sizeof(bool));
+    if (prime == NULL) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+
+    // Initialize all entries as true
+    for (int i = 0; i <= limit; i++) {
+        prime[i] = true;
+    }
+
+    prime[0] = prime[1] = false; // 0 and 1 are not primes
+
+    for (int p = 2; p * p <= limit; p++) {
+        if (prime[p]) {
+            for (int i = p * p; i <= limit; i += p) {
+                prime[i] = false;
+            }
+        }
+    }
+
+    // Print the prime numbers
+    printf("Prime numbers up to %d are:\n", limit);
+    for (int p = 2; p <= limit; p++) {
+        if (prime[p]) {
+            printf("%d ", p);
+        }
+    }
+    printf("\n");
+
+    // Free the allocated memory
+    free(prime);
+}
+
+int main() {
+    int limit;
+
+    printf("Enter the limit up to which you want to find prime numbers: ");
+    scanf("%d", &limit);
+
+    if (limit<2) {
+        printf("There are no prime numbers less than 2. \n");
+    }   else {
+        sieve_of_eratosthenes(limit);
+    }
+    return 0;
+}
+```
+1.2 The output snapshot is pasted below: 
+
+<img src="imagessessionfour\gccop.png" alt="Step 1.1" width="400"/> <br>  
+ 
+***sieve_gcc.out*** is the name of the output file 
+
+Note: The commands used are the same as of first session apart from the file names. 
+
+
+## 2. Over RISCV GCC (O1 and Ofast) 
+
+
+### 2.1 O1 Compiler Flag
+
+**2.1.1** To compile using O1 compiler flag use the following command: 
+
+``` 
+riscv64-unknown-elf-gcc -O1 -mabi=lp64i -march=rv64i -o sieveO1 sieve.c
+```
+
+***sieveO1*** is the output file after compiler. This is accessed using the command:
+
+``` 
+spike pk sieve01
+```
+
+
+**2.1.2** The output is the same as GCC and the following: 
+
+<img src="imagessessionfour\O1_op.png" alt="Step 1.1" width="400"/> <br> 
+
+
+**2.1.3** To gather information about the number of instructions use the following command: 
+
+```
+riscv64-unknown-elf-objdump -d sieveO1
+```
+
+Again, navigate to the /main section and calculate the number of instructions as done in session two and the number of instructions can be inferred to be 21.
+
+Refer to the snapshot below: 
+
+<img src="imagessessionfour\01instructions.png" alt="Step 1.1" width="400"/> <br> 
+
+
+
+
+### 2.2 Ofast Compiler Flag
+
+**2.2.1** To compile using Ofast compiler flag use the following command: 
+
+```
+riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sieveOfast sieve.c
+```
+
+***sieveOfast*** is the output file after compilation.
+
+**2.2.2** The output is again, the same as GCC and RISCV-GCC with O1 compiler flag. To access the output file using riscv emulator spike, use the command: 
+
+```
+spike pk sieveOfast
+```
+
+
+
+**2.2.3** Use the same step as above (for O1 flag) to gather information about the number of instructions. 
+
+Refer to the snapshot below: 
+
+<img src="imagessessionfour\Ofastinstructions.png" alt="Step 1.1" width="400"/> <br> 
+
+
+
+
+The number of instructions are 21 again. 
+
+
+
+
+
+
+
  
  
 
