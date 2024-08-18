@@ -650,12 +650,114 @@ The number of instructions are 21 again.
 
 
 
+# Fifth Session: Digital Logic with TL Verilog and Makerchip
+
+## What is TL Verilog? 
+**TL-Verilog** is a modern hardware description language designed to simplify and accelerate digital design by reducing the verbosity and complexity commonly associated with traditional hardware languages like Verilog and VHDL. TL-Verilog introduces a novel approach to design, emphasizing transactional-level modeling and making it easier to handle complex pipelined designs. With TL-Verilog, designers can focus more on the behavior of the hardware rather than low-level implementation details, thanks to features like automatic pipeline handling, clean and concise syntax, and built-in support for powerful abstraction mechanisms.
+
+## Makerchip
+
+Makerchip is an online platform and integrated development environment (IDE) designed to facilitate the design and simulation of digital circuits using TL-Verilog and traditional Verilog. It provides an accessible and user-friendly environment where users can write, simulate, and visualize their hardware designs directly in a web browser, without the need for installing any software.
+
+
+## Developing a **Combinational Logic** for a Simple Calculator in TL Verilog using Makerchip
+
+
+A basic calculator is implemented using a 4x1 multiplexer. It performs the following primitive calculations: 
+   
+1. ADD: ```$sum[31:0] = $val1[31:0] + $val2[31:0];```
+2. SUB: ``$diff[31:0] = $val1[31:0] - $val2[31:0];``
+3. QUOT: ``$quot[31:0] = $val1[31:0] / $val2[31:0];``
+4. PROD: `$prod[31:0] = $val1[31:0] * $val2[31:0];`  
+
+The above operations are implemented, as mentioned using a 4x1 MUX. The same can be implemented in TL Verilog using ternary operators. Take a look at the code below to do so: 
+
+
+```
+$out[31:0] = ($sel == 2'b00) ? $sum  :  // If sel is 00, select sum
+         ($sel == 2'b01) ? $diff :  // If sel is 01, select diff
+         ($sel == 2'b10) ? $prod :  // If sel is 10, select prod
+                          $quot;   // If sel is 11, select quot
+
+```
+
+The select signal and the operands for the calculators are chosen at random using the `` $random`` command. 
+
+Have a look at the complete TL Verilog code for reference: 
+
+```
+$val1[31:0]  = $rand1[3:0];
+   $val2[31:0] = $rand2[3:0];
+   
+   $sum[31:0] = $val1[31:0] + $val2[31:0];
+   $diff[31:0] = $val1[31:0] - $val2[31:0];
+   $prod[31:0] = $val1[31:0] * $val2[31:0];
+   $quot[31:0] = $val1[31:0] / $val2[31:0];
+   
+   $sel[1:0] = $rand3[1:0];
+    
+   
+   $out[31:0] = ($sel == 2'b00) ? $sum  :  // If sel is 00, select sum
+         ($sel == 2'b01) ? $diff :  // If sel is 01, select diff
+         ($sel == 2'b10) ? $prod :  // If sel is 10, select prod
+                          $quot;   // If sel is 11, select quot
+```
+
+The snapshot of the above activity is attached below:
+
+
+<img src="imagessessionfive\calc_mux_1.png" alt="Step 1.1" width="400"/> <br> 
+
+## Adding **Sequential Logic** to the Calculator 
+
+Sequential Logic is implemented by using a clock signal. The signals produced at the offset of each clock might be of importance/use in the program which might need those values to perform operations on them. Therefore we use the ```>>(integer)$(operand_name)``` operator to access signals from clock signal which we require.
+
+### Free Running Counter 
+Firstly, we shall implement a Free Running Counter in TL Verilog using Makerchip.
+
+The following code acts as a simple free running counter with a reset value of 0. The counter adds integer 1 to $num1 at each clock. This is done so in the following manner in TL Verilog: 
+
+``` $num1[31:0] = $reset ? 0 : >>1$num1[31:0] + 1; ```
+
+The value stored in $num1[31:0] is utilized using the operator mentioned above for a working model of a counter.
+
+Refer to the snapshot below for reference: 
+
+<img src="imagessessionfive\sq_logic_counter.png" alt="Step 1.1" width="400"/> <br> 
+
+### Sequential Calculator 
+As mentioned , the introduction of sequential logic will introduce the utilization of values which are obtained from clock cycles which are different from the ones where the operations are performed. This was seen in a simple manner in the previous example of a Free Running Counter as well. 
+
+
+Moving on, our calculator is now modified to "hold" a value. This is done so, in the hardware, using a Flip-Flop. The value stored in the $out[31:0] is now fed to $val1[31:0] from our calculator example. 
+
+This modification is done in the following manner: 
+
+```$val1[31:0]  = >>1$out[31:0]; ```  
+
+Therefore, the value in the output from the subsequent cycle is fed in as our new input. 
+
+Practicallly speaking, calculators need a reset button as well, this will hold the output @ 0. The reset option is added into the 4x1 multiplexer code in the following manner: 
+```
+$out[31:0] = $reset ? 0 :($sel == 2'b00) ? $sum  :  // If sel is 00, select sum
+         ($sel == 2'b01) ? $diff :  // If sel is 01, select diff
+         ($sel == 2'b10) ? $prod :  // If sel is 10, select prod
+                          $quot;   // If sel is 11, select quot
+```
+This can be inferred more clearly in the snapshot below: 
+
+<img src="imagessessionfive\sq_calc_1.png" alt="Step 1.1" width="400"/> <br> 
+
+From the snapshot, it can be seen that whenever the reset is HIGH, the output is set to 0. The calculator now performs all of it's regular defined operations, albeit now it has one of it's input taken from the output of the previous cycle. 
 
 
 
 
- 
- 
+
+
+
+
+
 
 
 
