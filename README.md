@@ -750,6 +750,144 @@ This can be inferred more clearly in the snapshot below:
 
 From the snapshot, it can be seen that whenever the reset is HIGH, the output is set to 0. The calculator now performs all of it's regular defined operations, albeit now it has one of it's input taken from the output of the previous cycle. 
 
+## Pipelined Logic 
+
+In Verilog, pipelining is often implemented by designing a series of sequential stages where each stage is a separate module or a block of logic, and the stages are connected through registers. Each stage performs a part of the overall computation, and data moves from one stage to the next on each clock cycle.
+
+### Assigning Counter and Calculator Developed in Previous Steps Into a Pipeline
+
+As mentioned, pipelining is done so as to segregate operations or a block of logic which have some coherence or simply put, are associated with each together. In this example, **we shall put the Counter and the Calculator in a single pipeline and within a single pipeline stage as well.**
+
+To initiate a pipeline, use the command: ``` |cacl ``` and make sure the indentation beyond this right.
+
+To assign a pipelining stage to a set of operations, logic block or a module, use the command: ``` @int ```. This integer value depicts the pipelining stage with respect to the clock cycle. The calculator and the counter both, are added to this ``` |calc ``` pipeline in this following manner: 
+
+
+```
+|calc
+      @1
+             // Declare and initialize variables
+         $reset[31:0] = *reset;
+
+             // Generate random values and perform operations
+         $val1[31:0] = >>1$out[31:0];
+         $val2[31:0] = $rand2[3:0];
+
+          // Perform arithmetic operations
+         $sum[31:0] = $val1[31:0] + $val2[31:0];
+         $diff[31:0] = $val1[31:0] - $val2[31:0];
+         $prod[31:0] = $val1[31:0] * $val2[31:0];
+         $quot[31:0] = $val1[31:0] / $val2[31:0];
+         $sel[1:0] = $rand3[1:0];
+
+          // Update num1 and output based on selection
+
+         $num1[31:0] = $reset ? 0 : >>1$num1[31:0] + 1;
+
+         $out[31:0] = $reset ? 0 : ($sel == 2'b00) ? $sum  :  
+                        ($sel == 2'b01) ? $diff :  
+                        ($sel == 2'b10) ? $prod :  
+                                         $quot;   
+
+```
+The waveforms and the corresponding figure generated is posted below for reference. 
+
+
+<img src="imagessessionfive\pipeline1.png" alt="Step 1.1" width="400"/> <br>
+
+### Cycle Calculator 
+
+The code now is modified to use different stages of the pipeline. The 4x1 MUX is now pushed to the second stage while the following circuit is implemented: 
+
+<img src="imagessessionfive\pipeline_ckt.png" alt="Step 1.1" width="400"/> <br>
+
+Following is the modified code: 
+
+```
+|calc
+      @1
+             // Declare and initialize variables
+         $reset = *reset;
+
+             // Generate random values and perform operations
+         $val1[31:0] = >>2$out[31:0];
+         $val2[31:0] = $rand2[3:0];
+
+          // Perform arithmetic operations
+         $sum[31:0] = $val1[31:0] + $val2[31:0];
+         $diff[31:0] = $val1[31:0] - $val2[31:0];
+         $prod[31:0] = $val1[31:0] * $val2[31:0];
+         $quot[31:0] = $val1[31:0] / $val2[31:0];
+         $sel[1:0] = $rand3[1:0];
+
+          // Update num1 and output based on selection
+
+         $num1[31:0] = $reset ? 0 : >>1$num1 + 1;
+      @2
+         $valid = !$num1;
+         $rst_alt = $valid | $reset;
+         $out[31:0] = $rst_alt ? 32'b0 : ($sel == 2'b00) ? $sum  :  // If sel is 00, select sum
+                        ($sel == 2'b01) ? $diff :  // If sel is 01, select diff
+                        ($sel == 2'b10) ? $prod :  // If sel is 10, select prod
+                                         $quot;   // If sel is 11, select quot
+
+
+```
+This retiming of the 4x1 MUX to the second clock using ``` @2 ``` is done to ease timings. Functionally speaking, everything else remains the same. Snapshot pasted below for reference: 
+
+<img src="imagessessionfive\pipeline2.png" alt="Step 1.1" width="400"/> <br>
+
+
+## Validity 
+
+In TL-Verilog, validity is a key concept used to manage data flow through pipelines. It helps ensure that operations are only performed on valid data and prevents the unnecessary processing of invalid or stale data. This concept is essential in pipelined designs, where operations are spread across multiple clock cycles.
+
+### Cycle Calculator with Validity 
+
+
+Moving on, some changes have been made according to the circuit below: 
+
+<img src="imagessessionfive\validity2.png" alt="Step 1.1" width="400"/> <br>
+
+The enable signal for the 4x1 MUX has now been 'checked' using a valid signal in the following manner: 
+
+``` $rst_alt = $valid | $num1; ``` This is a when condition now for the calculation to occur. We have therefore introduced a condition onto the operations of our calculator. Only if the condition is valid, will the calculator do it's task. This is encoded in the Multiplexer behaviour as an enable signal.
+The multiplexer behaviour is also modified in accordance to this in the following manner: 
+``` $out[31:0] = $rst_alt ? 32'b0 : ($sel == 2'b00) ? $sum  :  // If sel is 00, select sum
+                        ($sel == 2'b01) ? $diff :  // If sel is 01, select diff
+                        ($sel == 2'b10) ? $prod :  // If sel is 10, select prod
+                                         $quot;   // If sel is 11, select quot
+```
+
+Refer to the snapshot below with waveforms to verify the behaviour:
+
+<img src="imagessessionfive\validity1.png" alt="Step 1.1" width="400"/> <br>
+
+# Sixth Session:  Basic RISC-V CPU Micro-architecture 
+
+The block diagram below vaguely represents the RISC-V CPU along with it's components: 
+
+<img src="imagessessionfive\block.png" alt="Step 1.1" width="400"/> <br>
+
+1. Program Counter: The Program Counter (PC) is a critical component in a RISC-V CPU (and any CPU in general), responsible for keeping track of the address of the next instruction to be executed. Understanding the role and implementation of the PC is fundamental when designing or working with a RISC-V CPU.
+2. Instruction Fetch: Instruction fetch is the first stage in the instruction execution cycle of a RISC-V CPU. It involves retrieving the instruction pointed to by the Program Counter (PC) from memory so that it can be decoded and executed in subsequent stages.
+3. Instruction Decode: Instruction decode is the second stage in the instruction execution cycle of a RISC-V CPU. After an instruction is fetched from memory, it needs to be interpreted, or "decoded," to understand what operation is to be performed and which operands are involved. The decoding process involves breaking down the binary instruction into its constituent fields, such as opcode, source registers, destination registers, and immediate values.
+4. Register File Read: The read register file is a component that contains a collection of registers used to store data during instruction execution. Instructions typically involve accessing data from these registers, with the instruction indicating which registers to read. The retrieved data is then used as operands for operations carried out by the ALU or other CPU components.
+5. Register File Write: In a RISC-V CPU, the register file write operation is a critical part of the instruction execution process, particularly during the write-back stage of the pipeline. This is where the results of computations or data from memory are written back to a register in the register file
+6. ALU: The Arithmetic Logic Unit (ALU) in a RISC-V CPU is a key component responsible for performing arithmetic and logical operations. The ALU receives inputs from the register file or immediate values from instructions and produces results that are either stored back into registers, used for branching decisions, or forwarded to other components like memory.
+7. Data Memory: n a RISC-V CPU, data memory is a crucial component that stores and retrieves data required during program execution. Data memory is involved in load and store operations, where data is either read from or written to memory.
+
+### Program Counter
+The program counter is implemented according to the condition specified in the lab as follows: 
+`` $reset = *reset;
+         $pc[31:0] = >>1$reset ? 0 : >>1$pc + 32'd4; 
+``
+The snapshot containing the waveform is pasted below: 
+
+<img src="imagessessionfive\pc.png" alt="Step 1.1" width="400"/> <br>
+
+
+
 
 
 
