@@ -869,13 +869,15 @@ The block diagram below vaguely represents the RISC-V CPU along with it's compon
 
 <img src="imagessessionfive\block.png" alt="Step 1.1" width="400"/> <br>
 
-1. Program Counter: The Program Counter (PC) is a critical component in a RISC-V CPU (and any CPU in general), responsible for keeping track of the address of the next instruction to be executed. Understanding the role and implementation of the PC is fundamental when designing or working with a RISC-V CPU.
-2. Instruction Fetch: Instruction fetch is the first stage in the instruction execution cycle of a RISC-V CPU. It involves retrieving the instruction pointed to by the Program Counter (PC) from memory so that it can be decoded and executed in subsequent stages.
-3. Instruction Decode: Instruction decode is the second stage in the instruction execution cycle of a RISC-V CPU. After an instruction is fetched from memory, it needs to be interpreted, or "decoded," to understand what operation is to be performed and which operands are involved. The decoding process involves breaking down the binary instruction into its constituent fields, such as opcode, source registers, destination registers, and immediate values.
-4. Register File Read: The read register file is a component that contains a collection of registers used to store data during instruction execution. Instructions typically involve accessing data from these registers, with the instruction indicating which registers to read. The retrieved data is then used as operands for operations carried out by the ALU or other CPU components.
-5. Register File Write: In a RISC-V CPU, the register file write operation is a critical part of the instruction execution process, particularly during the write-back stage of the pipeline. This is where the results of computations or data from memory are written back to a register in the register file
-6. ALU: The Arithmetic Logic Unit (ALU) in a RISC-V CPU is a key component responsible for performing arithmetic and logical operations. The ALU receives inputs from the register file or immediate values from instructions and produces results that are either stored back into registers, used for branching decisions, or forwarded to other components like memory.
-7. Data Memory: n a RISC-V CPU, data memory is a crucial component that stores and retrieves data required during program execution. Data memory is involved in load and store operations, where data is either read from or written to memory.
+1. **Program Counter**: The Program Counter (PC) is a critical component in a RISC-V CPU (and any CPU in general), responsible for keeping track of the address of the next instruction to be executed. Understanding the role and implementation of the PC is fundamental when designing or working with a RISC-V CPU.
+2. **Instruction Fetch**: Instruction fetch is the first stage in the instruction execution cycle of a RISC-V CPU. It involves retrieving the instruction pointed to by the Program Counter (PC) from memory so that it can be decoded and executed in subsequent stages.
+3. **Instruction Decode**: Instruction decode is the second stage in the instruction execution cycle of a RISC-V CPU. After an instruction is fetched from memory, it needs to be interpreted, or "decoded," to understand what operation is to be performed and which operands are involved. The decoding process involves breaking down the binary instruction into its constituent fields, such as opcode, source registers, destination registers, and immediate values.
+4. **Register File Read**: The read register file is a component that contains a collection of registers used to store data during instruction execution. Instructions typically involve accessing data from these registers, with the instruction indicating which registers to read. The retrieved data is then used as operands for operations carried out by the ALU or other CPU components.
+5. **Register File Write**: In a RISC-V CPU, the register file write operation is a critical part of the instruction execution process, particularly during the write-back stage of the pipeline. This is where the results of computations or data from memory are written back to a register in the register file
+6. **ALU**: The Arithmetic Logic Unit (ALU) in a RISC-V CPU is a key component responsible for performing arithmetic and logical operations. The ALU receives inputs from the register file or immediate values from instructions and produces results that are either stored back into registers, used for branching decisions, or forwarded to other components like memory.
+7. **Data Memory**: n a RISC-V CPU, data memory is a crucial component that stores and retrieves data required during program execution. Data memory is involved in load and store operations, where data is either read from or written to memory.
+
+## Fetch and Decode
 
 ### Program Counter
 The program counter is implemented according to the condition specified in the lab as follows: 
@@ -886,23 +888,539 @@ The snapshot containing the waveform is pasted below:
 
 <img src="imagessessionfive\pc.png" alt="Step 1.1" width="400"/> <br>
 
+### Instruction Fetch 
+
+The fetch code is shifted to the second cycle ```@1``` and the code is given below: 
+```
+@1 
+         $imem_rd_en = !$reset;
+         $imem_rd_addr[M4_IMEM_INDEX_CNT-1:0] = $pc[M4_IMEM_INDEX_CNT+1:2];
+         $inst[31:0] = $imem_rd_data[31:0]; 
+```
+Observe the snapshot for inference purpose.
+
+<img src="imagessessionfive\instructionfetch.png" alt="Step 1.1" width="400"/> <br>
+
+### Instruction Decode
+
+### Instruction Type Decode Logic
+The code to decode the instruction type from $instr[6:2] is the following: 
+```
+$is_i_instr = $instr[6:2] ==? 5'b0000x ||
+              $instr[6:2] ==? 5'b001x0 ||
+              $instr[6:2] ==? 5'b11001;
+                       
+         
+$is_u_instr = $instr[6:2] ==? 5'b0x101;
+         
+$is_r_instr =   $instr[6:2] ==? 5'b01011 ||
+                $instr[6:2] ==? 5'b011x0 ||
+                $instr[6:2] ==? 5'b10100;
+         
+$is_b_instr = $instr[6:2] ==? 5'b11000;
+         
+$is_j_instr = $instr[6:2] ==? 5'b11011;
+         
+$is_s_instr = $instr[6:2] ==? 5'b0100x;
+```
+
+The above code checks the instruction type from I,U,R,B,J,S. The snapshot is attached below: 
+
+<img src="imagessessionfive\decode1.png" alt="Step 1.1" width="400"/> <br>
+
+### Instruction Immediate Decode Logic 
+
+Find the code below for immediate decode logic:
+
+```
+$imm[31:0] = $is_i_instr ? {{21{$inst[31]}}, $inst[30:20]} :
+                      $is_s_instr ? {{21{$inst[31]}}, $inst[30:25], $inst[11:8], $inst[7]} :
+                      $is_b_instr ? {{20{$inst[31]}}, $inst[7], $inst[30:25], $inst[11:8], 1'b0} :
+                      $is_u_instr ? {$inst[31], $inst[30:20], $inst[19:12], 12'b0} :
+                      $is_j_instr ? {{12{$inst[31]}}, $inst[19:12], $inst[20], $inst[30:21], 1'b0} :
+                                    32'b0;
+```
+
+The snapshot which contains the waveforms is given below: 
+
+<img src="imagessessionfive\instr_decode.png" alt="Step 1.1" width="400"/> <br>
+
+### Extracting Other Instruction Fields based on Instruction Type
+
+Find the code to infer other sub-instructions in the $inst stream.
+```
+$rs1_use = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
+         ?$rs1_use
+            $rs1[4:0] = $inst[19:15];
+         
+         $rs2_use = $is_r_instr || $is_s_instr || $is_b_instr;
+         ?$rs2_use
+            $rs2[4:0] = $inst[24:20];
+            
+         $funct3_use = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
+         ?$funct3_use
+            $funct3[2:0] = $inst[14:12];
+            
+         $funct7_use = $is_r_instr ;
+         ?$funct7_use
+            $funct7[6:0] = $inst[31:25];
+            
+         $rd_use = $is_r_instr || $is_i_instr || $is_u_instr || $is_j_instr;
+         ?$rd_use
+            $rd[4:0] = $inst[11:7];
+         
+         $opcode[6:0] = $inst;
+```
+Refer to the waveform below, which is too big to capture within a single frame: 
+
+<img src="imagessessionfive\deocde3.png" alt="Step 1.1" width="400"/> <br>
+
+### Decoding Individual Instruction 
+
+Find the code below to do so: 
+
+```
+ $dec_bits [10:0] = {$funct7[5], $funct3, $opcode};
+         $is_add = $dec_bits ==? 11'b0_000_0110011;
+         $is_addi = $dec_bits ==? 11'bx_000_0010011;
+         $is_beq = $dec_bits ==? 11'bx_000_1100011;
+         $is_bne = $dec_bits ==? 11'bx_001_1100011;
+         $is_blt = $dec_bits ==? 11'bx_100_1100011;
+         $is_bge = $dec_bits ==? 11'bx_101_1100011;
+         $is_bltu = $dec_bits ==? 11'bx_110_1100011;
+         $is_bgeu = $dec_bits ==? 11'bx_111_1100011;
+         
+         
+```
+The signals defined for each individual instructions can be seen in the waveform below: 
+
+<img src="imagessessionfive\individual_decode.png" alt="Step 1.1" width="400"/> <br>
+
+## RISCV Control Logic 
+
+### Register File Read 
+
+Refer to the 2-Read, 1-Write Register File below for reference.
+
+<img src="imagessessionfive\registerfile.png" alt="Step 1.1" width="400"/> <br>
+
+The code for register file read is adder to ` @1 ` as follows: 
+
+```
+$rf_rd_en1 = $rs1_use;
+         $rf_rd_index1[4:0] = $rs1;
+         $rf_rd_en2 = $rs2_use;
+         $rf_rd_index2[4:0] = $rs2;
+         
+         $src1_value[31:0] = $rf_rd_data1;
+         $src2_value[31:0] = $rf_rd_data2;
+```
+Where the register output for corresponding ` $rs1 ` and ` $rs2 ` are added in ``` $src1_value[31:0] ``` and ``` $src2_value[31:0]. ```
+
+**NOTE**:  The macro ``` m4+rf(@1, @1) ``` defines the register file that we have used above. This register file is capable of performing two reads in a cycle and based on that, provides the corresponding output in the data lines mentioned. 
+
+### ALU Operations for ADD/ADDI 
+
+As mentioned in the lab, the ALU code is provided below: 
+
+```
+$result[31:0] = $is_addi ? $src1_value + $imm :
+                $is_add ? $src1_value + $src2_value :
+                32'bx ;
+```
+
+### Register File Write 
+
+For register file write, we need an overhead logic which enables the write operation. It is embedded in the code below: 
+
+```
+ $rf_wr_en = $rd_use;
+         $rf_wr_index[4:0] = $rd;
+         $rf_wr_data[31:0] = $rd == 0 ? 0 : $result;
+```
+
+### Implementing Branch Instructions 
+
+We have the enable signals for each type of instructions coded. These 1 bit signals act as enable signals for implementing the code for branch signals. Find the code below: 
+
+```
+$taken_branch = $is_beq ? ($src1_value == $src2_value):
+                         $is_bne ? ($src1_value != $src2_value):
+                         $is_blt ? (($src1_value < $src2_value)^($src1_value[31] != $src2_value[31])):
+                         $is_bge ? (($src1_value >= $src2_value)^($src1_value[31] != $src2_value[31])):
+                         $is_bltu ? ($src1_value < $src2_value):
+                         $is_bgeu ? ($src1_value >= $src2_value):
+                                    1'b0;
+         `BOGUS_USE($taken_branch)
+         $br_tgt_pc[31:0] = $pc + $imm;
+```
+
+### Testbench 
+
+Simple testbench to access the register used in our calculation: 
+
+```
+*passed = |cpu/xreg[10]>>5$value == (1+2+3+4+5+6+7+8+9) ;
+```
+### NOTE 
+To incorporate the validity and the use of branch instructions in the program counter, edit the 'pc' code as follows: 
+
+```
+$pc[31:0] = >>1$reset ? 1'b0 : >>1$taken_branch ? >>1$br_tgt_pc : >>1$pc + 32'd4;
+         
+```
 
 
 
+The log file snapshot is pasted below: 
+
+<img src="imagessessionfive\logfile.png" alt="Step 1.1" width="400"/> <br>
 
 
+**The overall diagram now looks as following**:
+
+<img src="imagessessionfive\figure_latest.png" alt="Step 1.1" width="400"/> <br>
+
+**The overall code is as following**:
+
+```
+\m4_TLV_version 1d: tl-x.org
+\SV
+   // This code can be found in: https://github.com/stevehoover/RISC-V_MYTH_Workshop
+   
+   m4_include_lib(['https://raw.githubusercontent.com/BalaDhinesh/RISC-V_MYTH_Workshop/master/tlv_lib/risc-v_shell_lib.tlv'])
+
+\SV
+   m4_makerchip_module   // (Expanded in Nav-TLV pane.)
+\TLV
+
+   // /====================\
+   // | Sum 1 to 9 Program |
+   // \====================/
+   //
+   // Program for MYTH Workshop to test RV32I
+   // Add 1,2,3,...,9 (in that order).
+   //
+   // Regs:
+   //  r10 (a0): In: 0, Out: final sum
+   //  r12 (a2): 10
+   //  r13 (a3): 1..10
+   //  r14 (a4): Sum
+   // 
+   // External to function:
+   m4_asm(ADD, r10, r0, r0)             // Initialize r10 (a0) to 0.
+   // Function:
+   m4_asm(ADD, r14, r10, r0)            // Initialize sum register a4 with 0x0
+   m4_asm(ADDI, r12, r10, 1010)         // Store count of 10 in register a2.
+   m4_asm(ADD, r13, r10, r0)            // Initialize intermediate sum register a3 with 0
+   // Loop:
+   m4_asm(ADD, r14, r13, r14)           // Incremental addition
+   m4_asm(ADDI, r13, r13, 1)            // Increment intermediate register by 1
+   m4_asm(BLT, r13, r12, 1111111111000) // If a3 is less than a2, branch to label named <loop>
+   m4_asm(ADD, r10, r14, r0)            // Store final result to register a0 so that it can be read by main program
+   
+   // Optional:
+   // m4_asm(JAL, r7, 00000000000000000000) // Done. Jump to itself (infinite loop). (Up to 20-bit signed immediate plus implicit 0 bit (unlike JALR) provides byte address; last immediate bit should also be 0)
+   m4_define_hier(['M4_IMEM'], M4_NUM_INSTRS)
+
+   |cpu
+      
+      
+      @0
+         $reset = *reset;
+         $pc[31:0] = >>1$reset ? 1'b0 : >>1$taken_branch ? >>1$br_tgt_pc : >>1$pc + 32'd4;
+         
+      @1 
+         $imem_rd_en = !$reset;
+         $imem_rd_addr[M4_IMEM_INDEX_CNT-1:0] = $pc[M4_IMEM_INDEX_CNT+1:2];
+         $inst[31:0] = $imem_rd_data[31:0]; 
+         
+         $is_i_instr = $inst[6:2] ==? 5'b0000x ||
+                       $inst[6:2] ==? 5'b001x0 ||
+                       $inst[6:2] ==? 5'b11001;
+                       
+         
+         $is_u_instr = $inst[6:2] ==? 5'b0x101;
+         
+         $is_r_instr = $inst[6:2] ==? 5'b01011 ||
+                       $inst[6:2] ==? 5'b011x0 ||
+                       $inst[6:2] ==? 5'b10100;
+         
+         $is_b_instr = $inst[6:2] ==? 5'b11000;
+         
+         $is_j_instr = $inst[6:2] ==? 5'b11011;
+         
+         $is_s_instr = $inst[6:2] ==? 5'b0100x;
+         
+         
+         $imm[31:0] = $is_i_instr ? {{21{$inst[31]}}, $inst[30:20]} :
+                      $is_s_instr ? {{21{$inst[31]}}, $inst[30:25], $inst[11:8], $inst[7]} :
+                      $is_b_instr ? {{20{$inst[31]}}, $inst[7], $inst[30:25], $inst[11:8], 1'b0} :
+                      $is_u_instr ? {$inst[31], $inst[30:20], $inst[19:12], 12'b0} :
+                      $is_j_instr ? {{12{$inst[31]}}, $inst[19:12], $inst[20], $inst[30:21], 1'b0} :
+                                    32'b0;
+         
+         $rs1_use = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
+         ?$rs1_use
+            $rs1[4:0] = $inst[19:15];
+         
+         $rs2_use = $is_r_instr || $is_s_instr || $is_b_instr;
+         ?$rs2_use
+            $rs2[4:0] = $inst[24:20];
+            
+         $funct3_use = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
+         ?$funct3_use
+            $funct3[2:0] = $inst[14:12];
+            
+         $funct7_use = $is_r_instr ;
+         ?$funct7_use
+            $funct7[6:0] = $inst[31:25];
+            
+         $rd_use = $is_r_instr || $is_i_instr || $is_u_instr || $is_j_instr;
+         ?$rd_use
+            $rd[4:0] = $inst[11:7];
+         
+         $opcode[6:0] = $inst;
+         
+         $dec_bits [10:0] = {$funct7[5], $funct3, $opcode};
+         
+         $is_add = $dec_bits ==? 11'b0_000_0110011;
+         $is_addi = $dec_bits ==? 11'bx_000_0010011;
+         $is_beq = $dec_bits ==? 11'bx_000_1100011;
+         $is_bne = $dec_bits ==? 11'bx_001_1100011;
+         $is_blt = $dec_bits ==? 11'bx_100_1100011;
+         $is_bge = $dec_bits ==? 11'bx_101_1100011;
+         $is_bltu = $dec_bits ==? 11'bx_110_1100011;
+         $is_bgeu = $dec_bits ==? 11'bx_111_1100011;
+         
+         //Register Read 
+         $rf_rd_en1 = $rs1_use;
+         $rf_rd_index1[4:0] = $rs1;
+         $rf_rd_en2 = $rs2_use;
+         $rf_rd_index2[4:0] = $rs2;
+         
+         $src1_value[31:0] = $rf_rd_data1;
+         $src2_value[31:0] = $rf_rd_data2;
+         
+       
+         
+         //ALU
+         $result[31:0] = $is_addi ? $src1_value + $imm :
+                         $is_add ? $src1_value + $src2_value :
+                         32'bx ;
+         
+         //Register File Write 
+         
+         $rf_wr_en = $rd_use;
+         $rf_wr_index[4:0] = $rd;
+         $rf_wr_data[31:0] = $rd == 0 ? 0 : $result;
+         
+         //Branch Instructions
+         
+         $taken_branch = $is_beq ? ($src1_value == $src2_value):
+                         $is_bne ? ($src1_value != $src2_value):
+                         $is_blt ? (($src1_value < $src2_value)^($src1_value[31] != $src2_value[31])):
+                         $is_bge ? (($src1_value >= $src2_value)^($src1_value[31] != $src2_value[31])):
+                         $is_bltu ? ($src1_value < $src2_value):
+                         $is_bgeu ? ($src1_value >= $src2_value):
+                                    1'b0;
+         `BOGUS_USE($taken_branch)
+         $br_tgt_pc[31:0] = $pc + $imm;
+         
+         //Testbench
+         *passed = |cpu/xreg[10]>>5$value == (1+2+3+4+5+6+7+8+9) ;
+      // YOUR CODE HERE
+      // ...
+
+      // Note: Because of the magic we are using for visualisation, if visualisation is enabled below,
+      //       be sure to avoid having unassigned signals (which you might be using for random inputs)
+      //       other than those specifically expected in the labs. You'll get strange errors for these.
+
+   
+   // Assert these to end simulation (before Makerchip cycle limit).
+   *passed = *cyc_cnt > 40;
+   *failed = 1'b0;
+   
+   // Macro instantiations for:
+   //  o instruction memory
+   //  o register file
+   //  o data memory
+   //  o CPU visualization
+   |cpu
+      m4+imem(@1)    // Args: (read stage)
+      m4+rf(@1, @1)  // Args: (read stage, write stage) - if equal, no register bypass is required
+      //m4+dmem(@4)    // Args: (read/write stage)
+
+   m4+cpu_viz(@4)    // For visualisation, argument should be at least equal to the last stage of CPU logic. @4 would work for all labs.
+\SV
+   endmodule
+```
+
+The individual labs are commented to better navigate through the code.
+
+# Seventh Session: Complete Pipelined RISC-V CPU Microarchitecture
 
 
+## Valid Signal
+
+To find valid signals for the program counter to execute and point, introduce a `` $start `` and a new `` $valid `` signal as following:
+
+```
+$start = >>1$reset && !$reset;
+$valid = $reset ? 1'b0 : ($start || >>3$valid);
+
+```
+
+Moreover, a new valid branch signal is assigned as follows: 
+
+```
+$valid_taken_br = $valid && $taken_branch;
+```
+
+The next thing to do is to incorporate this into the program counter assignment as follows: 
+
+```
+$pc[31:0] = >>1$reset ? 1'b0 : >>3$valid_taken_branch ? >>3$br_tgt_pc : >>1$pc + 32'd4;
+```
+
+## Branch Target Path 
+
+The `$valid`, `$valid_load` and `$valid_jump` signals need to be defined and incorporated in the `$valid` signal now in `@1`.
+
+```
+$valid = !(>>1$valid_taken_branch || >>2$valid_taken_branch || >>1$valid_load || >>2$valid_load 
+                    || >>1$valid_jump || >>2$valid_jump) ;
+                    
+         $valid_load = $valid && $is_load ;
+         $valid_jump = $valid && $is_load;
+      
 
 
+```
+
+Moving on, more instruction signals are added to the code. They are: 
+
+```
+$is_load = $dec_bits ==? 11'bx_xxx_0000011;
+         $is_sb = $dec_bits ==? 11'bx_000_0100011;
+         $is_sh = $dec_bits ==? 11'bx_001_0100011;
+         $is_sw = $dec_bits ==? 11'bx_010_0100011;
+         $is_slti = $dec_bits ==? 11'bx_010_0010011;
+         $is_sltiu = $dec_bits ==? 11'bx_011_0010011;
+         $is_xori = $dec_bits ==? 11'bx_100_0010011;
+         $is_ori = $dec_bits ==? 11'bx_110_0010011;
+         $is_andi = $dec_bits ==? 11'bx_111_0010011;
+         $is_slli = $dec_bits ==? 11'b0_001_0010011;
+         $is_srli = $dec_bits ==? 11'b0_101_0010011;
+         $is_srai = $dec_bits ==? 11'b1_101_0010011;
+         $is_sub = $dec_bits ==? 11'b1_000_0110011;
+         $is_sll = $dec_bits ==? 11'b0_001_0110011;
+         $is_slt = $dec_bits ==? 11'b0_010_0110011;
+         $is_sltu = $dec_bits ==? 11'b0_011_0110011;
+         $is_xor = $dec_bits ==? 11'b0_100_0110011;
+         $is_srl = $dec_bits ==? 11'b0_101_0110011;
+         $is_sra = $dec_bits ==? 11'b1_101_0110011;
+         $is_or = $dec_bits ==? 11'b0_110_0110011;
+         $is_and = $dec_bits ==? 11'b0_111_0110011;
+         $is_lui = $dec_bits ==? 11'bx_xxx_0110111;
+         $is_auipc = $dec_bits ==? 11'bx_xxx_0010111;
+         $is_jal = $dec_bits ==? 11'bx_xxx_1101111;
+         $is_jalr = $dec_bits ==? 11'bx_000_1100111;
+         $is_jump = $is_jal || $is_jalr ;
+```
+
+## Updating Register Read 
+
+Register Read is updated as follows: 
+
+```
+$rf_rd_en1 = $rs1_use && >>2$result;
+         $rf_rd_index1[4:0] = $rs1;
+         $rf_rd_en2 = $rs2_use && >>2$result;
+         $rf_rd_index2[4:0] = $rs2;
+```
+## Data Memory 
+
+```
+$dmem_wr_en = $is_s_instr && $valid ;
+         $dmem_addr[3:0] = $result[5:2] ;
+         $dmem_wr_data[31:0] = $src2_value ;
+         $dmem_rd_en = $is_load ;
+```
+
+## Load Data
+
+```
+$ld_data[31:0] = $dmem_rd_data ;
+
+```
+
+## Adding Instruction Signals and their definitions to $result in ALU 
+
+```
+$result[31:0] = $is_addi ? $src1_value + $imm :
+              $is_add ? $src1_value + $src2_value :
+              $is_andi ? $src1_value & $imm :
+              $is_ori  ? $src1_value | $imm :
+              $is_xori ? $src1_value ^ $imm :
+              $is_slli ? $src1_value << $imm[5:0] :
+              $is_srli ? $src1_value >> $imm[5:0] :
+              $is_and ? $src1_value & $src2_value :
+              $is_or ? $src1_value | $src2_value :
+              $is_xor ? $src1_value ^ $src2_value :
+              $is_sub ? $src1_value - $src2_value :
+              $is_sll ? $src1_value << $src2_value[4:0] :
+              $is_srl ? $src1_value >> $src2_value[4:0] :
+              $is_sltu ? $src1_value < $src2_value :
+              $is_sltiu ? $src1_value < $imm :
+              $is_lui ? {$imm[31:12], 12'b0} :
+              $is_auipc ? $pc + $imm : 
+              $is_jal ? $pc + 32'd4 :
+              $is_jalr ? $pc + 32'd4 :
+              $is_srai ? {{32{$src1_value[31]}}, $src1_value} >> $imm[4:0] :
+              $is_slt ? ($src1_value[31] == $src2_value[31]) ? $sltu_rslt : {31'b0, $src1_value[31]} :
+              $is_slti ? ($src1_value[31] == $imm[31]) ? $sltiu_rslt : {31'b0, $src1_value[31]} :
+              $is_sra ? {{32{$src1_value[31]}}, $src1_value} >> $src2_value[4:0] :
+              $is_load || $is_s_instr ? $src1_value + $imm :
+              32'bx ;
+      @3
+         //Register File Write 
+         
+         $rf_wr_en = $rd_use && $rd != 5'b0 && $valid || >>2$valid_load;
+         $rf_wr_index[4:0] = >>2$valid_load ? >>2$rd : $rd;
+         $rf_wr_data[31:0] = >>2$valid_load ? >>2$ld_data :  $result;
+         
+         //Branch Instructions
+         
+         $taken_branch = $is_beq ? ($src1_value == $src2_value):
+                         $is_bne ? ($src1_value != $src2_value):
+                         $is_blt ? (($src1_value < $src2_value)^($src1_value[31] != $src2_value[31])):
+                         $is_bge ? (($src1_value >= $src2_value)^($src1_value[31] != $src2_value[31])):
+                         $is_bltu ? ($src1_value < $src2_value):
+                         $is_bgeu ? ($src1_value >= $src2_value):
+                                    1'b0;
+
+```
+### Note: Change the MACROS again as follows:
+
+```
+|cpu
+      m4+imem(@1)    // Args: (read stage)
+      m4+rf(@2, @3)  // Args: (read stage, write stage) - if equal, no register bypass is required
+      m4+dmem(@4)    // Args: (read/write stage)
+
+   m4+cpu_viz(@4)    // For visualisation, argument should be at least equal to the last stage of CPU logic. @4 would work for all labs.
+```
 
 
+## Final RISCV Diagram
+
+The final diagram comes out to be: 
 
 
+<img src="imagessessionfive\final_figure.png" alt="Step 1.1" width="400"/> <br>
 
-
-
-
+## Note: The final code is uploaded in this repository as *riscv.tlv*
 
 
 
