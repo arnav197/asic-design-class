@@ -1420,7 +1420,20 @@ The final diagram comes out to be:
 
 <img src="imagessessionfive\final_figure.png" alt="Step 1.1" width="400"/> <br>
 
-## Note: The final code is uploaded in this repository as *riscv.tlv*
+
+## Final Waveforms
+### Waveforms containing *clk_arn* i.e. personalized clock name.
+<img src="imagessessionfive\waveform_1.png" alt="Step 1.1" width="400"/> <br>
+
+### Waveform containig reset signal. 
+
+<img src="imagessessionfive\waveform_2.png" alt="Step 1.1" width="400"/> <br>
+
+### Waveform containing contents in xreg14 for each cycle.
+
+<img src="imagessessionfive\waveform_3.png" alt="Step 1.1" width="400"/> <br>
+
+## Note: The final code is uploaded in this repository as *riscv.tlv*.
 
 
 
