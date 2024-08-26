@@ -1436,6 +1436,86 @@ The final diagram comes out to be:
 ## Note: The final code is uploaded in this repository as *riscv.tlv*.
 
 
+# Session Eight: Converting riscv.tlv Code to Verilog Code
+
+ We are now converting our TLV code in the file riscv.tlv to verilog code using Python's Sandpiper-SaaS library.
+
+After converting the TLV code to Verilog, we will write a Verilog testbench. We will then compare the waveforms generated from the MakerChip platform with those obtained from the Verilog code output.
+
+Therefore, to do the above task follow the given steps:
+
+## Create a python Virtual Environment
+
+As the name suggests, use the following command to create a virtual environment:
+
+```
+python -m venv .venv 
+
+```
+## Download sandpiper-saas python module
+
+Use the following command to do so: 
+
+```
+pip3 install sandpiper-saas
+
+```
+
+Now once the virtual environment is created and the sandpiper module is installed using the previous commands, use the command below that will undergo conversion:
+
+```
+sandpiper-saas -i ./tlv_code/cpu.tlv -o RV_CPU.v --bestsv --noline -p verilog --outdir ./src/module/
+
+```
+This command takes our previously written TLV code which is now stored in cpu.tlv for this lab's purpose.
+
+
+## Testbench & iverilog 
+
+
+Testbench is written which contains a clock signal of 5ps i.e. 1 GHz. At 25ps we are setting the reset signal to HIGH and after a while we set this LOW. When this state is reached, our CPU starts to perform the tasks which it is supposed to perform. 
+
+Use iverilog which was installed in previous labs to compile this converted TLV code using the testbench we wrote. The following command does that: 
+
+```
+iverilog -o output/RV_CPU.out src/module/cpu_tb.v -I src/include -I src/module
+```
+
+Note that we have stored our testbench named cpu_tb.v in the module folder. This command will generate an 'out' file.
+
+## Using gtkwave 
+
+gtkwave was installed in the previous labs for the purpose of waveform visualization. The 'out' file which was generated is given as an input to the command line prompt which is as follows: 
+
+```
+./RV_CPU.out
+gtkwave RV_CPU_tb.vcd
+```
+
+## Required Results 
+
+Consider the makerchip waveforms which were generated in the previous lab: 
+
+### Waveforms containing *clk_arn* i.e. personalized clock name.
+<img src="imagessessionfive\waveform_1.png" alt="Step 1.1" width="400"/> <br>
+
+### Waveform containig reset signal. 
+
+<img src="imagessessionfive\waveform_2.png" alt="Step 1.1" width="400"/> <br>
+
+### Waveform containing contents in xreg14 for each cycle.
+
+<img src="imagessessionfive\waveform_3.png" alt="Step 1.1" width="400"/> <br>
+
+## GTK Waveform for this lab.
+
+<img src="imagesssessionsix/gtk_waveform.png" alt="Step 1.1" width="400"/> <br>
+
+Therefore, the final result of 2D is visible in the waveform output produced by gtkwave.
+
+
+
+
 
 ****
 
