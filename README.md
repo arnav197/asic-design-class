@@ -2047,12 +2047,13 @@ Techniques used for optimization
 
     1.1 Sequential Constant Propagation
 
-    1.2 Advanced
-2. State Optimization
+2. Advanced
 
-    2.1 Retiming
-    
-    2.2 Sequential Logic Cloning
+    2.1 State Optimization
+
+    2.2 Retiming
+
+    2.3 Sequential Logic Cloning
 
 ## Optimization on opt_check.v, opt_check2.v Design files
 
