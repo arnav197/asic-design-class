@@ -1816,6 +1816,7 @@ Now, we have to generate the netlist using the command `` abc -liberty ./my_lib/
 <img src="session_nine\yosys_synth_report.png" alt="Step 1.1" width="400"/> <br>
 
 
+
 The command to see the logic it has realised is 'show`. This shows the graphical version of the logic. Refer to the snapshot to see it: 
 
 <img src="session_nine\show.png" alt="Step 1.1" width="400"/> <br>
@@ -1826,6 +1827,509 @@ To dump the verilog code for the netlist, use the command
 write_verilog -noattr verilog_files/good_mux_netlist.v
 
 ```
+
+# Session 10
+# Timing libs, hierarchical vs flat synthesis, efficient flop coding styles
+
+
+## Introduction to timings .lib 
+
+
+Again, .lib is a library that is the collection of standard cells, gates of different flavours, etc.
+Every .lib file will provide
+
+* timing 
+* power 
+* noise 
+* area 
+
+information for a single PVT (Process, VOltage, Temperature).
+* Process variations due to fabrication.
+* Voltage variations incur changes in the behaviour of the circuit.
+* Temperature Sensitivity of semiconductor often plays an important role as well.
+
+Libraries are characterized to model these variations.
+
+
+The command to open the lib file is 
+
+```
+vim ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+```
+Decoding the name of the lib file.
+
+* tt --> typical
+
+* 0256 --> temperature
+
+* 1v80 --> voltage
+
+* hd --> high density
+
+* sc --> standard cells
+
+* fd --> skywater fab
+
+* sky130 --> process name
+
+Below is the snapshot of the lib file.
+
+<img src="session_10\lib_contents.png" alt="Step 1.1" width="400"/> <br>
+
+The .lib file contains library file, cells, pin informations.
+
+
+## Hierarchical Synthesis vs Flat Synthesis
+
+Invoke yosys using command `` yosys ``
+
+Read the liberty file which is the sky130 library using the command 
+
+```
+read_liberty -lib ../sky130RTLDesignAndSynthesisWorkshop/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+```
+Read the verilog multiple_modules.v using the command
+
+` read_verilog multiple_modules.v`
+
+Use the command `synth -top multiple_module.v`
+
+Look at the report:
+
+
+The command `` abc -liberty ./my_lib/lib/sky130_fd_sc_hd_tt_025C_1v80.``.
+
+Use the show command as `` show multiple_module ``
+
+This is the output:
+
+<img src="session_10\show.png" alt="Step 1.1" width="400"/> <br>
+
+
+The above is the '' hierarchical design.'' 
+
+Write the design and this will create a netlist using
+```
+write_verilog -noattr verilog_files/multiple_modules_hier.v
+```
+
+The FLAT synthesis merges all hierarchical modules present in the design into a single module to create a flat netlist.
+
+Use the command `` flatten `` to flatten the netlist
+
+Write the netlist using `` write_verilog `` command.
+
+The logic realization is shown below.
+
+
+<img src="session_10\flatten_synthesis_ouput.png" alt="Step 1.1" width="400"/> <br>
+
+The syntheis hereby is 'flattened'.
+
+
+
+Note: The same steps we followed for hierarchical synthesis are followed here too.
+
+
+We do sub-module level synthesis for two reasons: 
+* When we have multiple modules instnatiated in a design
+* We follow the divide and conquer strategy
+
+The command ` synth -top module_name.v ` which we used previously controls which modules needs to be synthesized.
+
+The report for the first step is attached below:
+
+<img src="session_10\report.png" alt="Step 1.1" width="400"/> <br>
+
+
+## Various Flop Coding Styles and Optimization
+
+
+## The need for flops
+For any combinational circuit, the output is going to change after the propagation delay and the output glitches due to it.
+
+To avoid these glitches we use a storage element i.e. a flop. The flop therefore makes the output stable. 
+
+
+There exist a need to initialise the flop and for that matter we have control pins (set/reset) on the flop.
+
+
+### Various Flop Coding Styles
+* Asynchronous Reset: Upon reset signal, the q value will be set to 0.
+* Asynchronous Set: Upon the set signal, the q value is set to 1
+* Synchronous Reset: Upon the clock signal, if there exists a reset signal, the q value is set to 0.
+* Synchronous Set: Upon clock signal, the q value is set to 1 if there exists a set signal before it.
+
+### Snapshots 
+
+
+### Asychronous Reset Design
+First look, at the '' dff_asyncres.v '' design using the command
+
+```
+iverilog dff_asyncres.v tb_dff_asyncres.v
+
+```
+
+Use './a.out' and pull the vcd file up on github.
+
+
+Here is the snapshot: 
+
+<img src="session_10\dff_async_res.png" alt="Step 1.1" width="400"/> <br>
+
+
+
+### Asychronous Set Design
+
+<img src="session_10\async_set.png" alt="Step 1.1" width="400"/> <br>
+
+### Synchronous Reset Design
+
+<img src="session_10\sync_reset.png" alt="Step 1.1" width="400"/> <br>
+
+
+## Synthesizing the Previous Three Circuits Using Yosys
+
+For this, you need to explicitly tell the tool where to pick the design from in the -lib command.
+
+
+### Asynchronous Reset
+
+The same Yosys flow is followed as before for the Yosys synthesis
+
+Snapshot for 'show' command
+
+<img src="session_10\show_async_res.png" alt="Step 1.1" width="400"/> <br>
+
+### Asynchronous Set
+
+Similarly, for asynchronous set
+
+<img src="session_10\show_async_set.png" alt="Step 1.1" width="400"/> <br>
+
+
+### Synchronous Reset 
+
+<img src="session_10\show_sync_res.png" alt="Step 1.1" width="400"/> <br>
+
+
+## Optimizations
+
+Considering the mult_2.v design file. We do not expect any hardware from this.
+
+
+Observe the report: 
+
+<img src="session_10\report.png" alt="Step 1.1" width="400"/> <br>
+
+
+# Session Eleven
+# Combinational and Sequential Optimization
+
+## Combinational Logic Optimization
+
+To squeeze the logic to get the most optimized design to achieve 
+* Area and Power Savings 
+
+Techniques used for optimization
+
+* Constant Propagation
+* Boolean Logic Optimization
+
+## Sequential Logic Optimization 
+
+* Techniques: 
+** Basic 
+*** Sequential Constant Propagation
+** Advanced
+*** State Optimization
+*** Retiming
+*** Sequential Logic Cloning
+
+## Optimization on opt_check.v, opt_check2.v Design files
+
+
+### opt_check.v
+
+Invoke the yosys flow similar to what was done in the previous labs.
+
+After the top -synth command run the optimization command
+
+```
+opt_clean -purge
+
+```
+
+Link it to the liberty file using the abc command.
+
+
+Here is the snapshot of the show command output.
+
+<img src="session11\optcheck_Show.png" alt="Step 1.1" width="400"/> <br>
+
+
+### opt_check2.v
+
+Follow the same steps as the above.
+
+Snapshot:
+
+<img src="session11\opt_check2_show.png" alt="Step 1.1" width="400"/> <br>
+
+
+### opt_check3.v
+
+Snapshot:
+
+<img src="session11\opt3_show.png" alt="Step 1.1" width="400"/> <br>
+
+
+
+### opt_check4.v
+
+Snapshot:
+
+<img src="session11\opt4_show.png" alt="Step 1.1" width="400"/> <br>
+
+
+## Sequential Logic Optimizations
+
+iverilog simulation for the design file 'dff_const1.v' using the command 'iverilog'.
+
+Here is the gtkwave output: 
+
+<img src="session11\const1_gtkwave.png" alt="Step 1.1" width="400"/> <br>
+
+
+ q here is waiting for the edge of the clock and therefore you need a flop in the picture.
+
+
+### Doing the same for dff_const2.v
+
+Snapshot: 
+
+<img src="session11\const2_gtkwave.png" alt="Step 1.1" width="400"/> <br>
+
+### Doing the same for dff_const3.v
+
+
+<img src="session11\const3_gtkwave.png" alt="Step 1.1" width="400"/> <br>
+
+
+
+
+Here, q is always 1 in contrary to the previous design where we have to wait for the clock.
+
+### Synthesizing the design using Yosys for dff_const1.v
+
+Follow the Yosys flow again AND use the dfflibmap switch.
+
+Here is the output of the show command:
+
+<img src="session11\const1_show.png" alt="Step 1.1" width="400"/> <br>
+
+
+### Synthesizing the design using Yosys for dff_const2.v
+
+Looking at the report snapshot below, the tool has not inferred a flop or any cell for that matter:
+
+<img src="session11\const2_report.png" alt="Step 1.1" width="400"/> <br>
+
+Sequential optimized circuit using the show command:
+
+<img src="session11\show_const2.png" alt="Step 1.1" width="400"/> <br>
+
+### Synthesizing the design using Yosys for dff_const3.v
+
+<img src="session11\const3_show.png" alt="Step 1.1" width="400"/> <br>
+
+
+### Synthesizing the design using Yosys for dff_const4.v
+
+<img src="session11\show_const4_show.png" alt="Step 1.1" width="400"/> <br>
+
+
+
+### Simulating the const3 design
+
+Simulate the const3 design again and take a look at the gtkwave output waveform.
+
+<img src="session11\const3_gtkwave.png" alt="Step 1.1" width="400"/> <br>
+
+Note: The synthesis output is shown in the section above.
+
+In the previous case we didn't see that the sky130 has been inferred here in this case.
+
+### Const4 Design
+
+<img src="session11\show_const4_show.png" alt="Step 1.1" width="400"/> <br>
+
+
+### Const5 Design 
+
+<img src="session11\const5_show_NEW.png" alt="Step 1.1" width="400"/> <br>
+
+## Sequential Optimization Unused Output
+
+Unused Output Optimization refers to strategies and techniques aimed at reducing or eliminating unnecessary or redundant output in processes, systems, or designs. This concept is applied across various fields, including software development, manufacturing, energy management, and data processing.
+
+
+### Synthesizing the counter_opt.v Design
+
+Upon looking at the report, it will infer only 1 flipflop.
+
+
+<img src="session11\counter_report.png" alt="Step 1.1" width="400"/> <br>
+
+
+Upon the synthesis using the abc command, the output is 
+
+<img src="session11\counter_show.png" alt="Step 1.1" width="400"/> <br>
+counter_show
+
+#### Optimized Design
+
+<img src="session11\opt_count.png" alt="Step 1.1" width="400"/> <br>
+
+
+# Session Twelve
+# GLS, Blocking v/s Non-Blocking and Synthesis-Simulation Mismatch
+
+
+<img src="session12\gls.png" alt="Step 1.1" width="400"/> <br>
+
+
+
+## What is GLS?
+
+Running the test bench with Netlist as DUT. 
+
+Netlist is logically same as RTL Code i.e. same test bench will align with the design.
+
+
+## Why GLS?
+
+Verify the logical correctness of design after synthesis.
+
+Ensuring the timing of the design is met. For this GLS needs to be run with delay annotations.
+
+If the gate level models are delay annotated then we can use GLS for timing validation.
+
+## Reasons for Synthesis Simulation Mismatch
+
+* Missing sensitivity list
+* Blocking vs Non-blocking assignments
+* Non Standard Verilog Coding
+
+### ternary_operator_mux.v Design File
+
+The gtkwave waveform for the above file is
+
+<img src="session12\ternary_gtkwave.png" alt="Step 1.1" width="400"/> <br>
+ternary_gtkwave
+
+### Synthesizing 
+
+Output of Show operation:
+
+
+<img src="session12\show_ternary.png" alt="Step 1.1" width="400"/> <br>
+show_ternary
+
+
+## Invoking GLS
+
+Run the command :
+
+```
+iverilog ../sky130RTLDesignAndSynthesisWorkshop/my_lib/verilog_model/primitives.v ../sky130RTLDesignAndSynthesisWorkshop/my_lib/verilog_model/sky130_fd_sc_hd.v
+
+```
+
+The gls output is
+
+<img src="session12\gls_output.png" alt="Step 1.1" width="400"/> <br>
+
+
+## For bad_mux Design File
+
+Follow the same steps as above for bad_mux.v
+
+ gtwave output for bad_mux
+
+<img src="session12\bad_mux_gtkwave.png" alt="Step 1.1" width="400"/> <br>
+
+
+## Synthesis Mismatch for Blocking Statement
+
+Let us first do the RTL Simulation for the blocking_caveat.v file.
+
+<img src="session12\blocking_caveat_gtkwave.png" alt="Step 1.1" width="400"/> <br>
+
+
+Synthesisizing this design file using Yosys and observing the gtkwave waveform.
+
+<img src="session12\blocking_caveat_gtkwave_last.png" alt="Step 1.1" width="400"/> <br>
+
+
+If you observe this waveform and the previous waveform you will observe a synthesis mismatch. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
