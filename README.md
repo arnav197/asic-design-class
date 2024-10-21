@@ -1966,6 +1966,7 @@ There exist a need to initialise the flop and for that matter we have control pi
 
 
 ### Asychronous Reset Design
+
 First look, at the '' dff_asyncres.v '' design using the command
 
 ```
@@ -2042,12 +2043,12 @@ Techniques used for optimization
 ## Sequential Logic Optimization 
 
 * Techniques: 
-** Basic 
-*** Sequential Constant Propagation
-** Advanced
-*** State Optimization
-*** Retiming
-*** Sequential Logic Cloning
+1. Basic 
+1.1 Sequential Constant Propagation
+1.2 Advanced
+2. State Optimization
+2.1 Retiming
+2.2 Sequential Logic Cloning
 
 ## Optimization on opt_check.v, opt_check2.v Design files
 
