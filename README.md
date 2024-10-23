@@ -2284,6 +2284,79 @@ Synthesisizing this design file using Yosys and observing the gtkwave waveform.
 If you observe this waveform and the previous waveform you will observe a synthesis mismatch. 
 
 
+# Session 13: Synthesized Output Waveform Comparison with Behavioral Waveform
+
+We are now trying to synthesise the RV_CPU.v design file from session Eight. Again we are using Yosys to generate the netlist and the mapped netlist verilog design from the RVMYTH core verilog file.
+
+
+Use the following commands: 
+
+```
+
+
+read_liberty -lib ../sky130RTLDesignAndSynthesisWorkshop/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+read_verilog RV_CPU.v 
+
+synth -top RV_CPU
+
+abc -liberty ../sky130RTLDesignAndSynthesisWorkshop/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+write_verilog RV_CPU_net.v
+
+```
+
+Now use the command to run the GLS Simulation
+
+```
+
+iverilog -DFUNCTIONAL -DUNIT_DELAY=#1 -DPOST_SYNTH_SIM src/module/cpu_tb.v -I src/module/ -I src/include/ -I lib/verilog_models/
+
+
+```
+
+Use GTKWAVE to view the waveforms and the signals. The standard cells can also be viewed using this.
+
+```
+gtkwave post_synth_sim.vcd
+
+```
+
+Here are the two standard cells from RV_CPU_net.v that are shown in the gtkwave waveform 
+
+<img src="session13\std_cell.png" alt="Step 1.1" width="600"/> <br>
+
+The signals 'xor0_out_X' and 'nand0_out_Y' can be seen.
+
+
+
+## Synthesized Window with Standard Cells and 'OUT' signal: 
+
+<img src="session13\zoomed_out_gtkwave.png" alt="Step 1.1" width="700"/> <br>
+
+*System user name visible as required.*
+
+## Pre-Synthesis Behavioural Output From Session Eight for Comparison:
+
+<img src="imagesssessionsix\gtk_waveform.png" alt="Step 1.1" width="700"/> <br>
+
+
+
+## *Note*: For Reference if required.
+
+1.  Observe the added 'out' waveform in it's default form as well to verify the functionality.
+<img src="session13\sq_wave.png" alt="Step 1.1" width="700"/> <br>
+
+2. Zoomed out synthesized gtkwave waveforms 
+<img src="session13\zoomedout.png" alt="Step 1.1" width="700"/> <br>
+
+3. Report 
+<img src="session13\report.png" alt="Step 1.1" width="700"/> <br>
+
+
+
+
+
 
 
 
