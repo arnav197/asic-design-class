@@ -2345,12 +2345,15 @@ The signals 'xor0_out_X' and 'nand0_out_Y' can be seen.
 ## *Note*: For Reference if required.
 
 1.  Observe the added 'out' waveform in it's default form as well to verify the functionality.
+
 <img src="session13\sq_wave.png" alt="Step 1.1" width="700"/> <br>
 
 2. Zoomed out synthesized gtkwave waveforms 
+
 <img src="session13\zoomedout.png" alt="Step 1.1" width="700"/> <br>
 
 3. Report 
+
 <img src="session13\report.png" alt="Step 1.1" width="700"/> <br>
 
 
