@@ -2360,6 +2360,147 @@ The signals 'xor0_out_X' and 'nand0_out_Y' can be seen.
 
 
 
+# Session 14: Using OpenSTA 
+
+
+
+## WHY STA?
+
+The goal of STA is to verify that your design operates reliably at the intended clock speed without timing violations, ensuring that signals arrive within required time windows for each clock cycle.
+
+
+**OpenSTA** is an **open-source Static Timing Analysis (STA) tool** used for analyzing and verifying the timing of digital circuits. It’s particularly useful in the digital design flow for ensuring that a circuit meets its timing requirements, which is essential for the correct operation of synchronous digital designs.
+
+## Key Functions of OpenSTA:
+
+1. **Timing Analysis**
+   - OpenSTA calculates **signal propagation delays** across paths in your circuit to ensure that signals reach their destinations within a specified time (set by your clock period and constraints).
+   - It performs both **setup timing analysis** (checking if data arrives at a register in time before the next clock edge) and **hold timing analysis** (ensuring data stays stable long enough after the clock edge to be latched correctly).
+
+2. **Constraint Checking**
+   - You can define various **timing constraints**, including clock definitions, clock uncertainties, signal transition times, and path delay limits. OpenSTA verifies that these constraints are met across all timing paths in the circuit.
+
+3. **Delay Calculations Using Liberty Files**
+   - OpenSTA relies on **Liberty (.lib) files**, which provide detailed timing information for the standard cells in your design (like NAND gates, flip-flops, etc.). This file specifies cell delays, setup/hold requirements, and other characteristics necessary for STA.
+
+4. **Timing Reports**
+   - OpenSTA generates timing reports that highlight paths where timing requirements are or aren’t met, allowing designers to identify and fix potential timing issues.
+
+
+# Reg-to-Reg Path in Digital Design
+
+In digital design, particularly in the context of Static Timing Analysis (STA), a **reg-to-reg path** refers to the timing path between two registers (flip-flops). It represents the flow of data from one register (the source register) to another register (the destination register) through combinational logic.
+
+## Key Points
+
+1. **Source and Destination**: 
+   - The **source register** is where the data originates.
+   - The **destination register** is where the data is clocked in.
+
+2. **Combinational Logic**: 
+   - The path includes all the combinational logic between the two registers, which can consist of gates and other logic elements.
+
+3. **Timing Analysis**: 
+   - In STA, analyzing reg-to-reg paths is crucial for determining whether the design meets its timing requirements, such as setup time and hold time. 
+   - The timing path must be fast enough to ensure that data is correctly latched into the destination register before the next clock edge.
+
+4. **Setup and Hold Times**:
+   - **Setup Time**: The minimum time before the clock edge that the data must be stable.
+   - **Hold Time**: The minimum time after the clock edge that the data must remain stable.
+
+5. **Critical Paths**: 
+   - A reg-to-reg path that takes a significant amount of time (close to the clock period) is often referred to as a **critical path**. 
+   - Optimizing such paths is essential for improving overall circuit performance.
+
+## Conclusion
+
+Understanding reg-to-reg paths is fundamental for ensuring that a digital circuit operates reliably and at the desired speed. 
+
+
+
+
+
+
+# STA using Custom Clock Time Period of 9.6ns 
+
+Steps to run the commands:
+
+## Load the Liberty File
+
+``` read_liberty lib/sta/sky130_fd_sc_hd__tt_025C_1v80.lib ```
+
+This file is essential for STA because it provides detailed cell characteristics such as delays, power, and setup/hold constraints.
+
+
+## Load the Verilog Netlist
+
+
+``` read_verilog src/module/RV_CPU_net.v ```
+
+Loads the design's verilog netlist.
+
+## Link the Design 
+
+``` link_design RV_CPU ```
+
+Links the design named RV_CPU. Ensures that each instance in the Verilog netlist is matched with a corresponding cell definition in the Liberty file.
+
+
+## Create the clock of 9.6ns (CUSTOM)
+
+``` create_clock clk -period 9.6 [get_ports clk] ```
+
+## Define Setup and Hold Constraints 
+
+For SETUP
+
+``` set_clock_uncertainty [expr 0.05*9.6] -setup [get_clocks clk]```
+
+For Hold
+
+``` set_clock_uncertainty [expr 0.05*9.6] -hold [get_clocks clk]```
+
+
+
+## Define Clock Transition and Input Transition
+
+
+Clock Transition
+
+``` set_clock_transition [expr 0.05 * 10] [get_clocks clk] ```
+ 
+
+Input Transition
+
+```set_input_transition [expr 0.08 * 10] [all_inputs]```
+
+
+## Timing Reports
+
+## MAX DELAY : SETUP REPORT 
+
+``` report_checks -path_delay max ```
+
+<img src="session14\setup_report.png" alt="Step 1.1" width="700"/> <br>
+
+
+
+
+
+## MIN DELAY : HOLD REPORT 
+
+``` report_checks -path_delay min ```
+
+<img src="session14\hold.png" alt="Step 1.1" width="700"/> <br>
+
+
+
+The setup and hold reports allow you to verify that your design meets timing constraints across all paths.
+
+
+
+
+
 
 
 
