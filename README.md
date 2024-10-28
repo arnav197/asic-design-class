@@ -2360,7 +2360,7 @@ The signals 'xor0_out_X' and 'nand0_out_Y' can be seen.
 
 
 
-# Session 14: Using OpenSTA 
+# Session 14: Using OpenSTA for Static Timing Analysis for Synthesized RISCV Core
 
 
 
@@ -2421,13 +2421,20 @@ Understanding reg-to-reg paths is fundamental for ensuring that a digital circui
 
 
 
-# STA using Custom Clock Time Period of 9.6ns 
+# Static Timing Analysis on RISCV Core using Custom Clock Time Period of 9.6ns 
 
 Steps to run the commands:
 
-## Load the Liberty File
+## Load the Liberty Files
 
-``` read_liberty lib/sta/sky130_fd_sc_hd__tt_025C_1v80.lib ```
+``` 
+read_liberty -min ./lib/sta/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_liberty -max ./lib/sta/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_liberty -min ./lib/avsdpll.lib
+read_liberty -max ./lib/avsdpll.lib
+read_liberty -min ./lib/avsddac.lib
+read_liberty -max ./lib/avsddac.lib
+```
 
 This file is essential for STA because it provides detailed cell characteristics such as delays, power, and setup/hold constraints.
 
@@ -2435,15 +2442,20 @@ This file is essential for STA because it provides detailed cell characteristics
 ## Load the Verilog Netlist
 
 
-``` read_verilog src/module/RV_CPU_net.v ```
+```
+read_verilog src/module/vsdbabysoc.v
+read_verilog -I src/include src/module/RV_CPU.v
+read_verilog -I src/include src/module/clk_gate.v
+```
 
-Loads the design's verilog netlist.
+
+
 
 ## Link the Design 
 
-``` link_design RV_CPU ```
+``` link_design vsdbabysoc```
 
-Links the design named RV_CPU. Ensures that each instance in the Verilog netlist is matched with a corresponding cell definition in the Liberty file.
+
 
 
 ## Create the clock of 9.6ns (CUSTOM)
@@ -2458,7 +2470,7 @@ For SETUP
 
 For Hold
 
-``` set_clock_uncertainty [expr 0.05*9.6] -hold [get_clocks clk]```
+``` set_clock_uncertainty [expr 0.08*9.6] -hold [get_clocks clk]```
 
 
 
@@ -2475,13 +2487,56 @@ Input Transition
 ```set_input_transition [expr 0.08 * 10] [all_inputs]```
 
 
+## Combining every constraint into an sdc file: 
+
+
+
+### Constraints Provided to OpenSTA in a sdc file are: 
+
+
+
+```
+set_units -time ns
+
+create_clock [get_pins {pll/CLK}] -name clk -period 9.6
+set_clock_uncertainty [expr 0.05 * 9.6] -setup [get_clocks clk]
+set_clock_uncertainty [expr 0.08 * 9.6] -hold [get_clocks clk]
+set_clock_transition [expr 0.05 * 9.6] [get_clocks clk]
+set_input_transition [expr 0.08 * 9.6] [all_inputs]
+
+```
+
+## Invoke STA
+
+Invoke STA and run the following command:
+
+```
+sta scripts/sta.conf
+```
+
+
+## sta.conf file contents:
+
+```
+read_liberty -min ./lib/sta/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_liberty -max ./lib/sta/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_liberty -min ./lib/avsdpll.lib
+read_liberty -max ./lib/avsdpll.lib
+read_liberty -min ./lib/avsddac.lib
+read_liberty -max ./lib/avsddac.lib
+read_verilog ./src/module/vsdbabysoc_synth.v
+link_design vsdbabysoc
+read_sdc ./src/sdc/sta_post_synth.sdc
+
+```
+
 ## Timing Reports
 
 ## MAX DELAY : SETUP REPORT 
 
 ``` report_checks -path_delay max ```
 
-<img src="session14\setup_report.png" alt="Step 1.1" width="700"/> <br>
+<img src="session14\setup_new.png" alt="Step 1.1" width="700"/> <br>
 
 
 
@@ -2491,7 +2546,7 @@ Input Transition
 
 ``` report_checks -path_delay min ```
 
-<img src="session14\hold.png" alt="Step 1.1" width="700"/> <br>
+<img src="session14\hold_new.png" alt="Step 1.1" width="700"/> <br>
 
 
 
