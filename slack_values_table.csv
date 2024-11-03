@@ -1,0 +1,17 @@
+Library File,Total Negative Slack (TNS),Worst Negative Slack (WNS),Worst Setup Slack (Worst Slack),Worst Hold Slack (Worst Slack)
+sky130_fd_sc_hd__ff_100C_1v65.lib,0.0,0.0,0.4971,-0.4873
+sky130_fd_sc_hd__ff_100C_1v95.lib,0.0,0.0,2.8533,-0.5456
+sky130_fd_sc_hd__ff_n40C_1v56.lib,-882.4417,-4.1696,-4.1696,-0.4274
+sky130_fd_sc_hd__ff_n40C_1v65.lib,-90.2764,-1.7243,-1.7243,-0.4672
+sky130_fd_sc_hd__ff_n40C_1v76.lib,0.0,0.0,0.2759,-0.5024
+sky130_fd_sc_hd__ff_n40C_1v95.lib,0.0,0.0,2.3575,-0.5447
+sky130_fd_sc_hd__ss_100C_1v40.lib,-17369.2031,-24.5954,-24.5954,0.2416
+sky130_fd_sc_hd__ss_100C_1v60.lib,-8776.0078,-13.2513,-13.2513,-0.0346
+sky130_fd_sc_hd__ss_n40C_1v28.lib,-80141.5078,-116.8746,-116.8746,1.1419
+sky130_fd_sc_hd__ss_n40C_1v35.lib,-50034.0312,-71.7738,-71.7738,0.6764
+sky130_fd_sc_hd__ss_n40C_1v40.lib,-38274.2734,-54.2779,-54.2779,0.4536
+sky130_fd_sc_hd__ss_n40C_1v44.lib,-32302.1211,-45.633,-45.633,0.3163
+sky130_fd_sc_hd__ss_n40C_1v60.lib,-15624.2334,-22.6242,-22.6242,-0.0133
+sky130_fd_sc_hd__ss_n40C_1v76.lib,-9080.3398,-13.628,-13.628,-0.2276
+sky130_fd_sc_hd__tt_025C_1v80.lib,-258.9802,-2.4932,-2.4932,-0.425
+sky130_fd_sc_hd__tt_100C_1v80.lib,-101.6824,-1.7136,-1.7136,-0.4267

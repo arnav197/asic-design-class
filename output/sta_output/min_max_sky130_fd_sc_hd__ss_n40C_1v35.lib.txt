@@ -1,0 +1,70 @@
+Startpoint: _16072_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: _17074_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+
+Fanout       Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------------
+                    0.4800    0.0000    0.0000   clock clk (rise edge)
+                              0.0000    0.0000   clock network delay (ideal)
+                    0.4800    0.0000    0.0000 ^ _16072_/CLK (sky130_fd_sc_hd__dfxtp_1)
+     1    0.0013    0.0585    1.3622    1.3622 v _16072_/Q (sky130_fd_sc_hd__dfxtp_1)
+                                                 core.CPU_Xreg_value_a5[14][0] (net)
+                    0.0585    0.0000    1.3622 v _17074_/D (sky130_fd_sc_hd__dfxtp_1)
+                                        1.3622   data arrival time
+
+                    0.4800    0.0000    0.0000   clock clk (rise edge)
+                              0.0000    0.0000   clock network delay (ideal)
+                              0.7680    0.7680   clock uncertainty
+                              0.0000    0.7680   clock reconvergence pessimism
+                                        0.7680 ^ _17074_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                             -0.0822    0.6858   library hold time
+                                        0.6858   data required time
+-------------------------------------------------------------------------------------
+                                        0.6858   data required time
+                                       -1.3622   data arrival time
+-------------------------------------------------------------------------------------
+                                        0.6764   slack (MET)
+
+
+Startpoint: _17084_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: _17153_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout       Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------------
+                    0.4800    0.0000    0.0000   clock clk (rise edge)
+                              0.0000    0.0000   clock network delay (ideal)
+                    0.4800    0.0000    0.0000 ^ _17084_/CLK (sky130_fd_sc_hd__dfxtp_1)
+     1    0.0020    0.0652    1.3706    1.3706 v _17084_/Q (sky130_fd_sc_hd__dfxtp_1)
+                                                 core.CPU_valid_taken_br_a5 (net)
+                    0.0652    0.0000    1.3706 v _11719_/B (sky130_fd_sc_hd__nor4_1)
+    73    0.1527   33.8729   27.8197   29.1903 ^ _11719_/Y (sky130_fd_sc_hd__nor4_1)
+                                                 _05381_ (net)
+                   33.8729    0.0000   29.1903 ^ _11875_/A2 (sky130_fd_sc_hd__a31oi_1)
+     4    0.0079    3.1305   12.3906   41.5809 v _11875_/Y (sky130_fd_sc_hd__a31oi_1)
+                                                 _06587_ (net)
+                    3.1305    0.0000   41.5809 v _11881_/B (sky130_fd_sc_hd__nor4_1)
+    64    0.1358   30.2761   26.6308   68.2116 ^ _11881_/Y (sky130_fd_sc_hd__nor4_1)
+                                                 _06593_ (net)
+                   30.2761    0.0000   68.2116 ^ _12017_/A1 (sky130_fd_sc_hd__o21ai_0)
+     1    0.0013    1.9550   10.6361   78.8477 v _12017_/Y (sky130_fd_sc_hd__o21ai_0)
+                                                 _05221_ (net)
+                    1.9550    0.0000   78.8477 v _17153_/D (sky130_fd_sc_hd__dfxtp_1)
+                                       78.8477   data arrival time
+
+                    0.4800    9.6000    9.6000   clock clk (rise edge)
+                              0.0000    9.6000   clock network delay (ideal)
+                             -0.4800    9.1200   clock uncertainty
+                              0.0000    9.1200   clock reconvergence pessimism
+                                        9.1200 ^ _17153_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                             -2.0460    7.0740   library setup time
+                                        7.0740   data required time
+-------------------------------------------------------------------------------------
+                                        7.0740   data required time
+                                      -78.8477   data arrival time
+-------------------------------------------------------------------------------------
+                                      -71.7738   slack (VIOLATED)
+
+

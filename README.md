@@ -2553,17 +2553,220 @@ read_sdc ./src/sdc/sta_post_synth.sdc
 The setup and hold reports allow you to verify that your design meets timing constraints across all paths.
 
 
+# Session 15: PVT Corner Analysis Using OpenSTA
 
 
+## Firstly, modify the sdc file as follows:
+
+```
+set_units -time ns
+set PERIOD 9.6
+create_clock [get_pins {pll/CLK}] -name clk -period $PERIOD
+set_clock_uncertainty [expr 0.05 * $PERIOD] -setup [get_clocks clk]
+set_clock_uncertainty [expr 0.08 * $PERIOD] -hold [get_clocks clk]
+set_clock_transition [expr 0.05 * $PERIOD] [get_clocks clk]
 
 
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENB_CP]
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENB_VCO]
+set_input_transition [expr $PERIOD * 0.08] [get_ports REF]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VCO_IN]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VREFH]
+
+```
 
 
+## Automating tcl script after adding all the libraries required:
+
+```
+
+set list_of_lib_files(1) "sky130_fd_sc_hd__ff_100C_1v65.lib"
+set list_of_lib_files(2) "sky130_fd_sc_hd__ff_100C_1v95.lib"
+set list_of_lib_files(3) "sky130_fd_sc_hd__ff_n40C_1v56.lib"
+set list_of_lib_files(4) "sky130_fd_sc_hd__ff_n40C_1v65.lib"
+set list_of_lib_files(5) "sky130_fd_sc_hd__ff_n40C_1v76.lib"
+set list_of_lib_files(6) "sky130_fd_sc_hd__ff_n40C_1v95.lib"
+set list_of_lib_files(7) "sky130_fd_sc_hd__ss_100C_1v40.lib"
+set list_of_lib_files(8) "sky130_fd_sc_hd__ss_100C_1v60.lib"
+set list_of_lib_files(9) "sky130_fd_sc_hd__ss_n40C_1v28.lib"
+set list_of_lib_files(10) "sky130_fd_sc_hd__ss_n40C_1v35.lib"
+set list_of_lib_files(11) "sky130_fd_sc_hd__ss_n40C_1v40.lib"
+set list_of_lib_files(12) "sky130_fd_sc_hd__ss_n40C_1v44.lib"
+set list_of_lib_files(13) "sky130_fd_sc_hd__ss_n40C_1v60.lib"
+set list_of_lib_files(14) "sky130_fd_sc_hd__ss_n40C_1v76.lib"
+set list_of_lib_files(15) "sky130_fd_sc_hd__tt_025C_1v80.lib"
+set list_of_lib_files(16) "sky130_fd_sc_hd__tt_100C_1v80.lib"
+
+for {set i 1} {$i <= [array size list_of_lib_files]} {incr i} {
+read_liberty -min ./lib/timing/$list_of_lib_files($i)
+read_liberty -max ./lib/timing/$list_of_lib_files($i)
+read_liberty -min ./lib/avsdpll.lib
+read_liberty -max ./lib/avsdpll.lib
+read_liberty -min ./lib/avsddac.lib
+read_liberty -max ./lib/avsddac.lib
+read_verilog ./src/module/vsdbabysoc_synth.v
+link_design vsdbabysoc
+current_design
+read_sdc ./src/sdc/sta_post_synth.sdc
+check_setup -verbose
+report_checks -path_delay min_max -fields {nets cap slew input_pins fanout} -digits {4} > ./output/sta_output/min_max_$list_of_lib_files($i).txt
+
+exec echo "$list_of_lib_files($i)" >> ./output/sta_output/sta_worst_max_slack.txt
+report_worst_slack -max -digits {4} >> ./output/sta_output/sta_worst_max_slack.txt
+
+exec echo "$list_of_lib_files($i)" >> ./output/sta_output/sta_worst_min_slack.txt
+report_worst_slack -min -digits {4} >> ./output/sta_output/sta_worst_min_slack.txt
+
+exec echo "$list_of_lib_files($i)" >> ./output/sta_output/sta_tns.txt
+report_tns -digits {4} >> ./output/sta_output/sta_tns.txt
+
+exec echo "$list_of_lib_files($i)" >> ./output/sta_output/sta_wns.txt
+report_wns -digits {4} >> ./output/sta_output/sta_wns.txt
+}
+
+```
+
+Run the tickle script using `` source scripts/sta_pvt.tcl `` after invoking STA.
+
+## Observe the graph for WORST SETUP SLACK
 
 
+<img src="session15\WSS.png" alt="Step 1.1" width="700"/> <br>
+
+## Observe the graph for WORST HOLD SLACK 
+
+<img src="session15\WHS.png" alt="Step 1.1" width="700"/> <br>
 
 
+## Tabulated Data for Analysis
 
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Library File</th>
+      <th>Total Negative Slack (TNS)</th>
+      <th>Worst Negative Slack (WNS)</th>
+      <th>Worst Setup Slack (Worst Slack)</th>
+      <th>Worst Hold Slack (Worst Slack)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>sky130_fd_sc_hd__ff_100C_1v65.lib</th>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.4971</td>
+      <td>-0.4873</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__ff_100C_1v95.lib</th>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>2.8533</td>
+      <td>-0.5456</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__ff_n40C_1v56.lib</th>
+      <td>-882.4417</td>
+      <td>-4.1696</td>
+      <td>-4.1696</td>
+      <td>-0.4274</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__ff_n40C_1v65.lib</th>
+      <td>-90.2764</td>
+      <td>-1.7243</td>
+      <td>-1.7243</td>
+      <td>-0.4672</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__ff_n40C_1v76.lib</th>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.2759</td>
+      <td>-0.5024</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__ff_n40C_1v95.lib</th>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>2.3575</td>
+      <td>-0.5447</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__ss_100C_1v40.lib</th>
+      <td>-17369.2031</td>
+      <td>-24.5954</td>
+      <td>-24.5954</td>
+      <td>0.2416</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__ss_100C_1v60.lib</th>
+      <td>-8776.0078</td>
+      <td>-13.2513</td>
+      <td>-13.2513</td>
+      <td>-0.0346</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__ss_n40C_1v28.lib</th>
+      <td>-80141.5078</td>
+      <td>-116.8746</td>
+      <td>-116.8746</td>
+      <td>1.1419</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__ss_n40C_1v35.lib</th>
+      <td>-50034.0312</td>
+      <td>-71.7738</td>
+      <td>-71.7738</td>
+      <td>0.6764</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__ss_n40C_1v40.lib</th>
+      <td>-38274.2734</td>
+      <td>-54.2779</td>
+      <td>-54.2779</td>
+      <td>0.4536</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__ss_n40C_1v44.lib</th>
+      <td>-32302.1211</td>
+      <td>-45.6330</td>
+      <td>-45.6330</td>
+      <td>0.3163</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__ss_n40C_1v60.lib</th>
+      <td>-15624.2334</td>
+      <td>-22.6242</td>
+      <td>-22.6242</td>
+      <td>-0.0133</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__ss_n40C_1v76.lib</th>
+      <td>-9080.3398</td>
+      <td>-13.6280</td>
+      <td>-13.6280</td>
+      <td>-0.2276</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__tt_025C_1v80.lib</th>
+      <td>-258.9802</td>
+      <td>-2.4932</td>
+      <td>-2.4932</td>
+      <td>-0.4250</td>
+    </tr>
+    <tr>
+      <th>sky130_fd_sc_hd__tt_100C_1v80.lib</th>
+      <td>-101.6824</td>
+      <td>-1.7136</td>
+      <td>-1.7136</td>
+      <td>-0.4267</td>
+    </tr>
+  </tbody>
+</table>
+
+Note: The python script for automating this process is present in the repository to source for usage.
 
 
 
