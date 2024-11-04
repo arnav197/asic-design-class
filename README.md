@@ -2766,7 +2766,23 @@ Run the tickle script using `` source scripts/sta_pvt.tcl `` after invoking STA.
   </tbody>
 </table>
 
+## Total Negative Slack Graph
+
+<img src="session15\TNS.png" alt="Step 1.1" width="700"/> <br>
+
+
+
+## Worst Negative Slack Graph 
+
+<img src="session15\WNS.png" alt="Step 1.1" width="700"/> <br>
+
+
+
+
 Note: The python script for automating this process is present in the repository to source for usage.
+
+
+
 
 
 
