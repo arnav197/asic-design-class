@@ -2841,15 +2841,8 @@ Now that the design is prepped and ready, we can run synthesis using following c
 
 ``run_synthesis``
 
-Change directory to path containing generated floorplan def
 
 
-``cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/floorplan``
-
-Command to load the floorplan def in magic tool
-
-
-``magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def ``
 
 
 
@@ -2874,6 +2867,8 @@ Selecting a particular cell by hovering the mouse and pressing S, one on the tcl
 <img src="images_session16/what_command.png" alt="Step 1.1" width="700"/> <br>
 
 
+## Results
+
 <img src="images_session16/result_1.png" alt="Step 1.1" width="700"/> <br>
 
 
@@ -2883,6 +2878,198 @@ The flop ratio is defined as the ratio of the number of flops to the total numbe
 ### TNS -759.46ns
 
 ### WNS -24.89ns
+
+
+
+# Session 17: CHIP FLOORPLANNING
+
+## Floorplanning Stages in VLSI Design
+
+## 1. Pre-Placed Cells
+- In VLSI design, certain complex logic blocks or third-party modules are treated as black boxes with defined input/output ports and clocks. These blocks are either **macros** or **IPs**:
+  - **Macros**: Modules like CPU cores that are developed in-house by the chip manufacturer.
+  - **IPs (Intellectual Property)**: Pre-designed modules obtained from third-party vendors or in-house developed hard IPs, such as SRAM, PLLs, and protocol converters.
+
+- During floorplanning, these macros and IPs are strategically placed within the core area before standard cells and power routing are added. The goal is to position frequently interconnected cells close to each other and orient them to optimize input and output connectivity.
+
+## 2. Decoupling Capacitors for Pre-Placed Cells
+- The power supply lines in a chip can exhibit resistance, inductance, and capacitance (RLC effects), leading to voltage drops or fluctuations at the power or ground nodes of blocks. This can result in improper logic transitions, potentially driving signals into an undefined (forbidden) state.
+- To prevent this, **decoupling capacitors** are added between the power (Vdd) and ground (Gnd) nodes of these blocks. These capacitors act as local energy reservoirs, smoothing out voltage fluctuations during logic transitions.
+
+## 3. Power Planning
+- With many cells drawing power from the same rail, issues like **voltage droop** and **ground bounce** can occur:
+  - **Voltage Droop**: A drop in the Vdd voltage when many cells switch from high (1) to low (0) simultaneously.
+  - **Ground Bounce**: A rise in the ground potential above 0V when many cells switch from low (0) to high (1) simultaneously.
+
+- These effects can push signal levels outside the acceptable noise margins, risking logic errors. To mitigate this, a **power grid** is created with horizontal and vertical tracks for Vdd and Gnd. Cells close to these intersections can efficiently tap power or sink current, maintaining stable voltage levels.
+
+## 4. Pin Placement
+- Input, output, and clock pins are positioned to minimize routing complexity and reduce delays. In tools like **OpenLane**, various pin placement strategies are employed, such as:
+  - **Random Pin Placement**: Pins are placed without a specific order.
+  - **Uniformly Spaced Pin Placement**: Pins are evenly distributed along the periphery to optimize routing paths and minimize congestion.
+
+By following these stages, the floorplanning process aims to enhance performance, reduce routing complexity, and ensure stable power delivery in VLSI design.
+
+
+### Run Floorplan
+
+``run_floorplan``
+
+
+### Change directory to path containing generated floorplan def
+
+
+``cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/floorplan``
+
+### Command to load the floorplan def in magic tool
+
+
+``magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def ``
+
+
+
+## Running Placement 
+
+`` run_placement``
+
+## Run the command to load the placement def in magic tool
+
+```
+magic -T ../../../../../../../pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def
+
+```
+
+
+## Complete Floorplan 
+
+
+<img src="session17/complete_floorplan.png" alt="Step 1.1" width="700"/> <br>
+
+## Zoomed In Floorplan
+
+<img src="session17/floorplan_zoomed.png" alt="Step 1.1" width="700"/> <br>
+
+## `What` Command by hovering overing the cell and pressing s 
+
+<img src="session17/what.png" alt="Step 1.1" width="700"/> <br>
+
+
+
+# Session 18: Design Library Cells Using Magic 
+
+Run the following commands:
+
+
+## Introduction to VSD Inverter and Layout Visualization using Magic Tool
+
+Clone the VSD Standard Cell Design Repository and view the layout of the inverter using Magic Tool.
+
+
+```
+git clone https://github.com/nickson-jose/vsdstdcelldesign.git
+cd vsdstdcelldesign
+cp /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech .
+magic -T sky130A.tech sky130_arn_inv.mag &
+```
+## Layout of the Inverter with name 'arnav'
+
+
+<img src="session18/arn_inv.png" alt="Step 1.1" width="700"/> <br>
+
+
+### Zoomed In
+
+
+<img src="session18/zoomed_inv.png" alt="Step 1.1" width="700"/> <br>
+
+
+Use the following commands in the Magic tool's tkcon window to extract the SPICE netlist from your custom inverter layout:
+
+```
+pwd
+extract all
+ext2spice cthresh 0 rthresh 0
+ext2spice
+```
+
+### Spice list
+
+
+<img src="session18/spice_list.png" alt="Step 1.1" width="700"/> <br>
+
+## Inception of Layout and CMOS Fabrication Process
+
+
+## 16-Mask CMOS Fabrication
+16-Mask CMOS Fabrication encompasses several critical phases for crafting integrated circuits.
+
+### Substrate Selection.
+This is the most initial phase of the process where the subrstrate is chosen.Here we are chosing a p-substrate.
+
+<img src="session18/substrate_selection.png" alt="Step 1.1" width="700"/> <br>
+
+### Active Region Creation
+
+To isolate the active regions for transistors, the process starts with the deposition of SiO₂ (silicon dioxide) and Si₃N₄ (silicon nitride) layers. This is followed by photolithography and etching of the silicon nitride layer. This method is known as LOCOS (Local Oxidation of Silicon), where an oxide layer is grown in specific areas to define the active regions. Finally, the Si₃N₄ layer is removed using hot H₂SO₄ (sulfuric acid).
+
+<img src="session18/active_region.png" alt="Step 1.1" width="700"/> <br>
+
+
+### N-Well and P-Well Formation
+The N-well and P-well regions are formed independently. For P-well formation, boron ions are implanted, while for N-well formation, phosphorus ions are used. A high-temperature furnace process is then applied to drive-in the diffusion of these ions, establishing the well depths in a step commonly referred to as the tub process.
+
+<img src="session18/nwellpwell.png" alt="Step 1.1" width="700"/> <br>
+
+
+### Gate Formation 
+
+The gate is a crucial terminal in CMOS transistors, as it regulates the threshold voltage for transistor switching. The gates for both NMOS and PMOS transistors are created using photolithography techniques. Key factors in gate formation include the oxide capacitance and the doping concentration, which influence the transistor's performance.
+
+
+<img src="session18/gateformation.png" alt="Step 1.1" width="700"/> <br>
+
+### Lightly dopped Drain(LDD).
+
+LDD formed to avoid the hot electron effect.
+
+
+<img src="session18/ldd.png" alt="Step 1.1" width="700"/> <br>
+
+
+### Source and Drain Formation
+
+Screen oxide added to avoid channelling during implants followed by Aresenic implantation and high temperature annealing.
+
+
+<img src="session18/source_drain_formation.png" alt="Step 1.1" width="700"/> <br>
+
+### Local Interconnect Formation
+
+The screen oxide layer is removed using HF etching, followed by the deposition of titanium (Ti) to create low-resistance contacts. Heat treatment is then applied, leading to chemical reactions that form titanium silicide at the contact points for low-resistance interconnects, and titanium nitride at the top-level connections, facilitating local signal routing.
+
+
+<img src="session18/local_interconnect.png" alt="Step 1.1" width="700"/> <br>
+
+
+### Higher Level Metal Formation
+
+Chemical Mechanical Polishing (CMP) is performed by doping silicon oxide with boron or phosphorus to achieve surface planarization. This process is followed by the deposition of titanium nitride (TiN) and tungsten. An aluminum (Al) layer is then deposited, patterned using photolithography, and further polished with CMP. This forms the first interconnect layer. Additional interconnect layers can be stacked on top to achieve higher levels of metal connections. Finally, a dielectric layer, typically Si₃N₄ (silicon nitride), is added on top to protect the chip.
+
+<img src="session18/higher_level_metal.png" alt="Step 1.1" width="700"/> <br>
+
+
+
+## Complete SPICE Deck for Inverter
+
+
+Next, we modify the generated SPICE file to make necessary adjustments before running simulations. The SPICE file includes the definitions for NMOS and PMOS models, along with the subcircuit details. It also contains information on parasitic capacitances and other relevant parameters.
+
+
+1. VGND to VSS 0V
+2. Supply Voltage VPWRD to GND
+3. Sweeping a pulse input
+4. We add library files and change the scale to 0.01u
+5. Add a transient analysis with necessary stoptime and precision as shown below
 
 
 
