@@ -3931,10 +3931,14 @@ cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11
 
 # Command to load the PDN def in magic tool
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read 14-pdn.def &
+
 ```
 
 
+
 PDN Screenshot
+
+
 <img src="session20/pdn.png" alt="Step 1.1" width="700"/> <br>
 <img src="session20/pdn2.png" alt="Step 1.1" width="700"/> <br>
 
