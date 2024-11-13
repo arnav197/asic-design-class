@@ -2784,6 +2784,534 @@ Note: The python script for automating this process is present in the repository
 
 
 
+# Session 16: Inception of open-source EDA, OpenLANE and Sky130 PDK
+
+
+## RISCV Introduction
+
+The field of computer architecture and processor design has embraced the open-source RISC-V instruction set architecture (ISA). It was first created in 2010 at the University of California, Berkeley, and has since expanded to include researchers and business professionals from all around the world. The simplicity and modularity of RISC-V are its primary features. It adheres to the design concept of Reduced Instruction Set Computers (RISC), which places an emphasis on a condensed and simplified set of instructions that are simple to decode and carry out. The "RV32I," a foundation set of instructions provided by RISC-V, performs crucial tasks for general-purpose computing. To satisfy certain application needs, other optional instruction sets can be added, such as RV64G for 64-bit computation or RV32F for single-precision floating-point operations. 
+
+
+One of the primary advantages of RISC-V is its open nature. Because the ISA specifications, reference implementations, and software tools are publicly available, anybody can study, modify, or implement their own RISC-V processors without having to pay for a license or face other restrictions. This openness has led to the creation of a vibrant ecosystem of researchers, software engineers, and hardware designers who collaborate to advance and create around the RISC-V architecture.
+
+## Simplified RTL to GDSII flow
+The RTL to GDSII flow basically involves :
+
+1. RTL Design - The process begins with the RTL design phase, where the digital circuit is described using a hardware description language (HDL) like VHDL or Verilog. The RTL description captures the functional behavior of the circuit, specifying its logic and data paths.
+
+2. RTL Synthesis - RTL synthesis converts the high-level RTL description into a gate-level netlist. This stage involves mapping the RTL code to a library of standard cells (pre-designed logic elements) and optimizing the resulting gate-level representation for area, power, and timing. The output of RTL synthesis is typically in a format called the gate-level netlist.
+
+3. Floor and Power Planning - is a crucial step in the digital design flow that involves partitioning the chip's area and determining the placement of major components and functional blocks. It establishes an initial high-level layout and defines the overall chip dimensions, locations of critical modules, power grid distribution, and I/O placement.The primary goals of floor planning are: Area Partitioning, Power Distribution, Signal Flow and Interconnect Planning, Placement of Key Components, Design Constraints and Optimization.
+
+4. Placement - Placement involves assigning the physical coordinates to each gate-level cell on the chip's layout. The placement process aims to minimize wirelength, optimize signal delay, and satisfy design rules and constraints. Modern placement algorithms use techniques like global placement and detailed placement to achieve an optimal placement solution.
+
+5. Clock Tree Synthesis - Clock tree synthesis (CTS) is a crucial step in the digital design flow that involves constructing an optimized clock distribution network within an integrated circuit (IC). The primary goal of CTS is to ensure balanced and efficient clock signal distribution to all sequential elements (flip-flops, registers) within the design, minimizing clock skew and achieving timing closure.
+
+6. Routing - Routing connects the gates and interconnects on the chip based on the placement information. It involves determining the optimal paths for the wires and vias that carry signals between different components. The routing process needs to adhere to design rules, avoid congestion, and optimize for factors like signal integrity, power, and manufacturability.
+
+7. Sign-off - Sign-off analysis refers to the final stage of the electronic design process, where comprehensive verification and analysis are performed to ensure that the design meets all the necessary requirements and specifications. It involves a series of checks and simulations to confirm that the design is ready for fabrication and meets the desired functionality, performance, power, and reliability targets.
+
+8. GDSII File Generation - Once the layout is verified and passes all checks, the final step is to generate the GDSII file format, which represents the complete physical layout of the chip. The GDSII file contains the geometric information necessary for fabrication, including the shapes, layers, masks, and other relevant details.
+
+
+### Commands
+
+
+``cd Desktop/work/tools/openlane_working_dir/openlane``
+
+
+Since we have aliased the long command to 'docker' we can invoke the OpenLANE flow docker sub-system by just running this command
+
+``docker``.
+
+
+ Now that we have entered the OpenLANE flow contained docker sub-system we can invoke the OpenLANE flow in the Interactive mode using the following command
+
+``./flow.tcl -interactive``
+
+Now that OpenLANE flow is open we have to input the required packages for proper functionality of the OpenLANE flow
+
+``package require openlane 0.9``
+
+Now the OpenLANE flow is ready to run any design and initially we have to prep the design creating some necessary files and directories for running a specific design which in our case is 'picorv32a'
+
+``prep -design picorv32a``
+
+Now that the design is prepped and ready, we can run synthesis using following command
+
+``run_synthesis``
+
+Change directory to path containing generated floorplan def
+
+
+``cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/floorplan``
+
+Command to load the floorplan def in magic tool
+
+
+``magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def ``
+
+
+
+
+## Images
+
+
+<img src="images_session16/synthesis_success.png" alt="Step 1.1" width="700"/> <br>
+
+
+Overall Layout Zoomed Out:
+
+<img src="images_session16/zoomed_out_layout.png" alt="Step 1.1" width="700"/> <br>
+
+Overall Layout Zoomed In: 
+
+<img src="images_session16/zoomed_inlayout.png" alt="Step 1.1" width="700"/> <br>
+
+
+Selecting a particular cell by hovering the mouse and pressing S, one on the tcl console run the command ``what``.
+
+<img src="images_session16/what_command.png" alt="Step 1.1" width="700"/> <br>
+
+
+<img src="images_session16/result_1.png" alt="Step 1.1" width="700"/> <br>
+
+
+## Flops ratio
+The flop ratio is defined as the ratio of the number of flops to the total number of cells, here it is 1613/14876 = 0.108
+
+### TNS -759.46ns
+
+### WNS -24.89ns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Session 19: Timing Analysis and Clock Tree Synthesis
+
+## Normal Cell LEF production
+Complete mag information is not required for placement. All that is needed are the cell's PR border, I/O ports, power, and ground rails. The LEF file defines this information. Lef extraction from the mag file and integration into our design processes are the primary goals.
+
+
+## Enter the track information grid.
+A track is a route that is used to draw metal layers for routing.It is employed to specify the standard cell's height.
+
+## Rules to adhere to when creating a standard cell:
+
+1. On both horizontal and vertical tracks, input and output ports must be located at the intersection.
+2. The standard cell's width and height must be in the odd multiples of the track pitch and height, respectively.
+   
+``Tracks.info`` contains the information needed to obtain the grids; cd to the specific directory and open the file.
+
+
+Below are the contents of the file: 
+
+```
+li1 X 0.23 0.46  
+li1 Y 0.17 0.34   
+met1 X 0.17 0.34
+met1 Y 0.17 0.34
+met2 X 0.23 0.46
+met2 Y 0.23 0.46
+met3 X 0.34 0.68
+met3 Y 0.34 0.68
+met4 X 0.46 0.92
+met4 Y 0.46 0.92
+met5 X 1.70 3.40
+met5 Y 1.70 3.40
+```
+
+
+
+(SOME PHOTO before grid on)
+
+
+
+
+Use the below command in the tkcon window to get grid on magic.
+
+```
+grid 0.46um 0.34um 0.23um 0.17um
+```
+
+
+
+
+(SOME PHOTO after grid on)
+
+
+
+
+## Creating Port Definition
+
+The cell's pins require specific definitions and properties to be configured. A port-containing cell in an LEF file is written as a macro cell, and the ports are specified as the macro's PINs.
+
+The instructions below outline how to define a port using Magic Console:
+
+1. Source the design's.mag file (in this case, the inverter) in the Magic Layout window.
+2.  Next, select Edit >> Text to bring up a dialog box.
+3. The string name and size are immediately entered into the text when you double-press S at the I/O labels. Make sure the default checkbox is unchecked and the port enable checkbox is selected. 
+
+(SOME PHOTO )
+
+
+4. The sequence in which the ports will be written in the LEF file is indicated by the number in the text field next to the enable checkbox (0 being the first).
+
+5. The definition of the ground and power layers may differ from that of the signal layer. In this case, metal1 provides the ground and power connectivity.
+
+
+
+## Configure the layout's port class and port use properties
+
+
+Port class and port use attributes are set after ports have been defined.
+
+Select Port A in magic
+
+```
+port class input
+port use signal
+```
+
+Select Y area
+
+```
+port class output
+port use signal
+```
+
+Select VPWR area
+```
+port class inout
+port use power
+```
+
+Select VGND area
+```
+port class inout
+port use ground
+```
+
+
+## Custom Cell Naming and LEF Extraction
+
+Using the tkcon window, give the custom cell the name ``sky130_vsdinv.mag``.
+
+We generate lef file by command ``lef write``.
+
+``sky130_vsdinv.lef`` file is generated.
+
+(PHOTO OF THE ABOVE FILE)
+
+
+## Including Custom Cells in ASIC Design 
+
+In the first stages of an inverter, we produced a proprietary standard cell. Move the lef files, sky130_fd_sc_hd_typical.lib, sky130_fd_sc_hd_slow.lib, and sky130_fd_sc_hd_fast.lib from the libs folder vsdstdcelldesign to the picorv32a's src folder. Next, make the following changes to config.tcl.
+
+
+(SOME TCL SCRIPT)
+
+
+```
+
+# Design
+set ::env(DESIGN_NAME) "picorv32a"
+
+set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/src/picorv32a.v"
+
+set ::env(CLOCK_PORT) "clk"
+set ::env(CLOCK_NET) $::env(CLOCK_PORT)
+
+set ::env(GLB_RESIZER_TIMING_OPTIMIZATIONS) {1}
+
+set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+set ::env(LIB_SLOWEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib"
+set ::env(LIB_FASTEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib"
+set ::env(LIB_TYPICAL) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+
+set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]
+
+set filename $::env(DESIGN_DIR)/$::env(PDK)_$::env(STD_CELL_LIBRARY)_config.tcl
+if { [file exists $filename] == 1} {
+	source $filename
+}
+```
+
+
+To integrate standard cell in openlane flow after make mount , perform following commands:
+
+```
+prep -design picorv32a -tag RUN_2023.09.09_20.37.18 -overwrite 
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+run_synthesis
+
+```
+
+### Synthesis Report 
+
+(SYNTHESIS REPORT PHOTO)
+
+### STA Report 
+
+(STA Report PHOTO)
+
+
+## Delay Tables 
+
+
+In essence, delay is a parameter that significantly affects our design cells. All other temporal factors are determined by delay. A delay model table that can be used as a timing table is made for cells with varying sizes and threshold voltages. A cell's delay is determined by its input transition and output load. Consider the following two scenarios: a long wire with the cell (X1) at its end; the delay of this cell will differ due to the poor transition produced by the resistance and capacitances on the long wire. 
+
+Since the tarn is not as bad as it was in the previous situation, the delay for the same cell that is sitting at the end of the short cable will be different. Despite being identical cells, the delay changed based on the input text. The same is true for o/p load.
+
+In order to maintain signal integrity, VLSI engineers have determined some limitations while adding buffers. They have observed that while the size of each buffer level must remain constant, the load they drive can affect how long it takes. In order to solve this, they developed the idea of "delay tables," which are essentially 2D arrays with values for load capacitance and input slew that are connected to various buffer sizes. The design uses these tables as timing models.
+
+The algorithm uses the supplied input slew and load capacitance values to calculate the corresponding delay values for the buffers when working with these delay tables. The program uses an interpolation technique to identify the nearest available data points and extrapolates from them to estimate the necessary delay values in situations when the precise delay data is not easily accessible.
+
+(SOME PHOTO)
+
+## Openlane steps with custom standard cell
+
+We perform synthesis and found that it has positive slack and met timing constraints.
+
+During Floorplan, ``504 endcaps, 6731 tapcells`` got placed. Design has 275 original rows
+
+Now  ``run_placement``.
+
+Following placement, we verify legality and use magic from the results/placement directory to verify the layout:
+
+```
+magic -T /home/parallels/OpenLane/vsdstdcelldesign/libs/sky130A.tech lef read tmp/merged.nom.lef def read results/floorplan/picorv32a.def &
+```
+
+(USE YOUR OWN COMMAND)
+
+(SOME PHOTO)
+
+
+
+## Post Synthesis Timing Analysis Using OpenSTA
+
+The OpenSTA tool is used to perform timing analysis outside of the openLANE flow. To do the STA analysis, pre_sta.conf is necessary.
+
+Use the following command to invoke OpenSTA outside of the openLANE flow:
+
+``sta pre_sta.conf``.
+
+sdc file for OpenSTA is modified like this:
+
+base.sdc is located in vsdstdcelldesigns/extras directory therefor, copy it into your design folder.
+
+
+Clock is regarded as ideal during the placement step since it is disseminated only after CTS is completed. Therefore, before CTS, only setup slack is taken into account.
+
+The PLL, which has an integrated circuit with cells and some logic, generates the clock. Depending on the circuit, there may be differences in the clock generation. Clock uncertainty is the collective term for these differences. Jitter is one of the parameters in that. The clock might arrive at that precise moment without any deviation, but that is unclear. It is known as clock_uncertainty for this reason. Margin, Jitter, and Skew enter clock_uncertainty.
+
+## Clock Tree Synthesis Using Tinoncts
+
+There are several approaches to implement clock tree synthesis (CTS), and the particular methodology chosen will rely on the design objectives, constraints, and needs. The following are a few varieties or methods of clock tree synthesis:
+
+### Balanced Tree CTS 
+In a balanced tree CTS, the clock signal is distributed in a balanced manner, often resembling a binary tree structure. This approach aims to provide roughly equal path lengths to all clock sinks (flip-flops) to minimize clock skew. It's relatively straightforward to implement and analyze but may not be the most power-efficient solution.
+
+### H-Tree CTS
+ The hierarchical tree structure of an H-tree CTS is shaped like the letter "H." It works especially well for spreading clock signals over sizable chip regions. The hierarchical structure helps minimize power usage and lessen clock skew.
+
+### Star CTS
+A star CTS distributes the clock signal to each flip-flop from a single central point, which resembles a star. This method reduces clock skew and streamlines clock distribution, although it might necessitate more buffers close to the source.
+
+### Global-Local CTS
+ Global-Local CTS is a hybrid approach that combines elements of both star and tree topologies. The global clock tree distributes the clock signal to major clock domains, while local trees within each domain further distribute the clock. This approach balances between global and local optimization, addressing both chip-wide and domain-specific clocking requirements.
+
+### Mesh CTS
+ In a mesh CTS, clock wires are arranged in a mesh-like grid pattern, and each flip-flop is connected to the nearest available clock wire. It is often used in highly regular and structured designs, such as memory arrays. Mesh CTS can offer a balance between simplicity and skew minimization.
+
+ ### Adaptive CTS 
+ Adaptive CTS methods dynamically modify the clock tree structure in response to the design's timing and congestion limitations. Although this method may be more difficult to execute, it offers more flexibility and adaptability in achieving design objectives.
+
+ ## LAB
+ This step involves propagating the clock and ensuring that it reaches every clock pin from the clock source with the least amount of skew and insertion delay possible. We use the midpoint technique to implement the H-tree in order to do this. We employ clock inputs or buffers in the clock pipeline to balance the skews. If the slack was tried to be decreased in a prior run of the TritonCTS tool before attempting to execute CTS, cell replacement procedures may have altered the netlist. Consequently, the write_verilog command must be used to alter the verilog file. The synthesis, floorplan, and placement are then performed one more. Use the following command to launch CTS:
+
+ ``run_cts``.
+
+ After CTS run, my slack values are setup:12.97,Hold:0.23
+
+
+ (MODIFY THE COMMAND)
+
+
+ At this point, we use actual clocks to do timing analysis because the clock is propagated. Operaoad now conducts post-CTS analysis in the open-lane flow.
+
+```
+ openroad
+read_lef <path of merge.nom.lef>
+read_def <path of def>
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /home/parallels/OpenLane/designs/picorv32a/runs/RUN_09-09_11-20/results/synthesis/picorv32a.v
+link_design picorv32a
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+read_sdc /home/parallels/OpenLane/designs/picorv32a/src/my_base.sdc
+set_propagated_clock (all_clocks)
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+
+(MODIFY THE COMMAND)
+
+### HOLD SLACK 
+
+(PHOTO)
+
+
+### SETUP SLACK 
+
+(PHOTO)
+
+
+## Testing
+
+```
+echo $::env(CTS_CLK_BUFFER_LIST)
+set $::env(CTS_CLK_BUFFER_LIST) [lreplace $::env(CTS_CLK_BUFFER_LIST) 0 0]
+echo $::env(CTS_CLK_BUFFER_LIST)
+
+```
+
+Run cts once more after loading the placement stage def file after making the necessary changes. Run OpenROAD once more, create a new database, and follow the same steps. Following post_cts, the report is
+
+Setup slack - 2.2379 , Hold slack - 0.1869
+
+(WRITE YOUR OWN VALUES)
+
+
+# Session 20: Final Steps for RTL2GDS
+
+## Maze Routing and Lee's algorithm
+
+Maze's Routing and Lee's Algorithm are classic techniques used in VLSI design for finding paths in a grid or PCB routing, as well as in various graph traversal and pathfinding applications.
+
+## Maze Routing Algorithm
+Maze's routing refers to a class of algorithms used to find a path between two points in a grid-based system. The most common approach is to use wave propagation from the source point until it reaches the destination. It is similar in concept to Lee's algorithm but is more general and may include various optimizations.
+
+### Key Characteristics:
+
+1. Wave Expansion: Expands wavefront from the source point until it reaches the target.
+
+2. Guaranteed Solution: It always finds a path if one exists.
+3. Applicable for VLSI: It is particularly useful in VLSI routing for connecting points without crossing over existing paths or obstacles.
+
+
+### Steps:
+
+1. Start at the source point.
+2. Expand the search outward to all neighboring cells, marking the distance from the source.
+3. Continue the expansion until you reach the destination.
+4. Trace back from the destination to the source to find the path.
+
+
+
+## Lee's Algorithm
+
+Lee's Algorithm is a specific implementation of Maze's Routing, designed for breadth-first search (BFS) on a grid. It is commonly used for pathfinding in grids with obstacles, and it is popular due to its simplicity and guarantee of finding the shortest path.
+
+### Key Features:
+
+1. Breadth-First Search (BFS): Expands the search in all directions evenly.
+2. Shortest Path: Finds the shortest path in an unweighted grid, making it useful for solving maze problems.
+3. Wave Propagation: Utilizes wavefront propagation to explore the grid systematically.
+4. Guaranteed Solution: It finds the shortest path if one exists.
+
+
+### Steps:
+
+1. Initialization:
+  
+Mark the source point with 0.
+Create a queue and enqueue the source point.
+
+2. Propagation:
+ 
+ Dequeue the current point, check its neighboring cells (up, down, left, right).
+If a neighboring cell is empty, mark it with the current distance + 1 and enqueue it.
+Continue the process until reaching the destination or exhausting all possibilities.
+
+3. Backtracking
+ 
+If the destination is reached, backtrack from the destination to the source using the recorded distances to trace the shortest path.
+
+
+
+However, the Lee algorithm has limitations. It essentially constructs a maze and then numbers its cells from the source to the target. While effective for routing between two pins, it can be time-consuming when dealing with millions of pins. There are alternative algorithms that address similar routing challenges.
+
+
+## Design Rule Check (DRC)
+
+DRC confirms if a design complies with the established process technology guidelines provided by the foundry for its production. DRC checking guarantees that the design satisfies manufacturing requirements and won't cause a chip failure, making it a crucial component of the physical design pipeline. It describes the chip's quality. Let's take a look at a handful of the numerous DRCs.
+
+### Guidelines for physical wire design
+
+Minimum wire width, minimal distance between the cables, the wire's minimum pitch we take the metal layer and place it on top of the upper metal layer to address the signal short violation. We verify using rules, width, and spacing.
+
+
+## Power Distribution Network Generation
+
+
+In contrast to the standard ASIC flow, OpenLANE's design does not include Power Distribution Network generation. PDN needs to be produced following CTS and post-CTS STA evaluations.
+
+By looking at the current def environment variable, we can determine whether or not PDN has been created:  ``echo $::env(CURRENT_DEF)``.
+
+```
+prep -design picorv32a -tag <RUN file name>
+gen_pdn
+
+```
+
+(SOME PHOTO)
+
+(SOME PHOTO)
+
+1. ``gen_pdn`` Generates the power distribution network.
+
+2. The power distribution network has to take the design_cts.def as the input def file.
+
+3. Power rings,strapes and rails are created by PDN.
+
+4. From VDD and VSS pads, power is drawn to power rings.
+
+5. Next, the horizontal and vertical strapes connected to rings draw the power from strapes.
+
+6. Stapes are connected to rings and these rings are connected to std cells. So, standard cells get power from rails.
+
+7.  In this design, straps are at metal layer 4 and 5 and the standard cell rails are at the metal layer 1. Vias connect accross the layers as required.
+   
+## Routing
+
+
+The routing process in Electronic Design Automation (EDA) tools, including OpenLANE and commercial EDA tools, is particularly complex because of the large design space. The routing process is usually split into two separate steps, Global Routing and Detailed Routing, to simplify this complexity.
+
+
+These two stages are handled by the following two routing engines:
+
+### Global Routing
+A coarse 3D routing graph is used to depict the routing region at this stage, which is separated into rectangular grid cells. The "FASTE ROUTE" engine is responsible for completing this assignment.
+
+### Detailed Routing
+In this case, the physical wiring is implemented using routing guides and a finer grid granularity. At this point, the "tritonRoute" engine is activated. While "Triton Route" uses the Global Route data to further improve the routing and implement a variety of strategies and optimizations to find the best way for connecting the pins, "Fast Route" creates the first routing guidance.
+
+
 
 
 
