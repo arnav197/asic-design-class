@@ -3072,15 +3072,129 @@ Next, we modify the generated SPICE file to make necessary adjustments before ru
 5. Add a transient analysis with necessary stoptime and precision as shown below
 
 
+<img src="session18/spicelist.png" alt="Step 1.1" width="700"/> <br>
+
+
+Following is the command to execute the Spice deck using the Ngspice software
+
+```
+ngspice spice_files/sky130_arnav_inv.spice
+```
+
+<img src="session18/some_ss.png" alt="Step 1.1" width="700"/> <br>
+
+Following is the command to see the waveform for the transient analysis
+
+``ngpsice spice_files/sky130_ayush_inv.spice``.
+
+
+<img src="session18/some_waveform.png" alt="Step 1.1" width="700"/> <br>
+
+
+### Inverter Standard Cell Characterization
+
+Inverter standard cell characterization involves four key timing parameters:
+
+1. **Rise Transition**: The time it takes for the output to transition from 20% to 80% of its maximum value.
+2. **Fall Transition**: The time required for the output to drop from 80% to 20% of its maximum value.
+3. **Cell Rise Delay**: The time difference between the moment when the output reaches 50% of its rise and when the input reaches 50% of its fall.
+4. **Cell Fall Delay**: The time difference between the moment when the output reaches 50% of its fall and when the input reaches 50% of its rise.
+
+These parameters are essential for understanding the performance and response of the inverter cell in digital circuits.
+
+## Lab Exercises and DRC Challenges
+
+Introducing Magic and Skywater DRCs.
+
+Following are the tasks which are done:
+1. In-depth overview of Magic DRC engine
+2. Introduction to Google/Skywater DRC rules
+3. Lab to warm up: Fixing a simple rule error
+4. Lab of main exercise: Fixing or creating a complex error
+
+### To know more about magic go to the link: ``http://opencircuitdesign.com/magic/``
+
+## Sky130s PDK Introduction and Steps to Download Labs
+
+To view the skywater PDKs documentation use the link below:
+
+``https://skywater-pdk.readthedocs.io/en/main/``
+
+Download the packaged files to out local PC using ``wget`` command, following is the command:
+
+`` http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz``
+
+Extract it using the below command:
+
+`` tar xfz drc_tests.tgz``
+
+Once that is done, a drc_test folder is created in the directory. Use the command: `` magic -d XR``
+
+To load a mag file go to File > Open > .mag from the magic window
 
 
 
+<img src="session18/load_file.png" alt="Step 1.1" width="700"/> <br>
+
+
+Another alternative is that we can use the terminal command: 
+
+`` magic -d XR <filename>.mag ``
+
+Select one block to perform a DRC check using `drc why`. Use the following command in the tkcon window to see metal cut down.
+
+`` cif see VIA2 ``
+
+
+<img src="session18/image_layout.png" alt="Step 1.1" width="700"/> <br>
+
+## Load Sky130 tech rules for drc challenges
+
+You should first load the poly file by ``load poly.mag`` on tkcon window.
+
+Finding the error by mouse cursor and find the box area, Poly.9 is violated due to spacing between polyres and poly.
+
+
+<img src="session18/violated.png" alt="Step 1.1" width="700"/> <br>
+
+We could see that distance between regular polysilicon & poly resistor should ideally be 22um but it is 17um and still no errors are produced therefore, we should go to sky130A.tech file and modify as follows to detect this error.
 
 
 
+<img src="session18/modify.png" alt="Step 1.1" width="700"/> <br>
 
 
+In line
 
+```
+spacing npres *nsd 480 touching_illegal \
+	"poly.resistor spacing to N-tap < %d (poly.9)"
+```
+
+change to
+
+```
+spacing npres allpolynonres 480 touching_illegal \
+	"poly.resistor spacing to N-tap < %d (poly.9)"
+```
+
+Also,
+
+```
+spacing xhrpoly,uhrpoly,xpc alldiff 480 touching_illegal \
+
+	"xhrpoly/uhrpoly resistor spacing to diffusion < %d (poly.9)"
+```
+
+change to
+
+```
+spacing xhrpoly,uhrpoly,xpc allpolynonres 480 touching_illegal \
+
+	"xhrpoly/uhrpoly resistor spacing to diffusion < %d (poly.9)"
+```
+
+<img src="session18/final_layout.png" alt="Step 1.1" width="700"/> <br>
 
 
 
@@ -3497,6 +3611,193 @@ A coarse 3D routing graph is used to depict the routing region at this stage, wh
 
 ### Detailed Routing
 In this case, the physical wiring is implemented using routing guides and a finer grid granularity. At this point, the "tritonRoute" engine is activated. While "Triton Route" uses the Global Route data to further improve the routing and implement a variety of strategies and optimizations to find the best way for connecting the pins, "Fast Route" creates the first routing guidance.
+
+
+## 1. Perform generation of Power Distribution Network (PDN) and explore the PDN layout.
+
+Commands to perform all necessary stages
+
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+
+docker
+```
+
+```
+
+# Now that we have entered the OpenLANE flow contained docker sub-system we can invoke the OpenLANE flow in the Interactive mode using the following command
+./flow.tcl -interactive
+
+# Now that OpenLANE flow is open we have to input the required packages for proper functionality of the OpenLANE flow
+package require openlane 0.9
+
+# Now the OpenLANE flow is ready to run any design and initially we have to prep the design creating some necessary files and directories for running a specific design which in our case is 'picorv32a'
+prep -design picorv32a
+
+# Addiitional commands to include newly added lef to openlane flow merged.lef
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+
+# Command to set new value for SYNTH_STRATEGY
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+
+# Command to set new value for SYNTH_SIZING
+set ::env(SYNTH_SIZING) 1
+
+# Now that the design is prepped and ready, we can run synthesis using following command
+run_synthesis
+
+# Following commands are alltogather sourced in "run_floorplan" command
+init_floorplan
+place_io
+tap_decap_or
+
+# Now we are ready to run placement
+run_placement
+
+# Incase getting error
+unset ::env(LIB_CTS)
+
+# With placement done we are now ready to run CTS
+run_cts
+
+# Now that CTS is done we can do power distribution network
+gen_pdn 
+
+```
+Commands to load PDN def in magic in another terminal
+
+```
+# Change directory to path containing generated PDN def
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_12-40/tmp/floorplan/
+
+# Command to load the PDN def in magic tool
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read 14-pdn.def &
+```
+
+
+PDN DEF SCREENSHOT 
+
+
+<img src="session20/pdndef1.png" alt="Step 1.1" width="700"/> <br>
+
+
+
+
+
+2. Perform detailed routing using TritonRoute and explore the routed layout.
+
+Command to perform routing
+
+```
+# Check value of 'CURRENT_DEF'
+echo $::env(CURRENT_DEF)
+
+# Check value of 'ROUTING_STRATEGY'
+echo $::env(ROUTING_STRATEGY)
+
+# Command for detailed route using TritonRoute
+run_routing
+```
+
+<img src="session20/rout1.png" alt="Step 1.1" width="700"/> <br>
+
+<img src="session20/rout2.png" alt="Step 1.1" width="700"/> <br>
+
+
+### Commands to load routed def in magic in another terminal
+
+```
+# Change directory to path containing routed def
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_12-40/results/routing/
+
+# Command to load the routed def in magic tool
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.def &
+
+```
+
+<img src="session20/rdef1.png" alt="Step 1.1" width="700"/> <br>
+
+<img src="session20/rdef2.png" alt="Step 1.1" width="700"/> <br>
+
+<img src="session20/rdef3.png" alt="Step 1.1" width="700"/> <br>
+
+
+
+
+
+Screenshot of fast route guide present in openlane/designs/picorv32a/runs/13-11_12-40/tmp/routing directory
+
+### 3. Post-Route parasitic extraction using SPEF extractor.
+
+Commands for SPEF extraction using external tool
+
+```
+# Change directory
+cd Desktop/work/tools/SPEF_EXTRACTOR
+
+# Command extract spef
+python3 main.py /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/26-03_08-45/tmp/merged.lef /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_12-40/results/routing/picorv32a.def
+
+```
+4. Post-Route OpenSTA timing analysis with the extracted parasitics of the route.
+Commands to be run in OpenLANE flow to do OpenROAD timing analysis with integrated OpenSTA in OpenROAD
+
+
+```
+
+# Command to run OpenROAD tool
+openroad
+
+# Reading lef file
+read_lef /openlane/designs/picorv32a/runs/13-11_12-40/tmp/merged.lef
+
+# Reading def file
+read_def /openlane/designs/picorv32a/runs/13-11_12-40/results/routing/picorv32a.def
+
+# Creating an OpenROAD database to work with
+write_db pico_route.db
+
+# Loading the created database in OpenROAD
+read_db pico_route.db
+
+# Read netlist post CTS
+read_verilog /openlane/designs/picorv32a/runs/13-11_12-40/results/synthesis/picorv32a.synthesis_preroute.v
+
+# Read library for design
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+
+# Link design and library
+link_design picorv32a
+
+# Read in the custom sdc we created
+read_sdc /openlane/designs/picorv32a/src/my_base.sdc
+
+# Setting all cloks as propagated clocks
+set_propagated_clock [all_clocks]
+
+# Read SPEF
+read_spef /openlane/designs/picorv32a/runs/26-03_08-45/results/routing/picorv32a.spef
+
+# Generating custom timing report
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+
+# Exit to OpenLANE flow
+exit
+
+
+Screenshots of commands run and timing report generated:
+
+```
+
+<img src="session20/timing_report.png" alt="Step 1.1" width="700"/> <br>
+
+
+<img src="session20/timing_report_first.png" alt="Step 1.1" width="700"/> <br>
+
+
+
 
 
 

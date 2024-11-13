@@ -20,6 +20,8 @@ C2 A Y 0.0754f
 C3 Y VGND 2f
 C4 A VGND 0.45f
 C5 VPWR VGND 0.781f
+
+C6 Y 0 2fF
 //.ends
 
 .tran 1n 20n
