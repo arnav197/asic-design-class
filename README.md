@@ -3607,11 +3607,6 @@ tap_decap_or
 # Now we are ready to run placement
 run_placement
 
-# Incase getting error
-unset ::env(LIB_CTS)
-
-# With placement done we are now ready to run CTS
-run_cts
 
 ```
 
@@ -3619,6 +3614,11 @@ run_cts
 <img src="session19/1725.png" alt="Step 1.1" width="700"/> <br>
 <img src="session19/1023.png" alt="Step 1.1" width="700"/> <br>
 <img src="session19/1124.png" alt="Step 1.1" width="700"/> <br>
+
+## Snapshot of the personalized inverted present in the Layout: sky130_arnav_inv
+<img src="session19/arnav_inv.png" alt="Step 1.1" width="700"/> <br>
+
+
 
 
 
