@@ -1,0 +1,2394 @@
+OpenROAD v2.0-17013-gf7f634f88 
+Features included (+) or not (-): +Charts +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 12 thread(s).
+detailed_route -output_drc ./reports/sky130hd/vsdbabysoc/base/5_route_drc.rpt -output_maze ./results/sky130hd/vsdbabysoc/base/maze.log -bottom_routing_layer met1 -top_routing_layer met5 -droute_end_iter 64 -verbose 1 -drc_report_iter_step 5
+[INFO DRT-0149] Reading tech and libs.
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer mcon
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer mcon
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via2
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via2
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via3
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via3
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via4
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via4
+
+Units:                1000
+Number of layers:     13
+Number of macros:     443
+Number of vias:       29
+Number of viarulegen: 25
+
+[INFO DRT-0150] Reading design.
+[WARNING DRT-0120] Large net net94 has 120 pins which may impact routing performance. Consider optimization.
+[WARNING DRT-0120] Large net net93 has 142 pins which may impact routing performance. Consider optimization.
+
+Design:                   vsdbabysoc
+Die area:                 ( 0 0 ) ( 1600000 1600000 )
+Number of track patterns: 12
+Number of DEF vias:       0
+Number of components:     32428
+Number of terminals:      7
+Number of snets:          2
+Number of nets:           8538
+
+[INFO DRT-0167] List of default vias:
+  Layer via
+    default via: M1M2_PR
+  Layer via2
+    default via: M2M3_PR
+  Layer via3
+    default via: M3M4_PR
+  Layer via4
+    default via: M4M5_PR
+[INFO DRT-0162] Library cell analysis.
+[INFO DRT-0163] Instance analysis.
+[INFO DRT-0164] Number of unique instances = 260.
+[INFO DRT-0168] Init region query.
+[INFO DRT-0024]   Complete FR_MASTERSLICE.
+[INFO DRT-0024]   Complete Fr_VIA.
+[INFO DRT-0024]   Complete li1.
+[INFO DRT-0024]   Complete mcon.
+[INFO DRT-0024]   Complete met1.
+[INFO DRT-0024]   Complete via.
+[INFO DRT-0024]   Complete met2.
+[INFO DRT-0024]   Complete via2.
+[INFO DRT-0024]   Complete met3.
+[INFO DRT-0024]   Complete via3.
+[INFO DRT-0024]   Complete met4.
+[INFO DRT-0024]   Complete via4.
+[INFO DRT-0024]   Complete met5.
+[INFO DRT-0033] FR_MASTERSLICE shape region query size = 0.
+[INFO DRT-0033] FR_VIA shape region query size = 0.
+[INFO DRT-0033] li1 shape region query size = 410553.
+[INFO DRT-0033] mcon shape region query size = 196322.
+[INFO DRT-0033] met1 shape region query size = 115857.
+[INFO DRT-0033] via shape region query size = 120626.
+[INFO DRT-0033] met2 shape region query size = 72449.
+[INFO DRT-0033] via2 shape region query size = 96483.
+[INFO DRT-0033] met3 shape region query size = 72398.
+[INFO DRT-0033] via3 shape region query size = 96477.
+[INFO DRT-0033] met4 shape region query size = 30851.
+[INFO DRT-0033] via4 shape region query size = 6613.
+[INFO DRT-0033] met5 shape region query size = 6728.
+[INFO DRT-0165] Start pin access.
+[INFO DRT-0076]   Complete 1000 pins.
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[INFO DRT-0076]   Complete 2000 pins.
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] message limit reached, this message will no longer print
+[INFO DRT-0078]   Complete 2072 pins.
+[INFO DRT-0079]   Complete 100 unique inst patterns.
+[INFO DRT-0079]   Complete 200 unique inst patterns.
+[INFO DRT-0081]   Complete 258 unique inst patterns.
+[INFO DRT-0084]   Complete 4062 groups.
+#scanned instances     = 32428
+#unique  instances     = 260
+#stdCellGenAp          = 8410
+#stdCellValidPlanarAp  = 104
+#stdCellValidViaAp     = 5894
+#stdCellPinNoAp        = 6
+#stdCellPinCnt         = 27805
+#instTermValidViaApCnt = 0
+#macroGenAp            = 135468
+#macroValidPlanarAp    = 127217
+#macroValidViaAp       = 122991
+#macroNoAp             = 0
+[INFO DRT-0166] Complete pin access.
+[INFO DRT-0267] cpu time = 00:04:52, elapsed time = 00:02:13, memory = 452.50 (MB), peak = 452.50 (MB)
+
+[INFO DRT-0157] Number of guides:     65912
+
+[INFO DRT-0169] Post process guides.
+[INFO DRT-0176] GCELLGRID X 0 DO 231 STEP 6900 ;
+[INFO DRT-0177] GCELLGRID Y 0 DO 231 STEP 6900 ;
+[INFO DRT-0028]   Complete FR_MASTERSLICE.
+[INFO DRT-0028]   Complete Fr_VIA.
+[INFO DRT-0028]   Complete li1.
+[INFO DRT-0028]   Complete mcon.
+[INFO DRT-0028]   Complete met1.
+[INFO DRT-0028]   Complete via.
+[INFO DRT-0028]   Complete met2.
+[INFO DRT-0028]   Complete via2.
+[INFO DRT-0028]   Complete met3.
+[INFO DRT-0028]   Complete via3.
+[INFO DRT-0028]   Complete met4.
+[INFO DRT-0028]   Complete via4.
+[INFO DRT-0028]   Complete met5.
+[INFO DRT-0178] Init guide query.
+[INFO DRT-0035]   Complete FR_MASTERSLICE (guide).
+[INFO DRT-0035]   Complete Fr_VIA (guide).
+[INFO DRT-0035]   Complete li1 (guide).
+[INFO DRT-0035]   Complete mcon (guide).
+[INFO DRT-0035]   Complete met1 (guide).
+[INFO DRT-0035]   Complete via (guide).
+[INFO DRT-0035]   Complete met2 (guide).
+[INFO DRT-0035]   Complete via2 (guide).
+[INFO DRT-0035]   Complete met3 (guide).
+[INFO DRT-0035]   Complete via3 (guide).
+[INFO DRT-0035]   Complete met4 (guide).
+[INFO DRT-0035]   Complete via4 (guide).
+[INFO DRT-0035]   Complete met5 (guide).
+[INFO DRT-0036] FR_MASTERSLICE guide region query size = 0.
+[INFO DRT-0036] FR_VIA guide region query size = 0.
+[INFO DRT-0036] li1 guide region query size = 23320.
+[INFO DRT-0036] mcon guide region query size = 0.
+[INFO DRT-0036] met1 guide region query size = 15877.
+[INFO DRT-0036] via guide region query size = 0.
+[INFO DRT-0036] met2 guide region query size = 7429.
+[INFO DRT-0036] via2 guide region query size = 0.
+[INFO DRT-0036] met3 guide region query size = 954.
+[INFO DRT-0036] via3 guide region query size = 0.
+[INFO DRT-0036] met4 guide region query size = 276.
+[INFO DRT-0036] via4 guide region query size = 0.
+[INFO DRT-0036] met5 guide region query size = 2.
+[INFO DRT-0179] Init gr pin query.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 464.25 (MB), peak = 464.25 (MB)
+[INFO DRT-0245] skipped writing guide updates to database.
+[INFO DRT-0185] Post process initialize RPin region query.
+[INFO DRT-0181] Start track assignment.
+[INFO DRT-0184] Done with 31025 vertical wires in 5 frboxes and 16833 horizontal wires in 5 frboxes.
+[INFO DRT-0186] Done with 4358 vertical wires in 5 frboxes and 6679 horizontal wires in 5 frboxes.
+[INFO DRT-0182] Complete track assignment.
+[INFO DRT-0267] cpu time = 00:00:05, elapsed time = 00:00:02, memory = 744.71 (MB), peak = 749.21 (MB)
+[INFO DRT-0187] Start routing data preparation.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 744.71 (MB), peak = 749.21 (MB)
+[INFO DRT-0194] Start detail routing.
+[INFO DRT-0195] Start 0th optimization iteration.
+    Completing 10% with 0 violations.
+    elapsed time = 00:00:10, memory = 1026.57 (MB).
+    Completing 20% with 0 violations.
+    elapsed time = 00:00:25, memory = 1073.00 (MB).
+    Completing 30% with 1900 violations.
+    elapsed time = 00:00:33, memory = 994.26 (MB).
+    Completing 40% with 1900 violations.
+    elapsed time = 00:00:56, memory = 1390.42 (MB).
+    Completing 50% with 1900 violations.
+    elapsed time = 00:01:00, memory = 1364.24 (MB).
+    Completing 60% with 4237 violations.
+    elapsed time = 00:01:25, memory = 1304.27 (MB).
+    Completing 70% with 4237 violations.
+    elapsed time = 00:01:43, memory = 1429.27 (MB).
+    Completing 80% with 6672 violations.
+    elapsed time = 00:01:55, memory = 1320.46 (MB).
+    Completing 90% with 6672 violations.
+    elapsed time = 00:02:27, memory = 1583.41 (MB).
+    Completing 100% with 9245 violations.
+    elapsed time = 00:02:46, memory = 1361.46 (MB).
+[INFO DRT-0199]   Number of violations = 10444.
+Viol/Layer         li1   mcon   met1    via   met2   met3   met4   met5
+Cut Spacing          0     19      0      0      0      0      0      0
+Metal Spacing        1      0   1000      0    582     34      2      1
+Min Hole             0      0      1      0      0      0      0      0
+Recheck             11      0    776      0    375     30      6      1
+Short                2      2   5988      2   1560     48      3      0
+[INFO DRT-0267] cpu time = 00:26:19, elapsed time = 00:02:47, memory = 1626.21 (MB), peak = 1626.21 (MB)
+Total wire length = 291403 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 123778 um.
+Total wire length on LAYER met2 = 118291 um.
+Total wire length on LAYER met3 = 35161 um.
+Total wire length on LAYER met4 = 14134 um.
+Total wire length on LAYER met5 = 37 um.
+Total number of vias = 65058.
+Up-via summary (total 65058):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28144
+           met1    32225
+           met2     3716
+           met3      971
+           met4        2
+------------------------
+                   65058
+
+
+[INFO DRT-0195] Start 1st optimization iteration.
+    Completing 10% with 10444 violations.
+    elapsed time = 00:00:04, memory = 1706.21 (MB).
+    Completing 20% with 10444 violations.
+    elapsed time = 00:00:23, memory = 1847.15 (MB).
+    Completing 30% with 9602 violations.
+    elapsed time = 00:00:34, memory = 1668.41 (MB).
+    Completing 40% with 9602 violations.
+    elapsed time = 00:01:00, memory = 1878.09 (MB).
+    Completing 50% with 9602 violations.
+    elapsed time = 00:01:15, memory = 1691.58 (MB).
+    Completing 60% with 8518 violations.
+    elapsed time = 00:01:32, memory = 1770.84 (MB).
+    Completing 70% with 8518 violations.
+    elapsed time = 00:01:44, memory = 1886.22 (MB).
+    Completing 80% with 7940 violations.
+    elapsed time = 00:02:00, memory = 1713.86 (MB).
+    Completing 90% with 7940 violations.
+    elapsed time = 00:02:35, memory = 1863.36 (MB).
+    Completing 100% with 7132 violations.
+    elapsed time = 00:02:55, memory = 1737.20 (MB).
+[INFO DRT-0199]   Number of violations = 7132.
+Viol/Layer        mcon   met1    via   met2   met3   met4
+Cut Spacing         13      0      0      0      0      0
+Metal Spacing        0    932      0    370     23      3
+Short                0   5045      1    710     24     11
+[INFO DRT-0267] cpu time = 00:27:02, elapsed time = 00:02:55, memory = 1740.20 (MB), peak = 1922.86 (MB)
+Total wire length = 287756 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 122005 um.
+Total wire length on LAYER met2 = 116302 um.
+Total wire length on LAYER met3 = 35343 um.
+Total wire length on LAYER met4 = 14068 um.
+Total wire length on LAYER met5 = 36 um.
+Total number of vias = 64201.
+Up-via summary (total 64201):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28150
+           met1    31393
+           met2     3680
+           met3      976
+           met4        2
+------------------------
+                   64201
+
+
+[INFO DRT-0195] Start 2nd optimization iteration.
+    Completing 10% with 7132 violations.
+    elapsed time = 00:00:00, memory = 1740.20 (MB).
+    Completing 20% with 7132 violations.
+    elapsed time = 00:00:00, memory = 1932.20 (MB).
+    Completing 30% with 7260 violations.
+    elapsed time = 00:00:28, memory = 1741.62 (MB).
+    Completing 40% with 7260 violations.
+    elapsed time = 00:00:33, memory = 1872.74 (MB).
+    Completing 50% with 7260 violations.
+    elapsed time = 00:00:50, memory = 1759.86 (MB).
+    Completing 60% with 7048 violations.
+    elapsed time = 00:00:50, memory = 1759.86 (MB).
+    Completing 70% with 7048 violations.
+    elapsed time = 00:00:57, memory = 1947.26 (MB).
+    Completing 80% with 6824 violations.
+    elapsed time = 00:01:12, memory = 1713.11 (MB).
+    Completing 90% with 6824 violations.
+    elapsed time = 00:01:24, memory = 1833.58 (MB).
+    Completing 100% with 6610 violations.
+    elapsed time = 00:01:36, memory = 1714.58 (MB).
+[INFO DRT-0199]   Number of violations = 6610.
+Viol/Layer        mcon   met1    via   met2   met3   met4
+Cut Spacing          9      0      1      0      0      0
+Metal Spacing        0    841      0    383     19      0
+Short                0   4647      1    692     14      3
+[INFO DRT-0267] cpu time = 00:11:39, elapsed time = 00:01:37, memory = 1717.58 (MB), peak = 2032.11 (MB)
+Total wire length = 286602 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 121084 um.
+Total wire length on LAYER met2 = 116070 um.
+Total wire length on LAYER met3 = 35416 um.
+Total wire length on LAYER met4 = 14032 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 63937.
+Up-via summary (total 63937):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28172
+           met1    31181
+           met2     3618
+           met3      966
+           met4        0
+------------------------
+                   63937
+
+
+[INFO DRT-0195] Start 3rd optimization iteration.
+    Completing 10% with 6610 violations.
+    elapsed time = 00:00:00, memory = 1717.70 (MB).
+    Completing 20% with 6610 violations.
+    elapsed time = 00:00:04, memory = 1890.95 (MB).
+    Completing 30% with 5439 violations.
+    elapsed time = 00:00:28, memory = 1717.83 (MB).
+    Completing 40% with 5439 violations.
+    elapsed time = 00:00:33, memory = 1846.95 (MB).
+    Completing 50% with 5439 violations.
+    elapsed time = 00:00:34, memory = 1847.08 (MB).
+    Completing 60% with 4361 violations.
+    elapsed time = 00:00:54, memory = 1732.58 (MB).
+    Completing 70% with 4361 violations.
+    elapsed time = 00:00:55, memory = 1884.08 (MB).
+    Completing 80% with 3303 violations.
+    elapsed time = 00:01:18, memory = 1733.74 (MB).
+    Completing 90% with 3303 violations.
+    elapsed time = 00:01:18, memory = 1939.87 (MB).
+    Completing 100% with 2022 violations.
+    elapsed time = 00:01:48, memory = 1737.60 (MB).
+[INFO DRT-0199]   Number of violations = 2022.
+Viol/Layer        mcon   met1    via   met2   met3
+Cut Spacing          5      0      1      0      0
+Metal Spacing        0    494      0    106      7
+Min Hole             0      2      0      0      0
+NS Metal             0      1      0      0      0
+Short                0   1228      0    174      4
+[INFO DRT-0267] cpu time = 00:10:55, elapsed time = 00:01:48, memory = 1737.60 (MB), peak = 2032.11 (MB)
+Total wire length = 285984 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 108945 um.
+Total wire length on LAYER met2 = 112252 um.
+Total wire length on LAYER met3 = 46762 um.
+Total wire length on LAYER met4 = 18023 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65601.
+Up-via summary (total 65601):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28185
+           met1    30803
+           met2     5238
+           met3     1375
+           met4        0
+------------------------
+                   65601
+
+
+[INFO DRT-0195] Start 4th optimization iteration.
+    Completing 10% with 2022 violations.
+    elapsed time = 00:00:00, memory = 1737.60 (MB).
+    Completing 20% with 2022 violations.
+    elapsed time = 00:00:00, memory = 1934.10 (MB).
+    Completing 30% with 1697 violations.
+    elapsed time = 00:00:14, memory = 1737.61 (MB).
+    Completing 40% with 1697 violations.
+    elapsed time = 00:00:14, memory = 1737.61 (MB).
+    Completing 50% with 1697 violations.
+    elapsed time = 00:00:35, memory = 1737.75 (MB).
+    Completing 60% with 1412 violations.
+    elapsed time = 00:00:35, memory = 1737.75 (MB).
+    Completing 70% with 1412 violations.
+    elapsed time = 00:00:35, memory = 1737.75 (MB).
+    Completing 80% with 1088 violations.
+    elapsed time = 00:00:45, memory = 1737.55 (MB).
+    Completing 90% with 1088 violations.
+    elapsed time = 00:00:45, memory = 1869.55 (MB).
+    Completing 100% with 727 violations.
+    elapsed time = 00:01:10, memory = 1737.62 (MB).
+[INFO DRT-0199]   Number of violations = 727.
+Viol/Layer        mcon   met1    via   met2   met3
+Cut Spacing          1      0      0      0      0
+Metal Spacing        0    193      0     41      6
+Short                0    415      2     65      4
+[INFO DRT-0267] cpu time = 00:03:30, elapsed time = 00:01:10, memory = 1737.62 (MB), peak = 2032.11 (MB)
+Total wire length = 285834 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107840 um.
+Total wire length on LAYER met2 = 111789 um.
+Total wire length on LAYER met3 = 47750 um.
+Total wire length on LAYER met4 = 18453 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65752.
+Up-via summary (total 65752):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28193
+           met1    30794
+           met2     5368
+           met3     1397
+           met4        0
+------------------------
+                   65752
+
+
+[INFO DRT-0195] Start 5th optimization iteration.
+    Completing 10% with 727 violations.
+    elapsed time = 00:00:00, memory = 1737.62 (MB).
+    Completing 20% with 727 violations.
+    elapsed time = 00:00:00, memory = 1737.62 (MB).
+    Completing 30% with 641 violations.
+    elapsed time = 00:00:13, memory = 1737.44 (MB).
+    Completing 40% with 641 violations.
+    elapsed time = 00:00:13, memory = 1737.44 (MB).
+    Completing 50% with 641 violations.
+    elapsed time = 00:00:35, memory = 1737.62 (MB).
+    Completing 60% with 443 violations.
+    elapsed time = 00:00:36, memory = 1737.62 (MB).
+    Completing 70% with 443 violations.
+    elapsed time = 00:00:36, memory = 1737.62 (MB).
+    Completing 80% with 402 violations.
+    elapsed time = 00:00:41, memory = 1737.53 (MB).
+    Completing 90% with 402 violations.
+    elapsed time = 00:00:41, memory = 1737.53 (MB).
+    Completing 100% with 330 violations.
+    elapsed time = 00:00:47, memory = 1737.64 (MB).
+[INFO DRT-0199]   Number of violations = 330.
+Viol/Layer        mcon   met1   met2   met3
+Cut Spacing          2      0      0      0
+Metal Spacing        0     77     13      1
+Short                0    203     34      0
+[INFO DRT-0267] cpu time = 00:01:18, elapsed time = 00:00:47, memory = 1737.64 (MB), peak = 2032.11 (MB)
+Total wire length = 285818 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107392 um.
+Total wire length on LAYER met2 = 111471 um.
+Total wire length on LAYER met3 = 48086 um.
+Total wire length on LAYER met4 = 18868 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65817.
+Up-via summary (total 65817):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28191
+           met1    30780
+           met2     5411
+           met3     1435
+           met4        0
+------------------------
+                   65817
+
+
+[INFO DRT-0195] Start 6th optimization iteration.
+    Completing 10% with 330 violations.
+    elapsed time = 00:00:00, memory = 1737.77 (MB).
+    Completing 20% with 330 violations.
+    elapsed time = 00:00:00, memory = 1737.77 (MB).
+    Completing 30% with 306 violations.
+    elapsed time = 00:00:07, memory = 1737.81 (MB).
+    Completing 40% with 306 violations.
+    elapsed time = 00:00:07, memory = 1737.81 (MB).
+    Completing 50% with 306 violations.
+    elapsed time = 00:00:26, memory = 1737.88 (MB).
+    Completing 60% with 229 violations.
+    elapsed time = 00:00:26, memory = 1737.88 (MB).
+    Completing 70% with 229 violations.
+    elapsed time = 00:00:26, memory = 1737.88 (MB).
+    Completing 80% with 220 violations.
+    elapsed time = 00:00:32, memory = 1737.94 (MB).
+    Completing 90% with 220 violations.
+    elapsed time = 00:00:32, memory = 1737.94 (MB).
+    Completing 100% with 151 violations.
+    elapsed time = 00:00:39, memory = 1737.94 (MB).
+[INFO DRT-0199]   Number of violations = 151.
+Viol/Layer        met1   met2   met3
+Metal Spacing       46     12      1
+Short               81     11      0
+[INFO DRT-0267] cpu time = 00:00:52, elapsed time = 00:00:39, memory = 1737.94 (MB), peak = 2032.11 (MB)
+Total wire length = 285706 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107116 um.
+Total wire length on LAYER met2 = 111394 um.
+Total wire length on LAYER met3 = 48242 um.
+Total wire length on LAYER met4 = 18952 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65851.
+Up-via summary (total 65851):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28186
+           met1    30801
+           met2     5436
+           met3     1428
+           met4        0
+------------------------
+                   65851
+
+
+[INFO DRT-0195] Start 7th optimization iteration.
+    Completing 10% with 151 violations.
+    elapsed time = 00:00:00, memory = 1737.94 (MB).
+    Completing 20% with 151 violations.
+    elapsed time = 00:00:00, memory = 1737.94 (MB).
+    Completing 30% with 150 violations.
+    elapsed time = 00:00:12, memory = 1737.90 (MB).
+    Completing 40% with 150 violations.
+    elapsed time = 00:00:12, memory = 1737.90 (MB).
+    Completing 50% with 150 violations.
+    elapsed time = 00:00:24, memory = 1737.76 (MB).
+    Completing 60% with 133 violations.
+    elapsed time = 00:00:24, memory = 1737.76 (MB).
+    Completing 70% with 133 violations.
+    elapsed time = 00:00:24, memory = 1737.76 (MB).
+    Completing 80% with 133 violations.
+    elapsed time = 00:00:31, memory = 1737.76 (MB).
+    Completing 90% with 133 violations.
+    elapsed time = 00:00:31, memory = 1737.76 (MB).
+    Completing 100% with 126 violations.
+    elapsed time = 00:00:34, memory = 1738.45 (MB).
+[INFO DRT-0199]   Number of violations = 126.
+Viol/Layer        met1   met2   met3
+Metal Spacing       28     11      1
+Short               79      7      0
+[INFO DRT-0267] cpu time = 00:00:46, elapsed time = 00:00:34, memory = 1738.45 (MB), peak = 2032.11 (MB)
+Total wire length = 285658 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107074 um.
+Total wire length on LAYER met2 = 111376 um.
+Total wire length on LAYER met3 = 48232 um.
+Total wire length on LAYER met4 = 18974 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65868.
+Up-via summary (total 65868):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28186
+           met1    30805
+           met2     5441
+           met3     1436
+           met4        0
+------------------------
+                   65868
+
+
+[INFO DRT-0195] Start 8th optimization iteration.
+    Completing 10% with 126 violations.
+    elapsed time = 00:00:00, memory = 1738.45 (MB).
+    Completing 20% with 126 violations.
+    elapsed time = 00:00:00, memory = 1738.45 (MB).
+    Completing 30% with 125 violations.
+    elapsed time = 00:00:11, memory = 1738.44 (MB).
+    Completing 40% with 125 violations.
+    elapsed time = 00:00:11, memory = 1738.44 (MB).
+    Completing 50% with 125 violations.
+    elapsed time = 00:00:23, memory = 1738.44 (MB).
+    Completing 60% with 82 violations.
+    elapsed time = 00:00:23, memory = 1738.44 (MB).
+    Completing 70% with 82 violations.
+    elapsed time = 00:00:23, memory = 1738.44 (MB).
+    Completing 80% with 80 violations.
+    elapsed time = 00:00:23, memory = 1738.44 (MB).
+    Completing 90% with 80 violations.
+    elapsed time = 00:00:23, memory = 1738.44 (MB).
+    Completing 100% with 76 violations.
+    elapsed time = 00:00:30, memory = 1738.39 (MB).
+[INFO DRT-0199]   Number of violations = 76.
+Viol/Layer        met1   met2   met3
+Metal Spacing       13      9      1
+Short               36     17      0
+[INFO DRT-0267] cpu time = 00:00:34, elapsed time = 00:00:30, memory = 1738.39 (MB), peak = 2032.11 (MB)
+Total wire length = 285625 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107019 um.
+Total wire length on LAYER met2 = 111373 um.
+Total wire length on LAYER met3 = 48258 um.
+Total wire length on LAYER met4 = 18973 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65861.
+Up-via summary (total 65861):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28185
+           met1    30796
+           met2     5448
+           met3     1432
+           met4        0
+------------------------
+                   65861
+
+
+[INFO DRT-0195] Start 9th optimization iteration.
+    Completing 10% with 76 violations.
+    elapsed time = 00:00:00, memory = 1738.39 (MB).
+    Completing 20% with 76 violations.
+    elapsed time = 00:00:00, memory = 1738.39 (MB).
+    Completing 30% with 71 violations.
+    elapsed time = 00:00:06, memory = 1738.44 (MB).
+    Completing 40% with 71 violations.
+    elapsed time = 00:00:06, memory = 1738.44 (MB).
+    Completing 50% with 71 violations.
+    elapsed time = 00:00:13, memory = 1738.44 (MB).
+    Completing 60% with 71 violations.
+    elapsed time = 00:00:13, memory = 1738.44 (MB).
+    Completing 70% with 71 violations.
+    elapsed time = 00:00:13, memory = 1738.44 (MB).
+    Completing 80% with 71 violations.
+    elapsed time = 00:00:13, memory = 1738.44 (MB).
+    Completing 90% with 71 violations.
+    elapsed time = 00:00:13, memory = 1738.44 (MB).
+    Completing 100% with 71 violations.
+    elapsed time = 00:00:19, memory = 1738.41 (MB).
+[INFO DRT-0199]   Number of violations = 71.
+Viol/Layer        met1   met2
+Metal Spacing       12     14
+Short               26     19
+[INFO DRT-0267] cpu time = 00:00:30, elapsed time = 00:00:19, memory = 1738.41 (MB), peak = 2032.11 (MB)
+Total wire length = 285651 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107019 um.
+Total wire length on LAYER met2 = 111350 um.
+Total wire length on LAYER met3 = 48277 um.
+Total wire length on LAYER met4 = 19004 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65876.
+Up-via summary (total 65876):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28186
+           met1    30812
+           met2     5445
+           met3     1433
+           met4        0
+------------------------
+                   65876
+
+
+[INFO DRT-0195] Start 10th optimization iteration.
+    Completing 10% with 71 violations.
+    elapsed time = 00:00:00, memory = 1738.41 (MB).
+    Completing 20% with 71 violations.
+    elapsed time = 00:00:00, memory = 1738.41 (MB).
+    Completing 30% with 71 violations.
+    elapsed time = 00:00:04, memory = 1738.34 (MB).
+    Completing 40% with 71 violations.
+    elapsed time = 00:00:04, memory = 1738.34 (MB).
+    Completing 50% with 71 violations.
+    elapsed time = 00:00:04, memory = 1738.34 (MB).
+    Completing 60% with 71 violations.
+    elapsed time = 00:00:04, memory = 1738.34 (MB).
+    Completing 70% with 71 violations.
+    elapsed time = 00:00:04, memory = 1738.34 (MB).
+    Completing 80% with 71 violations.
+    elapsed time = 00:00:05, memory = 1738.34 (MB).
+    Completing 90% with 71 violations.
+    elapsed time = 00:00:05, memory = 1738.34 (MB).
+    Completing 100% with 65 violations.
+    elapsed time = 00:00:11, memory = 1738.53 (MB).
+[INFO DRT-0199]   Number of violations = 65.
+Viol/Layer        met1   met2
+Metal Spacing       11      9
+Short               28     17
+[INFO DRT-0267] cpu time = 00:00:15, elapsed time = 00:00:11, memory = 1738.53 (MB), peak = 2032.11 (MB)
+Total wire length = 285649 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107018 um.
+Total wire length on LAYER met2 = 111343 um.
+Total wire length on LAYER met3 = 48283 um.
+Total wire length on LAYER met4 = 19004 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65870.
+Up-via summary (total 65870):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28186
+           met1    30810
+           met2     5441
+           met3     1433
+           met4        0
+------------------------
+                   65870
+
+
+[INFO DRT-0195] Start 11th optimization iteration.
+    Completing 10% with 65 violations.
+    elapsed time = 00:00:00, memory = 1738.53 (MB).
+    Completing 20% with 65 violations.
+    elapsed time = 00:00:00, memory = 1738.53 (MB).
+    Completing 30% with 57 violations.
+    elapsed time = 00:00:02, memory = 1738.53 (MB).
+    Completing 40% with 57 violations.
+    elapsed time = 00:00:02, memory = 1738.53 (MB).
+    Completing 50% with 57 violations.
+    elapsed time = 00:00:04, memory = 1738.59 (MB).
+    Completing 60% with 46 violations.
+    elapsed time = 00:00:04, memory = 1738.59 (MB).
+    Completing 70% with 46 violations.
+    elapsed time = 00:00:04, memory = 1738.59 (MB).
+    Completing 80% with 46 violations.
+    elapsed time = 00:00:04, memory = 1738.59 (MB).
+    Completing 90% with 46 violations.
+    elapsed time = 00:00:04, memory = 1738.59 (MB).
+    Completing 100% with 2 violations.
+    elapsed time = 00:00:05, memory = 1738.59 (MB).
+[INFO DRT-0199]   Number of violations = 2.
+Viol/Layer        met1
+Metal Spacing        2
+[INFO DRT-0267] cpu time = 00:00:09, elapsed time = 00:00:05, memory = 1738.59 (MB), peak = 2032.11 (MB)
+Total wire length = 285676 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107005 um.
+Total wire length on LAYER met2 = 111371 um.
+Total wire length on LAYER met3 = 48294 um.
+Total wire length on LAYER met4 = 19004 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65892.
+Up-via summary (total 65892):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28185
+           met1    30825
+           met2     5448
+           met3     1434
+           met4        0
+------------------------
+                   65892
+
+
+[INFO DRT-0195] Start 12th optimization iteration.
+    Completing 10% with 2 violations.
+    elapsed time = 00:00:00, memory = 1738.59 (MB).
+    Completing 20% with 2 violations.
+    elapsed time = 00:00:00, memory = 1738.59 (MB).
+    Completing 30% with 2 violations.
+    elapsed time = 00:00:00, memory = 1738.59 (MB).
+    Completing 40% with 2 violations.
+    elapsed time = 00:00:00, memory = 1738.59 (MB).
+    Completing 50% with 2 violations.
+    elapsed time = 00:00:00, memory = 1738.59 (MB).
+    Completing 60% with 1 violations.
+    elapsed time = 00:00:00, memory = 1738.59 (MB).
+    Completing 70% with 1 violations.
+    elapsed time = 00:00:00, memory = 1738.59 (MB).
+    Completing 80% with 1 violations.
+    elapsed time = 00:00:00, memory = 1738.59 (MB).
+    Completing 90% with 1 violations.
+    elapsed time = 00:00:00, memory = 1738.59 (MB).
+    Completing 100% with 0 violations.
+    elapsed time = 00:00:00, memory = 1738.67 (MB).
+[INFO DRT-0199]   Number of violations = 0.
+[INFO DRT-0267] cpu time = 00:00:01, elapsed time = 00:00:01, memory = 1738.67 (MB), peak = 2032.11 (MB)
+Total wire length = 285678 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107004 um.
+Total wire length on LAYER met2 = 111371 um.
+Total wire length on LAYER met3 = 48297 um.
+Total wire length on LAYER met4 = 19004 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65890.
+Up-via summary (total 65890):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28185
+           met1    30823
+           met2     5448
+           met3     1434
+           met4        0
+------------------------
+                   65890
+
+
+[INFO DRT-0198] Complete detail routing.
+Total wire length = 285678 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107004 um.
+Total wire length on LAYER met2 = 111371 um.
+Total wire length on LAYER met3 = 48297 um.
+Total wire length on LAYER met4 = 19004 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65890.
+Up-via summary (total 65890):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28185
+           met1    30823
+           met2     5448
+           met3     1434
+           met4        0
+------------------------
+                   65890
+
+
+[INFO DRT-0267] cpu time = 01:23:56, elapsed time = 00:13:29, memory = 1738.67 (MB), peak = 2032.11 (MB)
+
+[INFO DRT-0180] Post processing.
+[INFO GRT-0012] Found 4 antenna violations.
+[INFO GRT-0015] Inserted 15 diodes.
+[WARNING DRT-0120] Large net net94 has 120 pins which may impact routing performance. Consider optimization.
+[WARNING DRT-0120] Large net net93 has 142 pins which may impact routing performance. Consider optimization.
+[INFO DRT-0024]   Complete FR_MASTERSLICE.
+[INFO DRT-0024]   Complete Fr_VIA.
+[INFO DRT-0024]   Complete li1.
+[INFO DRT-0024]   Complete mcon.
+[INFO DRT-0024]   Complete met1.
+[INFO DRT-0024]   Complete via.
+[INFO DRT-0024]   Complete met2.
+[INFO DRT-0024]   Complete via2.
+[INFO DRT-0024]   Complete met3.
+[INFO DRT-0024]   Complete via3.
+[INFO DRT-0024]   Complete met4.
+[INFO DRT-0024]   Complete via4.
+[INFO DRT-0024]   Complete met5.
+[INFO DRT-0165] Start pin access.
+[INFO DRT-0076]   Complete 1000 pins.
+[INFO DRT-0076]   Complete 2000 pins.
+[INFO DRT-0078]   Complete 2072 pins.
+[INFO DRT-0079]   Complete 100 unique inst patterns.
+[INFO DRT-0079]   Complete 200 unique inst patterns.
+[INFO DRT-0081]   Complete 258 unique inst patterns.
+[INFO DRT-0084]   Complete 4065 groups.
+#scanned instances     = 32443
+#unique  instances     = 260
+#stdCellGenAp          = 8410
+#stdCellValidPlanarAp  = 104
+#stdCellValidViaAp     = 5894
+#stdCellPinNoAp        = 6
+#stdCellPinCnt         = 27805
+#instTermValidViaApCnt = 0
+#macroGenAp            = 135468
+#macroValidPlanarAp    = 127217
+#macroValidViaAp       = 122991
+#macroNoAp             = 0
+[INFO DRT-0166] Complete pin access.
+[INFO DRT-0267] cpu time = 00:05:08, elapsed time = 00:02:14, memory = 1687.16 (MB), peak = 2032.11 (MB)
+
+[INFO DRT-0157] Number of guides:     69467
+
+[INFO DRT-0169] Post process guides.
+[INFO DRT-0176] GCELLGRID X 0 DO 231 STEP 6900 ;
+[INFO DRT-0177] GCELLGRID Y 0 DO 231 STEP 6900 ;
+[INFO DRT-0028]   Complete FR_MASTERSLICE.
+[INFO DRT-0028]   Complete Fr_VIA.
+[INFO DRT-0028]   Complete li1.
+[INFO DRT-0028]   Complete mcon.
+[INFO DRT-0028]   Complete met1.
+[INFO DRT-0028]   Complete via.
+[INFO DRT-0028]   Complete met2.
+[INFO DRT-0028]   Complete via2.
+[INFO DRT-0028]   Complete met3.
+[INFO DRT-0028]   Complete via3.
+[INFO DRT-0028]   Complete met4.
+[INFO DRT-0028]   Complete via4.
+[INFO DRT-0028]   Complete met5.
+[INFO DRT-0178] Init guide query.
+[INFO DRT-0035]   Complete FR_MASTERSLICE (guide).
+[INFO DRT-0035]   Complete Fr_VIA (guide).
+[INFO DRT-0035]   Complete li1 (guide).
+[INFO DRT-0035]   Complete mcon (guide).
+[INFO DRT-0035]   Complete met1 (guide).
+[INFO DRT-0035]   Complete via (guide).
+[INFO DRT-0035]   Complete met2 (guide).
+[INFO DRT-0035]   Complete via2 (guide).
+[INFO DRT-0035]   Complete met3 (guide).
+[INFO DRT-0035]   Complete via3 (guide).
+[INFO DRT-0035]   Complete met4 (guide).
+[INFO DRT-0035]   Complete via4 (guide).
+[INFO DRT-0035]   Complete met5 (guide).
+[INFO DRT-0036] FR_MASTERSLICE guide region query size = 0.
+[INFO DRT-0036] FR_VIA guide region query size = 0.
+[INFO DRT-0036] li1 guide region query size = 23323.
+[INFO DRT-0036] mcon guide region query size = 0.
+[INFO DRT-0036] met1 guide region query size = 15863.
+[INFO DRT-0036] via guide region query size = 0.
+[INFO DRT-0036] met2 guide region query size = 7392.
+[INFO DRT-0036] via2 guide region query size = 0.
+[INFO DRT-0036] met3 guide region query size = 922.
+[INFO DRT-0036] via3 guide region query size = 0.
+[INFO DRT-0036] met4 guide region query size = 264.
+[INFO DRT-0036] via4 guide region query size = 0.
+[INFO DRT-0036] met5 guide region query size = 2.
+[INFO DRT-0179] Init gr pin query.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 1687.16 (MB), peak = 2032.11 (MB)
+[INFO DRT-0245] skipped writing guide updates to database.
+[INFO DRT-0185] Post process initialize RPin region query.
+[INFO DRT-0181] Start track assignment.
+[INFO DRT-0184] Done with 30979 vertical wires in 5 frboxes and 16787 horizontal wires in 5 frboxes.
+[INFO DRT-0186] Done with 4262 vertical wires in 5 frboxes and 6718 horizontal wires in 5 frboxes.
+[INFO DRT-0182] Complete track assignment.
+[INFO DRT-0267] cpu time = 00:00:05, elapsed time = 00:00:02, memory = 1692.91 (MB), peak = 2032.11 (MB)
+[INFO DRT-0187] Start routing data preparation.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 1692.91 (MB), peak = 2032.11 (MB)
+[INFO DRT-0194] Start detail routing.
+[INFO DRT-0195] Start 0th optimization iteration.
+    Completing 10% with 0 violations.
+    elapsed time = 00:00:02, memory = 1744.97 (MB).
+    Completing 20% with 0 violations.
+    elapsed time = 00:00:12, memory = 1854.33 (MB).
+    Completing 30% with 82 violations.
+    elapsed time = 00:00:20, memory = 1854.33 (MB).
+    Completing 40% with 82 violations.
+    elapsed time = 00:00:33, memory = 1891.09 (MB).
+    Completing 50% with 82 violations.
+    elapsed time = 00:00:34, memory = 1891.09 (MB).
+    Completing 60% with 215 violations.
+    elapsed time = 00:00:47, memory = 1905.64 (MB).
+    Completing 70% with 215 violations.
+    elapsed time = 00:00:57, memory = 1900.17 (MB).
+    Completing 80% with 354 violations.
+    elapsed time = 00:01:03, memory = 1900.17 (MB).
+    Completing 90% with 354 violations.
+    elapsed time = 00:01:16, memory = 2025.67 (MB).
+    Completing 100% with 534 violations.
+    elapsed time = 00:01:26, memory = 1985.75 (MB).
+[INFO DRT-0199]   Number of violations = 557.
+Viol/Layer        met1   met2
+Metal Spacing       39     40
+Recheck              8     15
+Short              250    205
+[INFO DRT-0267] cpu time = 00:13:28, elapsed time = 00:01:26, memory = 2230.75 (MB), peak = 2230.75 (MB)
+Total wire length = 285691 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 108089 um.
+Total wire length on LAYER met2 = 111642 um.
+Total wire length on LAYER met3 = 47257 um.
+Total wire length on LAYER met4 = 18702 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 66008.
+Up-via summary (total 66008):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28203
+           met1    30992
+           met2     5403
+           met3     1410
+           met4        0
+------------------------
+                   66008
+
+
+[INFO DRT-0195] Start 1st optimization iteration.
+    Completing 10% with 557 violations.
+    elapsed time = 00:00:01, memory = 2230.86 (MB).
+    Completing 20% with 557 violations.
+    elapsed time = 00:00:13, memory = 2320.74 (MB).
+    Completing 30% with 457 violations.
+    elapsed time = 00:00:19, memory = 2280.75 (MB).
+    Completing 40% with 457 violations.
+    elapsed time = 00:00:35, memory = 2398.27 (MB).
+    Completing 50% with 457 violations.
+    elapsed time = 00:00:44, memory = 2300.46 (MB).
+    Completing 60% with 332 violations.
+    elapsed time = 00:00:57, memory = 2301.02 (MB).
+    Completing 70% with 332 violations.
+    elapsed time = 00:01:01, memory = 2350.45 (MB).
+    Completing 80% with 274 violations.
+    elapsed time = 00:01:04, memory = 2301.12 (MB).
+    Completing 90% with 274 violations.
+    elapsed time = 00:01:21, memory = 2382.84 (MB).
+    Completing 100% with 217 violations.
+    elapsed time = 00:01:32, memory = 2382.84 (MB).
+[INFO DRT-0199]   Number of violations = 217.
+Viol/Layer        met1   met2   met3
+Metal Spacing       25     16      0
+Short              115     58      3
+[INFO DRT-0267] cpu time = 00:15:05, elapsed time = 00:01:32, memory = 2382.84 (MB), peak = 2475.12 (MB)
+Total wire length = 285607 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107829 um.
+Total wire length on LAYER met2 = 111499 um.
+Total wire length on LAYER met3 = 47515 um.
+Total wire length on LAYER met4 = 18762 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65994.
+Up-via summary (total 65994):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28203
+           met1    30949
+           met2     5431
+           met3     1411
+           met4        0
+------------------------
+                   65994
+
+
+[INFO DRT-0195] Start 2nd optimization iteration.
+    Completing 10% with 217 violations.
+    elapsed time = 00:00:00, memory = 2382.84 (MB).
+    Completing 20% with 217 violations.
+    elapsed time = 00:00:00, memory = 2382.84 (MB).
+    Completing 30% with 199 violations.
+    elapsed time = 00:00:03, memory = 2382.76 (MB).
+    Completing 40% with 199 violations.
+    elapsed time = 00:00:03, memory = 2382.76 (MB).
+    Completing 50% with 199 violations.
+    elapsed time = 00:00:05, memory = 2382.99 (MB).
+    Completing 60% with 202 violations.
+    elapsed time = 00:00:05, memory = 2382.99 (MB).
+    Completing 70% with 202 violations.
+    elapsed time = 00:00:05, memory = 2382.99 (MB).
+    Completing 80% with 218 violations.
+    elapsed time = 00:00:07, memory = 2383.11 (MB).
+    Completing 90% with 218 violations.
+    elapsed time = 00:00:07, memory = 2383.11 (MB).
+    Completing 100% with 191 violations.
+    elapsed time = 00:00:09, memory = 2383.00 (MB).
+[INFO DRT-0199]   Number of violations = 191.
+Viol/Layer        met1   met2   met3
+Metal Spacing       17      7      4
+Short              112     49      2
+[INFO DRT-0267] cpu time = 00:00:23, elapsed time = 00:00:09, memory = 2383.00 (MB), peak = 2509.76 (MB)
+Total wire length = 285609 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107750 um.
+Total wire length on LAYER met2 = 111474 um.
+Total wire length on LAYER met3 = 47584 um.
+Total wire length on LAYER met4 = 18800 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65976.
+Up-via summary (total 65976):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28201
+           met1    30927
+           met2     5433
+           met3     1415
+           met4        0
+------------------------
+                   65976
+
+
+[INFO DRT-0195] Start 3rd optimization iteration.
+    Completing 10% with 191 violations.
+    elapsed time = 00:00:00, memory = 2383.00 (MB).
+    Completing 20% with 191 violations.
+    elapsed time = 00:00:00, memory = 2383.00 (MB).
+    Completing 30% with 175 violations.
+    elapsed time = 00:00:00, memory = 2383.04 (MB).
+    Completing 40% with 175 violations.
+    elapsed time = 00:00:00, memory = 2383.04 (MB).
+    Completing 50% with 175 violations.
+    elapsed time = 00:00:00, memory = 2383.04 (MB).
+    Completing 60% with 143 violations.
+    elapsed time = 00:00:02, memory = 2382.90 (MB).
+    Completing 70% with 143 violations.
+    elapsed time = 00:00:02, memory = 2382.90 (MB).
+    Completing 80% with 85 violations.
+    elapsed time = 00:00:04, memory = 2382.84 (MB).
+    Completing 90% with 85 violations.
+    elapsed time = 00:00:04, memory = 2382.84 (MB).
+    Completing 100% with 64 violations.
+    elapsed time = 00:00:19, memory = 2383.42 (MB).
+[INFO DRT-0199]   Number of violations = 64.
+Viol/Layer        met1   met2
+Metal Spacing        8      4
+Short               20     32
+[INFO DRT-0267] cpu time = 00:00:37, elapsed time = 00:00:20, memory = 2383.54 (MB), peak = 2538.90 (MB)
+Total wire length = 285575 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107412 um.
+Total wire length on LAYER met2 = 111400 um.
+Total wire length on LAYER met3 = 47856 um.
+Total wire length on LAYER met4 = 18906 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65977.
+Up-via summary (total 65977):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28202
+           met1    30897
+           met2     5458
+           met3     1420
+           met4        0
+------------------------
+                   65977
+
+
+[INFO DRT-0195] Start 4th optimization iteration.
+    Completing 10% with 64 violations.
+    elapsed time = 00:00:00, memory = 2383.54 (MB).
+    Completing 20% with 64 violations.
+    elapsed time = 00:00:00, memory = 2383.54 (MB).
+    Completing 30% with 64 violations.
+    elapsed time = 00:00:00, memory = 2383.54 (MB).
+    Completing 40% with 64 violations.
+    elapsed time = 00:00:00, memory = 2383.54 (MB).
+    Completing 50% with 64 violations.
+    elapsed time = 00:00:00, memory = 2383.54 (MB).
+    Completing 60% with 64 violations.
+    elapsed time = 00:00:00, memory = 2383.54 (MB).
+    Completing 70% with 64 violations.
+    elapsed time = 00:00:00, memory = 2383.54 (MB).
+    Completing 80% with 64 violations.
+    elapsed time = 00:00:02, memory = 2383.57 (MB).
+    Completing 90% with 64 violations.
+    elapsed time = 00:00:02, memory = 2383.57 (MB).
+    Completing 100% with 64 violations.
+    elapsed time = 00:00:14, memory = 2383.59 (MB).
+[INFO DRT-0199]   Number of violations = 64.
+Viol/Layer        met1   met2
+Metal Spacing        8      4
+Short               20     32
+[INFO DRT-0267] cpu time = 00:00:21, elapsed time = 00:00:14, memory = 2386.34 (MB), peak = 2538.90 (MB)
+Total wire length = 285575 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107412 um.
+Total wire length on LAYER met2 = 111400 um.
+Total wire length on LAYER met3 = 47856 um.
+Total wire length on LAYER met4 = 18906 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65977.
+Up-via summary (total 65977):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28202
+           met1    30897
+           met2     5458
+           met3     1420
+           met4        0
+------------------------
+                   65977
+
+
+[INFO DRT-0195] Start 5th optimization iteration.
+    Completing 10% with 64 violations.
+    elapsed time = 00:00:00, memory = 2386.34 (MB).
+    Completing 20% with 64 violations.
+    elapsed time = 00:00:00, memory = 2386.34 (MB).
+    Completing 30% with 64 violations.
+    elapsed time = 00:00:00, memory = 2386.34 (MB).
+    Completing 40% with 64 violations.
+    elapsed time = 00:00:00, memory = 2386.34 (MB).
+    Completing 50% with 64 violations.
+    elapsed time = 00:00:07, memory = 2386.34 (MB).
+    Completing 60% with 64 violations.
+    elapsed time = 00:00:07, memory = 2386.34 (MB).
+    Completing 70% with 64 violations.
+    elapsed time = 00:00:07, memory = 2386.34 (MB).
+    Completing 80% with 48 violations.
+    elapsed time = 00:00:09, memory = 2386.34 (MB).
+    Completing 90% with 48 violations.
+    elapsed time = 00:00:09, memory = 2386.34 (MB).
+    Completing 100% with 30 violations.
+    elapsed time = 00:00:11, memory = 2386.34 (MB).
+[INFO DRT-0199]   Number of violations = 30.
+Viol/Layer        met1   met2
+Metal Spacing        8      0
+Short               17      5
+[INFO DRT-0267] cpu time = 00:00:14, elapsed time = 00:00:11, memory = 2386.34 (MB), peak = 2538.90 (MB)
+Total wire length = 285589 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107301 um.
+Total wire length on LAYER met2 = 111390 um.
+Total wire length on LAYER met3 = 47975 um.
+Total wire length on LAYER met4 = 18921 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65986.
+Up-via summary (total 65986):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28202
+           met1    30886
+           met2     5472
+           met3     1426
+           met4        0
+------------------------
+                   65986
+
+
+[INFO DRT-0195] Start 6th optimization iteration.
+    Completing 10% with 30 violations.
+    elapsed time = 00:00:00, memory = 2386.34 (MB).
+    Completing 20% with 30 violations.
+    elapsed time = 00:00:00, memory = 2386.34 (MB).
+    Completing 30% with 30 violations.
+    elapsed time = 00:00:00, memory = 2386.34 (MB).
+    Completing 40% with 30 violations.
+    elapsed time = 00:00:00, memory = 2386.34 (MB).
+    Completing 50% with 30 violations.
+    elapsed time = 00:00:10, memory = 2386.34 (MB).
+    Completing 60% with 30 violations.
+    elapsed time = 00:00:10, memory = 2386.34 (MB).
+    Completing 70% with 30 violations.
+    elapsed time = 00:00:10, memory = 2386.34 (MB).
+    Completing 80% with 30 violations.
+    elapsed time = 00:00:10, memory = 2386.34 (MB).
+    Completing 90% with 30 violations.
+    elapsed time = 00:00:10, memory = 2386.34 (MB).
+    Completing 100% with 30 violations.
+    elapsed time = 00:00:10, memory = 2386.34 (MB).
+[INFO DRT-0199]   Number of violations = 30.
+Viol/Layer        met1   met2
+Metal Spacing        8      0
+Short               17      5
+[INFO DRT-0267] cpu time = 00:00:10, elapsed time = 00:00:10, memory = 2386.34 (MB), peak = 2538.90 (MB)
+Total wire length = 285589 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107301 um.
+Total wire length on LAYER met2 = 111390 um.
+Total wire length on LAYER met3 = 47975 um.
+Total wire length on LAYER met4 = 18921 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65986.
+Up-via summary (total 65986):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28202
+           met1    30886
+           met2     5472
+           met3     1426
+           met4        0
+------------------------
+                   65986
+
+
+[INFO DRT-0195] Start 7th optimization iteration.
+    Completing 10% with 30 violations.
+    elapsed time = 00:00:00, memory = 2386.34 (MB).
+    Completing 20% with 30 violations.
+    elapsed time = 00:00:00, memory = 2386.34 (MB).
+    Completing 30% with 30 violations.
+    elapsed time = 00:00:00, memory = 2386.34 (MB).
+    Completing 40% with 30 violations.
+    elapsed time = 00:00:00, memory = 2386.34 (MB).
+    Completing 50% with 30 violations.
+    elapsed time = 00:00:05, memory = 2386.39 (MB).
+    Completing 60% with 30 violations.
+    elapsed time = 00:00:05, memory = 2386.39 (MB).
+    Completing 70% with 30 violations.
+    elapsed time = 00:00:05, memory = 2386.39 (MB).
+    Completing 80% with 30 violations.
+    elapsed time = 00:00:05, memory = 2386.39 (MB).
+    Completing 90% with 30 violations.
+    elapsed time = 00:00:05, memory = 2386.39 (MB).
+    Completing 100% with 30 violations.
+    elapsed time = 00:00:05, memory = 2386.39 (MB).
+[INFO DRT-0199]   Number of violations = 30.
+Viol/Layer        met1   met2
+Metal Spacing        8      0
+Short               17      5
+[INFO DRT-0267] cpu time = 00:00:06, elapsed time = 00:00:05, memory = 2386.39 (MB), peak = 2538.90 (MB)
+Total wire length = 285589 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107301 um.
+Total wire length on LAYER met2 = 111390 um.
+Total wire length on LAYER met3 = 47975 um.
+Total wire length on LAYER met4 = 18921 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65986.
+Up-via summary (total 65986):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28202
+           met1    30886
+           met2     5472
+           met3     1426
+           met4        0
+------------------------
+                   65986
+
+
+[INFO DRT-0195] Start 8th optimization iteration.
+    Completing 10% with 30 violations.
+    elapsed time = 00:00:00, memory = 2386.39 (MB).
+    Completing 20% with 30 violations.
+    elapsed time = 00:00:00, memory = 2386.39 (MB).
+    Completing 30% with 30 violations.
+    elapsed time = 00:00:03, memory = 2386.39 (MB).
+    Completing 40% with 30 violations.
+    elapsed time = 00:00:03, memory = 2386.39 (MB).
+    Completing 50% with 30 violations.
+    elapsed time = 00:00:06, memory = 2396.75 (MB).
+    Completing 60% with 6 violations.
+    elapsed time = 00:00:06, memory = 2396.75 (MB).
+    Completing 70% with 6 violations.
+    elapsed time = 00:00:06, memory = 2396.75 (MB).
+    Completing 80% with 6 violations.
+    elapsed time = 00:00:06, memory = 2396.75 (MB).
+    Completing 90% with 6 violations.
+    elapsed time = 00:00:06, memory = 2396.75 (MB).
+    Completing 100% with 6 violations.
+    elapsed time = 00:00:06, memory = 2396.75 (MB).
+[INFO DRT-0199]   Number of violations = 6.
+Viol/Layer        met1   met2
+Metal Spacing        1      0
+Short                0      5
+[INFO DRT-0267] cpu time = 00:00:07, elapsed time = 00:00:06, memory = 2396.75 (MB), peak = 2538.90 (MB)
+Total wire length = 285588 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107271 um.
+Total wire length on LAYER met2 = 111406 um.
+Total wire length on LAYER met3 = 48000 um.
+Total wire length on LAYER met4 = 18909 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65982.
+Up-via summary (total 65982):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28201
+           met1    30883
+           met2     5471
+           met3     1427
+           met4        0
+------------------------
+                   65982
+
+
+[INFO DRT-0195] Start 9th optimization iteration.
+    Completing 10% with 6 violations.
+    elapsed time = 00:00:00, memory = 2396.75 (MB).
+    Completing 20% with 6 violations.
+    elapsed time = 00:00:00, memory = 2396.75 (MB).
+    Completing 30% with 0 violations.
+    elapsed time = 00:00:00, memory = 2396.75 (MB).
+    Completing 40% with 0 violations.
+    elapsed time = 00:00:00, memory = 2396.75 (MB).
+    Completing 50% with 0 violations.
+    elapsed time = 00:00:00, memory = 2396.75 (MB).
+    Completing 60% with 0 violations.
+    elapsed time = 00:00:00, memory = 2396.75 (MB).
+    Completing 70% with 0 violations.
+    elapsed time = 00:00:00, memory = 2396.75 (MB).
+    Completing 80% with 0 violations.
+    elapsed time = 00:00:00, memory = 2396.75 (MB).
+    Completing 90% with 0 violations.
+    elapsed time = 00:00:00, memory = 2396.75 (MB).
+    Completing 100% with 0 violations.
+    elapsed time = 00:00:00, memory = 2396.75 (MB).
+[INFO DRT-0199]   Number of violations = 0.
+[INFO DRT-0267] cpu time = 00:00:01, elapsed time = 00:00:00, memory = 2396.75 (MB), peak = 2538.90 (MB)
+Total wire length = 285601 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107267 um.
+Total wire length on LAYER met2 = 111406 um.
+Total wire length on LAYER met3 = 48011 um.
+Total wire length on LAYER met4 = 18916 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65980.
+Up-via summary (total 65980):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28201
+           met1    30878
+           met2     5472
+           met3     1429
+           met4        0
+------------------------
+                   65980
+
+
+[INFO DRT-0198] Complete detail routing.
+Total wire length = 285601 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 107267 um.
+Total wire length on LAYER met2 = 111406 um.
+Total wire length on LAYER met3 = 48011 um.
+Total wire length on LAYER met4 = 18916 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 65980.
+Up-via summary (total 65980):
+
+------------------------
+ FR_MASTERSLICE        0
+            li1    28201
+           met1    30878
+           met2     5472
+           met3     1429
+           met4        0
+------------------------
+                   65980
+
+
+[INFO DRT-0267] cpu time = 00:30:37, elapsed time = 00:04:17, memory = 2396.75 (MB), peak = 2538.90 (MB)
+
+[INFO DRT-0180] Post processing.
+[INFO ANT-0002] Found 0 net violations.
+[INFO ANT-0001] Found 0 pin violations.
+[INFO ANT-0002] Found 0 net violations.
+[INFO ANT-0001] Found 0 pin violations.
+Elapsed time: 22:27.17[h:]min:sec. CPU time: user 7536.48 sys 7.57 (559%). Peak memory: 2599832KB.

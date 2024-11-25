@@ -45,11 +45,11 @@ df.columns = [
 ]
 
 # Step 7: Save the DataFrame as an HTML table
-df.to_html('slack_values_table.html')
+df.to_html('./session15/slack_values_table.html')
 
 # Optional: Save the DataFrame as a Markdown table
 markdown_table = df.to_markdown()
-with open('slack_values_table.md', 'w') as f:
+with open('./session15/slack_values_table.md', 'w') as f:
     f.write(markdown_table)
 
 # Display the table

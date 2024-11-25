@@ -1,0 +1,195 @@
+violation type: Metal Spacing
+	srcs: net:core.w_CPU_dmem_rd_data_a4\[20\]
+	bbox = (497.3750, 984.2000) - (497.5600, 984.2300) on Layer met2
+violation type: Metal Spacing
+	srcs: net:core.w_CPU_dmem_rd_data_a4\[20\]
+	bbox = (497.4200, 984.2000) - (497.5600, 984.2300) on Layer met2
+violation type: Metal Spacing
+	srcs: net:_02088_ net:net100
+	bbox = (502.6600, 1012.7600) - (502.8000, 1012.7900) on Layer met1
+violation type: Metal Spacing
+	srcs: net:_02088_ net:net100
+	bbox = (502.6600, 1012.7600) - (503.0350, 1012.7900) on Layer met1
+violation type: Metal Spacing
+	srcs: net:_02088_ net:net100
+	bbox = (502.8950, 1012.9300) - (503.3600, 1012.9600) on Layer met1
+violation type: Metal Spacing
+	srcs: net:_02088_ net:net100
+	bbox = (503.2200, 1012.9300) - (503.3600, 1012.9600) on Layer met1
+violation type: Metal Spacing
+	srcs: net:core.CPU_Dmem_value_a5\[8\]\[18\]
+	bbox = (504.1750, 1007.3800) - (504.2300, 1007.4750) on Layer met1
+violation type: Metal Spacing
+	srcs: net:core.CPU_dmem_wr_data_a4\[18\]
+	bbox = (495.5050, 988.6800) - (495.7950, 988.7750) on Layer met1
+violation type: Metal Spacing
+	srcs: net:core.CPU_dmem_wr_data_a4\[18\] net:net1016
+	bbox = (496.9600, 986.3300) - (497.0550, 986.4400) on Layer met2
+violation type: Metal Spacing
+	srcs: net:core.CPU_dmem_wr_data_a4\[18\] net:net1016
+	bbox = (496.9600, 986.3300) - (497.1000, 986.4400) on Layer met2
+violation type: Metal Spacing
+	srcs: net:core.CPU_dmem_wr_data_a4\[18\] net:net1016
+	bbox = (496.9000, 986.3300) - (497.1000, 986.4400) on Layer met2
+violation type: Metal Spacing
+	srcs: net:_04703_
+	bbox = (686.7200, 1108.3600) - (686.8500, 1108.4050) on Layer met1
+violation type: Metal Spacing
+	srcs: net:net24
+	bbox = (668.3200, 1116.2600) - (668.4500, 1116.4750) on Layer met1
+violation type: Metal Spacing
+	srcs: net:core.CPU_Xreg_value_a4\[14\]\[21\]
+	bbox = (662.9450, 1114.1250) - (663.2350, 1114.2200) on Layer met1
+violation type: Metal Spacing
+	srcs: net:net33
+	bbox = (674.8350, 1119.3650) - (674.8900, 1119.5800) on Layer met1
+violation type: Metal Spacing
+	srcs: net:_02911_ net:_04221_
+	bbox = (668.4000, 1113.0600) - (668.4800, 1113.1700) on Layer met2
+violation type: Metal Spacing
+	srcs: net:_04221_ net:net24
+	bbox = (668.4000, 1112.0700) - (668.4800, 1112.1300) on Layer met2
+violation type: Metal Spacing
+	srcs: net:_04430_
+	bbox = (666.7000, 1113.8300) - (666.8400, 1113.9400) on Layer met2
+violation type: Metal Spacing
+	srcs: net:_04430_
+	bbox = (666.7000, 1113.8300) - (666.8700, 1113.9400) on Layer met2
+violation type: Metal Spacing
+	srcs: net:net32 net:core.CPU_Xreg_value_a4\[8\]\[29\]
+	bbox = (747.9750, 956.0400) - (748.0300, 956.1650) on Layer met1
+violation type: Short
+	srcs: net:_02088_ net:net100
+	bbox = (502.8950, 1012.7900) - (503.0350, 1012.9300) on Layer met1
+violation type: Short
+	srcs: net:net233 net:_05261_
+	bbox = (502.9650, 1010.5800) - (503.1050, 1010.7800) on Layer met1
+violation type: Short
+	srcs: net:net233 net:_05261_
+	bbox = (502.9650, 1010.5800) - (503.1700, 1010.7200) on Layer met1
+violation type: Short
+	srcs: net:_02170_ net:_05263_
+	bbox = (503.8600, 1008.2000) - (504.0000, 1008.3400) on Layer met1
+violation type: Short
+	srcs: net:_02170_ net:_05263_
+	bbox = (504.2750, 1008.2000) - (504.4150, 1008.3400) on Layer met1
+violation type: Short
+	srcs: net:_02170_ net:_05263_
+	bbox = (503.8600, 1008.2000) - (504.4150, 1008.3400) on Layer met1
+violation type: Short
+	srcs: net:core.w_CPU_dmem_rd_data_a4\[20\] net:net1016
+	bbox = (496.9600, 986.7800) - (497.1000, 986.9200) on Layer met2
+violation type: Short
+	srcs: net:_04230_ net:core.CPU_Xreg_value_a4\[12\]\[21\]
+	bbox = (663.9400, 1113.2600) - (664.0800, 1113.4000) on Layer met1
+violation type: Short
+	srcs: net:_04195_ net:_04684_
+	bbox = (662.5150, 1114.6200) - (662.6550, 1114.7600) on Layer met1
+violation type: Short
+	srcs: net:_04195_ net:_04684_
+	bbox = (663.4800, 1114.6200) - (663.6200, 1114.7600) on Layer met1
+violation type: Short
+	srcs: net:_04195_ net:_04684_
+	bbox = (662.5150, 1114.6200) - (663.6200, 1114.7600) on Layer met1
+violation type: Short
+	srcs: net:_02911_ net:core.CPU_Xreg_value_a4\[6\]\[21\]
+	bbox = (668.5400, 1113.2600) - (668.6800, 1113.4000) on Layer met1
+violation type: Short
+	srcs: net:_02911_ net:core.CPU_Xreg_value_a4\[6\]\[21\]
+	bbox = (668.4500, 1113.2600) - (668.7700, 1113.4000) on Layer met1
+violation type: Short
+	srcs: net:_04684_ net:net89
+	bbox = (672.2200, 1116.6600) - (672.3600, 1116.8000) on Layer met1
+violation type: Short
+	srcs: net:_04911_ net:core.CPU_rd_a5\[4\]
+	bbox = (668.5400, 1122.0900) - (668.5600, 1122.3100) on Layer met1
+violation type: Short
+	srcs: net:_04911_ net:core.CPU_rd_a5\[4\]
+	bbox = (668.5400, 1122.1000) - (668.5600, 1122.3100) on Layer met1
+violation type: Short
+	srcs: net:_04911_ net:core.CPU_rd_a5\[4\]
+	bbox = (668.5400, 1122.1000) - (668.6800, 1122.2400) on Layer met1
+violation type: Short
+	srcs: net:_04911_ net:core.CPU_rd_a5\[4\]
+	bbox = (668.5400, 1122.0900) - (668.6800, 1122.2400) on Layer met1
+violation type: Short
+	srcs: net:_04911_ net:core.CPU_rd_a5\[4\]
+	bbox = (668.5400, 1122.1000) - (668.6800, 1122.2300) on Layer met1
+violation type: Short
+	srcs: net:_04911_ net:core.CPU_rd_a5\[4\]
+	bbox = (668.5400, 1122.1700) - (668.6800, 1122.2300) on Layer met1
+violation type: Short
+	srcs: net:_04911_ net:core.CPU_rd_a5\[4\]
+	bbox = (668.5400, 1122.1700) - (668.6800, 1122.2400) on Layer met1
+violation type: Short
+	srcs: net:_04911_ net:core.CPU_rd_a5\[4\]
+	bbox = (668.5400, 1122.0900) - (668.6800, 1122.2300) on Layer met1
+violation type: Short
+	srcs: net:_04911_ net:core.CPU_rd_a5\[4\]
+	bbox = (668.5400, 1122.1700) - (668.5600, 1122.3100) on Layer met1
+violation type: Short
+	srcs: net:_04911_ net:core.CPU_rd_a5\[4\]
+	bbox = (666.7000, 1122.1000) - (666.8400, 1122.2400) on Layer met1
+violation type: Short
+	srcs: net:core.CPU_rd_a5\[4\] net:net1496
+	bbox = (665.7800, 1122.1000) - (665.9200, 1122.2400) on Layer met1
+violation type: Short
+	srcs: net:_04911_ net:core.CPU_rd_a5\[4\]
+	bbox = (666.6250, 1122.1000) - (666.9150, 1122.2400) on Layer met1
+violation type: Short
+	srcs: net:_04439_ net:core.CPU_Xreg_value_a4\[2\]\[21\]
+	bbox = (666.7300, 1111.9000) - (666.8400, 1112.2100) on Layer met2
+violation type: Short
+	srcs: net:_04439_ net:core.CPU_Xreg_value_a4\[2\]\[21\]
+	bbox = (666.7300, 1112.0700) - (666.8400, 1112.2100) on Layer met2
+violation type: Short
+	srcs: net:_04430_ net:_04439_
+	bbox = (666.7300, 1113.2600) - (666.8400, 1113.4000) on Layer met2
+violation type: Short
+	srcs: net:_04430_ net:_04439_
+	bbox = (666.7300, 1113.1700) - (666.8400, 1113.4000) on Layer met2
+violation type: Short
+	srcs: net:_04439_ net:core.CPU_Xreg_value_a4\[2\]\[21\]
+	bbox = (666.7300, 1111.9000) - (666.8400, 1112.0400) on Layer met2
+violation type: Short
+	srcs: net:_02911_ net:_04439_
+	bbox = (667.1600, 1111.9000) - (667.3000, 1112.0400) on Layer met2
+violation type: Short
+	srcs: net:_04439_ net:core.CPU_Xreg_value_a4\[2\]\[21\]
+	bbox = (666.7000, 1112.0700) - (666.8400, 1112.2100) on Layer met2
+violation type: Short
+	srcs: net:_04430_ net:_04439_
+	bbox = (666.7300, 1113.2600) - (666.8700, 1113.4000) on Layer met2
+violation type: Short
+	srcs: net:_04430_ net:_04439_
+	bbox = (666.7300, 1113.1700) - (666.8700, 1113.4000) on Layer met2
+violation type: Short
+	srcs: net:_04430_ net:_04439_
+	bbox = (666.7300, 1113.2600) - (666.9000, 1113.4000) on Layer met2
+violation type: Short
+	srcs: net:_04430_ net:core.CPU_Xreg_value_a4\[2\]\[21\]
+	bbox = (666.2400, 1113.2600) - (666.3800, 1113.8300) on Layer met2
+violation type: Short
+	srcs: net:_04430_ net:core.CPU_Xreg_value_a4\[2\]\[21\]
+	bbox = (666.2400, 1113.6900) - (666.3800, 1113.8300) on Layer met2
+violation type: Short
+	srcs: net:_04430_ net:core.CPU_Xreg_value_a4\[2\]\[21\]
+	bbox = (666.2400, 1113.2600) - (666.3800, 1113.4000) on Layer met2
+violation type: Short
+	srcs: net:_02911_ net:net24
+	bbox = (668.5400, 1113.1700) - (668.6800, 1113.4900) on Layer met2
+violation type: Short
+	srcs: net:_02911_ net:net24
+	bbox = (668.5400, 1113.2600) - (668.6800, 1113.4000) on Layer met2
+violation type: Short
+	srcs: net:_02911_ net:_04221_
+	bbox = (668.0800, 1113.2600) - (668.2200, 1113.4000) on Layer met2
+violation type: Short
+	srcs: net:_04224_ net:core.CPU_Xreg_value_a4\[2\]\[21\]
+	bbox = (664.7700, 1110.8800) - (665.0900, 1111.0200) on Layer met1
+violation type: Short
+	srcs: net:net32 net:core.CPU_Xreg_value_a4\[8\]\[29\]
+	bbox = (747.6850, 956.1650) - (747.8000, 956.2700) on Layer met1
+violation type: Short
+	srcs: net:net32 net:core.CPU_Xreg_value_a4\[8\]\[29\]
+	bbox = (747.6850, 956.2100) - (747.8000, 956.2700) on Layer met1
